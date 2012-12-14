@@ -1,0 +1,49 @@
+
+<form action="/change_national_id" method="get">
+  <select id="selection" name="patient_id"
+          helpText="Select patient to change national identifier" nested="true">
+    <option></option>
+
+    <% patient_list = {} %>
+    
+    <% @patients.each do |patient| %>
+
+      <% patient_list[patient.id] = patient.name %>
+    
+      <% gender = {"F" => "Female", "M" => "Male"} %>
+
+      <% address = (!patient.landmark_or_plot_number.blank? || !patient.current_residence_location.blank? ||
+          !patient.current_district.blank? ? " Address: #{patient.landmark_or_plot_number.to_s +
+        (!patient.landmark_or_plot_number.blank? ? ", " : "")}#{patient.current_residence_location.to_s +
+        (!patient.current_residence_location.blank? ? ", " : "")}#{patient.current_district};" : "") %>
+
+      <option value="<%= patient.id %>"><%= "#{patient.name} - #{gender[patient.gender]} [ Age: #{
+            patient.age}; IDs: (#{patient.patient.patient_identifiers.map{|i|
+            i.identifier}.join(", ")});#{address} ]".strip %></option>
+
+    <% end %>
+
+  </select>
+
+  <select id="confirm" name="confirm" helpText="Change the national identifier for this patient?"
+          tt_onLoad="__$('helpText' + tstCurrentPage).innerHTML = 
+          'Change the National ID for ' + patients[__$('selection').value] + '?'"
+           nested="true" disabled tt_beforeUnload="if(__$('touchscreenInput' + tstCurrentPage).value.toLowerCase()=='no'){
+                document.forms[0].action = '/select';
+                } else { document.forms[0].action = '/change_national_id' }">
+    <option></option>
+    <option>Yes</option>
+    <option>No</option>
+  </select>
+
+  <input type="hidden" name="user_id" value="<%= params[:user] %>" />
+  
+</form>
+
+<script type="text/javascript">
+  <!--
+
+  var patients = <%= patient_list.to_json rescue {} %>;
+
+  //-->
+</script>

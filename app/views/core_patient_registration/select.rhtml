@@ -1,0 +1,64 @@
+<script type="text/javascript">
+  <!--
+
+  function setFields(){
+    var options = {
+      "Middle Name":"show_middle_name",
+      "Maiden Name":"show_maiden_name",
+      "Home of Origin":"show_region_of_origin",
+      "District of Origin":"show_district_of_origin",
+      "Ancestral T/A":"show_t_a_of_origin",
+      "Home Village":"show_home_village",
+      "Current Region":"show_current_region",
+      "Current District":"show_current_district",
+      "Current T/A":"show_current_t_a",
+      "Current Village":"show_current_village",
+      "Landmark or Plot":"show_current_landmark",
+      "Cell Phone Number":"show_cell_phone_number",
+      "Office Phone Number":"show_office_phone_number",
+      "Home Phone Number":"show_home_phone_number",
+      "Occupation":"show_occupation",
+      "Nationality":"show_nationality"
+    }
+
+    var selected = __$("touchscreenInput" + tstCurrentPage).value.split(";");
+
+    for(var i = 0; i < selected.length; i++){
+      if(selected[i].trim().length > 0){
+        var hidden = document.createElement("input");
+        hidden.type = "hidden";
+        hidden.name = options[selected[i]];
+        hidden.value = "true";
+
+        document.forms[0].appendChild(hidden);
+      }
+    }
+
+    __$("selection").setAttribute("disabled", "true");
+  }
+
+  //-->
+</script>
+
+<form action="/new_patient" method="get">
+  <select id="selection" name="selection" tt_onUnLoad="setFields()" optional
+          helpText="Select patient extra details to capture" nested="true" multiple="multiple">
+    <option></option>
+    <option value="show_middle_name">Middle Name</option>
+    <option value="show_maiden_name">Maiden Name</option>
+    <option value="show_region_of_origin">Home of Origin</option>
+    <!--option value="show_district_of_origin">District of Origin</option>
+    <option value="show_t_a_of_origin">Ancestral T/A</option>
+    <option value="show_home_village">Home Village</option>
+    <option value="show_current_region">Current Region</option-->
+    <option value="show_current_district">Current District</option>
+    <option value="show_current_t_a">Current T/A</option>
+    <option value="show_current_village">Current Village</option>
+    <option value="show_current_landmark">Landmark or Plot</option>
+    <option value="show_cell_phone_number">Cell Phone Number</option>
+    <option value="show_office_phone_number">Office Phone Number</option>
+    <option value="show_home_phone_number">Home Phone Number</option>
+    <option value="show_occupation">Occupation</option>
+    <option value="show_nationality">Nationality</option>
+  </select>
+</form>

@@ -1,0 +1,174 @@
+<script type="text/javascript" language="javascript">
+  <!--
+  
+  tt_cancel_destination = "/select"
+
+  function set_ajaxURL_for_suggestions(url, filter_value) {
+    $('touchscreenInput'+tstCurrentPage).setAttribute('ajaxURL', url + filter_value + "&search_string=");
+    listSuggestions(tstCurrentPage);
+  }
+
+  //-->
+</script>
+
+<style type="text/css">
+  
+  .nota #na {
+    display: block;
+  }
+
+  .tt_controls_occupation .keyboard{
+    display:none !important;
+  }
+  #tt_page_occupation .options{height:500px;}
+  #tt_page_occupation .options li{font-size:30px;}
+
+  .tt_controls_month_of_birth .keyboard{
+    display:none !important;
+  }
+  #tt_page_month_of_birth .options{height:570px;}
+  #tt_page_month_of_birth .options li{font-size:30px;}
+
+</style>
+
+<% form_tag :controller => "core_patient_registration", :action => "create" do |f| %>
+
+  <%= text_field_tag "person[names][given_name]", params[:first_name],
+    {:id => "first_name",
+    :helptext => "First Name" } %>
+
+  <%= text_field_tag "person[names][middle_name]", nil,
+    {:id => "middle_name",
+    :helptext => "Middle Name" } if @show_middle_name %>
+
+  <%= text_field_tag "person[names][family_name]", params[:last_name],
+    {:id => "last_name",
+    :helptext => "Last Name" } %>
+
+  <%= select_tag "person[gender]", options_for_select([["Male", "Male"], ["Female", "Female"], ["", ""]], params[:gender]),
+    {:id => "gender",
+    :helptext => "Gender" } %>
+
+  <%= text_field_tag "person[names][family_name2]", nil,
+    {:id => "maiden_name",
+    :condition => "__$('gender').value == 'Female'",
+    :helptext => "Maiden Name" } if @show_maiden_name %>
+
+  <%= text_field_tag "person[birth_year]", nil,
+    {:id => "year_of_birth",
+    :field_type => "number",
+    :tt_pageStyleClass => "NumbersWithUnknown",
+    :absoluteMax => Date.today.year,
+    :absoluteMin => (Date.today.year - 120),
+    :min => (Date.today.year - 80),
+    :helptext => "Year Of Birth" } %>
+
+  <%= select_tag "person[birth_month]", month_name_options,
+    {:id => "month_of_birth",
+    :helptext => "Month Of Birth",
+    :tt_pageStyleClass => "tt_controls_month_of_birth",
+    :condition => '__$("year_of_birth").value != "Unknown"' } %>
+
+  <%= text_field_tag "person[birth_day]", nil,
+    {:id => "date_of_birth_if_month_of_birth_!=_unknown",
+    :helptext => "Date Of Birth",
+    :tt_onLoad => "getDayOfMonthPicker($('year_of_birth').value, $('month_of_birth').value);$('nextButton').style.display = 'block';",
+    :condition => '__$("year_of_birth").value != "Unknown" && __$("month_of_birth").value != "Unknown"' } %>
+
+  <%= text_field_tag "person[age_estimate]", nil,
+    {:id => "age_if_year_of_birth_=_unknown",
+    :field_type => "number",
+    :tt_pageStyleClass => "NumbersOnly",
+    :max => 90,
+    :condition => '__$("year_of_birth").value.toLowerCase() == "unknown"',
+    :absoluteMax => 120,
+    :helptext => "Age" } %>
+
+  <%= select_tag "person[citizenship]", options_for_select([["", ""],
+      ["Malawian", "Malawian"], ["Other", "Other"]]),
+    {:id => "nationality",
+    :helptext => "Nationality" } if @show_nationality %>
+
+  <%= text_field_tag "person[race]", nil,
+    {:id => "race",
+    :helptext => "Specify nationality",
+    :condition => '__$("nationality").value == "Other"' } if @show_nationality %>
+
+  <%= select_tag "REGION OF ORIGIN", options_for_select([["Northern Region", "Northern Region"],
+      ["Central Region", "Central Region"], ["Southern Region", "Southern Region"], ["", ""]]),
+    {:id => "region_of_origin",
+    :helptext => "Region Of Origin" } if @show_region_of_origin %>
+
+  <%= select_tag "person[addresses][subregion]", options_for_select([["", ""]]),
+    {:id => "district_of_origin",
+    :tt_onLoad => "$('nextButton').style.display = 'block'; set_ajaxURL_for_suggestions('/district?filter_value=', __$('region_of_origin').value); ",
+    :helptext => "District Of Origin" } if @show_region_of_origin %>
+
+  <%= select_tag "person[addresses][county_district]", options_for_select([["", ""]]),
+    {:id => "ancestral_traditional_authority",
+    :tt_onLoad => "set_ajaxURL_for_suggestions('/traditional_authority?filter_value=', __$('district_of_origin').value);",
+    :helptext => "Ancestral Traditional Authority" } if @show_region_of_origin %>
+
+  <%= select_tag "person[addresses][neighborhood_cell]", options_for_select([["", ""]]),
+    {:id => "home_village",
+    :tt_onLoad => "set_ajaxURL_for_suggestions('/village?filter_value=', __$('ancestral_traditional_authority').value);",
+    :helptext => "Home Village" } if @show_region_of_origin %>
+
+  <%= select_tag "CURRENT REGION", options_for_select([["Northern Region", "Northern Region"], ["Central Region", "Central Region"], ["Southern Region", "Southern Region"], ["", ""]]),
+    {:id => "current_region",
+    :helptext => "Current Region" } if @show_current_district %>
+
+  <%= select_tag "person[addresses][address2]", options_for_select([["", ""]]),
+    {:id => "current_district",
+    :tt_onLoad => "$('nextButton').style.display = 'block'; set_ajaxURL_for_suggestions('/district?filter_value=', __$('current_region').value); ",
+    :helptext => "Current District" } if @show_current_district %>
+
+  <%= select_tag "CURRENT AREA OF RESIDENCE", options_for_select([["", ""]]),
+    {:id => "current_area_of_residence",
+    :tt_onLoad => "set_ajaxURL_for_suggestions('/traditional_authority?filter_value=', __$('current_district').value);",
+    :helptext => "Current Area Of Residence" } if @show_current_t_a %>
+
+  <%= select_tag "person[addresses][city_village]", options_for_select([["", ""]]),
+    {:id => "current_location_or_village",
+    :tt_onLoad => "set_ajaxURL_for_suggestions('/village?filter_value=', __$('current_area_of_residence').value);",
+    :helptext => "Current Location Or Village" } if @show_current_village %>
+
+  <%= text_field_tag "person[addresses][address1]", nil,
+    {:id => "closest_landmark_or_plot_number",
+    :helptext => "Closest Landmark Or Plot Number" } if @show_current_landmark %>
+
+  <%= text_field_tag "person[cell_phone_number]", nil,
+    {:id => "cell_phone_number",
+    :validationRule => "^0\\d{7}$|Unknown|Not Available|^0\\d{9}$|^N\\/A$",
+    :validationMessage => "Not a valid phone number",
+    :tt_pageStyleClass => "NumbersWithUnknown nota",
+    :field_type => 'number',
+    :helptext => "Cell Phone Number" } if @show_cell_phone_number %>
+
+  <%= text_field_tag "person[office_phone_number]", nil,
+    {:id => "office_phone_number",
+    :tt_pageStyleClass => "NumbersWithUnknown nota",
+    :validationRule => "^0\\d{7}$|Unknown|Not Available|^0\\d{9}$|^N\\/A$",
+    :validationMessage => "Not a valid phone number",
+    :field_type => 'number',
+    :helptext => "Office Phone Number" } if @show_office_phone_number %>
+
+  <%= text_field_tag "person[home_phone_number]", nil,
+    {:id => "home_phone_number",
+    :tt_pageStyleClass => "NumbersWithUnknown nota",
+    :validationRule => "^0\\d{7}$|Unknown|Not Available|^0\\d{9}$|^N\\/A$",
+    :validationMessage => "Not a valid phone number",
+    :field_type => 'number',
+    :helptext => "Home Phone Number" } if @show_home_phone_number %>
+
+  <%= select_tag "person[occupation]", options_for_select(@occupations),
+    {:id => "occupation",
+    :tt_pageStyleClass => "tt_controls_occupation",
+    :helptext => "Occupation" } if @show_occupation %>
+
+  <!-- Make sure patient is created -->
+
+  <%= hidden_field_tag "person[patient]", "" %>
+
+  <%= submit_tag 'Finish' %>
+<% end %>
