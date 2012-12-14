@@ -1,0 +1,5 @@
+*.swap
+tmp/
+nbproject/
+*.yml
+log/
