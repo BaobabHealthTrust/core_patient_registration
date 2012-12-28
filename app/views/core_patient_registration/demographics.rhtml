@@ -57,22 +57,22 @@
 
           if !@show_current_district
             names = names - ["current district", "current area of residence",
-            "landmark or plot number"]
+              "landmark or plot number"]
           end
 
           if !@show_current_t_a
             names = names - ["current district", "current area of residence",
-            "landmark or plot number"]
+              "landmark or plot number"]
           end
 
           if !@show_current_village
             names = names - ["current district", "current area of residence",
-            "landmark or plot number"]
+              "landmark or plot number"]
           end
 
           if !@show_current_landmark
             names = names - ["current district", "current area of residence",
-            "landmark or plot number"]
+              "landmark or plot number"]
           end
 
           if !@show_cell_phone_number
@@ -133,7 +133,7 @@
                      vertical-align: middle; text-align: right; padding-right: 15px;">
                   <button style="font-size: 0.7em; width: 150px; "
                           onclick="window.location = '/edit_demographics/<%= fields["patient_id"]
-                        %>?user_id=<%= params["user_id"] %>&field=<%= field.strip.gsub(/\s/, "_") %>'">
+                        %>?user_id=<%= @user %>&field=<%= field.strip.gsub(/\s/, "_") %>'">
                     <span>Edit</span>
                   </button>
                 </div>
@@ -153,7 +153,8 @@
     <td style="background-color: #333;">
       <div style="height: 4.8em;">
         <button class="green" style="float: right; margin: 8px; width: 150px; margin-right: 20px;"
-                onclick="window.location='<%= (!@patient.nil? ? "/scan/#{@patient.national_id}" : "/select") %>'">
+                onclick="window.location='<%= (!@destination.nil? ? @destination :
+                    (!@patient.nil? ? "/scan/#{@patient.national_id}" : "/select")) %>'">
           <span>
             Finish
           </span>

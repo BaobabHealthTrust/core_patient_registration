@@ -22,6 +22,7 @@ production:
   show_office_phone_number: false
   show_home_phone_number: false
   show_occupation: false
+  user.management.url: http://localhost:3004
 
 development:
   create.from.dde.server: true
@@ -47,6 +48,7 @@ development:
   show_office_phone_number: true
   show_home_phone_number: true
   show_occupation: true
+  user.management.url: http://localhost:3004
 
 test: &TEST
   create.from.dde.server: false
@@ -72,3 +74,4 @@ test: &TEST
   show_office_phone_number: false
   show_home_phone_number: false
   show_occupation: false
+  user.management.url: http://localhost:3004

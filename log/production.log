@@ -539,3 +539,21 @@ Processing CorePatientRegistrationController#select (for 127.0.0.1 at 2012-12-14
 Rendering template within layouts/application
 Rendering core_patient_registration/select
 Completed in 16ms (View: 14, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing CorePatientRegistrationController#select (for 127.0.0.1 at 2012-12-14 13:17:52) [GET]
+Rendering template within layouts/application
+Rendering core_patient_registration/select
+Completed in 12ms (View: 11, DB: 0) | 200 OK [http://0.0.0.0/]
+
+
+Processing CorePatientRegistrationController#select (for 127.0.0.1 at 2012-12-14 13:18:09) [GET]
+Rendering template within layouts/application
+Rendering core_patient_registration/select
+Completed in 6ms (View: 6, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing CorePatientRegistrationController#select (for 127.0.0.1 at 2012-12-14 13:18:10) [GET]
+Rendering template within layouts/application
+Rendering core_patient_registration/select
+Completed in 6ms (View: 5, DB: 0) | 200 OK [http://localhost/]

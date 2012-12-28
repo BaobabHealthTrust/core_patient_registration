@@ -1,13 +1,17 @@
 ActionController::Routing::Routes.draw do |map|
 
-  map.root :controller => 'core_patient_registration', :action => 'select'
+  map.root :controller => 'core_patient_registration', :action => 'select_fields'
 
   map.new_patient  '/new_patient',  :controller => 'core_patient_registration', :action => 'new'
 
   map.national_id_label '/national_id_label', :controller => 'core_patient_registration', :action => 'national_id_label'
 
   map.select  '/select',  :controller => 'core_patient_registration', :action => 'select'
-  
+
+  map.select_fields '/select_fields', :controller => 'core_patient_registration', :action => 'select_fields'
+
+  map.search  '/search',  :controller => 'core_patient_registration', :action => 'search'
+
   map.select '/district', :controller => 'core_patient_registration', :action => 'district'
 
   map.select '/traditional_authority', :controller => 'core_patient_registration', :action => 'traditional_authority'
@@ -23,6 +27,10 @@ ActionController::Routing::Routes.draw do |map|
   map.edit_demographics '/edit_demographics/:id', :controller => 'core_patient_registration', :action => 'edit_demographics'
 
   map.update_demographics '/update_demographics/:id', :controller => 'core_patient_registration', :action => 'update_demographics'
+
+  map.user_login '/user_login/:id', :controller => 'core_patient_registration', :action => 'user_login'
+
+  map.user_logout '/user_logout/:id', :controller => 'core_patient_registration', :action => 'user_logout'
 
   # The priority is based upon order of creation: first created -> highest priority.
 

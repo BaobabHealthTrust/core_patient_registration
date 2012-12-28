@@ -1,6 +1,8 @@
 
 class CorePatientRegistrationController < ApplicationController
   
+  before_filter :check_user, :except => [:user_login, :given_names, :family_names, :family_name2, :middle_name]
+
   def new
 
     @show_middle_name = (params[:show_middle_name].to_s.downcase == "true" ? true : false) rescue false
@@ -70,7 +72,48 @@ class CorePatientRegistrationController < ApplicationController
     send_data(print_string,:type=>"application/label; charset=utf-8", :stream=> false, :filename=>"#{params[:patient_id]}#{rand(10000)}.lbl", :disposition => "inline")
   end
 
-  def select    
+  def select
+
+    if !params[:person].nil?
+      if !params[:person][:id].blank? && params[:person][:id].to_i != 0
+
+        identifier = CorePerson.find(params[:person][:id]).patient.national_id rescue nil
+
+        redirect_to "/select_fields?user_id=#{params[:user_id]}" if identifier.blank?
+
+        redirect_to "/scan/#{identifier}?user_id=#{params[:user_id]}" and return
+    
+      else
+        
+      end
+    end
+
+  end
+
+  def select_fields
+
+    # Track final destination
+    file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
+
+    if !params[:ext].nil?
+
+      f = File.open(file, "w")
+
+      f.write("#{Rails.env}:\n    host.path.#{params[:user_id]}: #{session["host_path"] = request.referrer}")
+
+      f.close
+
+    end
+
+    @destination = nil
+
+    if File.exists?(file)
+
+      @destination = YAML.load_file(file)["#{Rails.env
+        }"]["host.path.#{params[:user_id]}"].strip
+
+    end
+
   end
 
   # Districts containing the string given in params[:value]
@@ -119,8 +162,30 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def scan
-    
-    results = CorePerson.search_by_identifier(params[:id]) rescue []
+
+    # Track final destination
+    file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
+
+    if !params[:ext].nil?
+
+      f = File.open(file, "w")
+
+      f.write("#{Rails.env}:\n    host.path.#{params[:user_id]}: #{session["host_path"] = request.referrer}")
+
+      f.close
+
+    end
+
+    @destination = nil
+
+    if File.exists?(file)
+
+      @destination = YAML.load_file(file)["#{Rails.env
+        }"]["host.path.#{params[:user_id]}"].strip
+
+    end
+
+    results = CorePerson.search_by_identifier(params[:identifier] || params[:id]) rescue []
 
     if results.length > 1
 
@@ -132,11 +197,14 @@ class CorePatientRegistrationController < ApplicationController
       
       create_from_dde_server = get_global_property_value('create.from.dde.server').to_s == "true" rescue false
 
-      if create_from_dde_server and params[:id] == person.national_id
+      if create_from_dde_server and (params[:identifier] || params[:id]) == person.national_id
 
-        person.check_old_national_id(params[:id], params[:user])
+        person.check_old_national_id((params[:identifier] || params[:id]), params[:user])
 
       end
+
+      redirect_to "#{@destination}#{ @destination.match(/\?/) ? "&" : "?"
+          }ext_patient_id=#{person.id}" and return if !@destination.nil? and @destination.strip.length > 1
 
       render :text => {
         "person" => "found",
@@ -209,6 +277,30 @@ class CorePatientRegistrationController < ApplicationController
 
     @show_nationality = (get_global_property_value("show_nationality").to_s.downcase == "true" ? true : false) rescue false
 
+    # Track final destination
+    file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
+
+    if !params[:ext].nil?
+      
+      f = File.open(file, "w")
+      
+      f.write("#{Rails.env}:\n    host.path.#{params[:user_id]}: #{session["host_path"] = request.referrer}")
+
+      f.close
+      
+    end
+
+    @destination = nil
+    
+    if File.exists?(file)
+
+      @destination = YAML.load_file(file)["#{Rails.env
+        }"]["host.path.#{params[:user_id]}"].strip
+      
+    end
+    
+    @user = params[:user_id] rescue nil?
+
   end
 
   def edit_demographics
@@ -217,6 +309,8 @@ class CorePatientRegistrationController < ApplicationController
     if @patient.nil?
       redirect_to "/select" and return
     end
+
+    @user = params[:user_id] rescue nil
 
     @field = params[:field] rescue nil
 
@@ -231,13 +325,221 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def update_demographics
-    # raise params.to_yaml
-    
+   
     patient = CorePerson.find(params[:id] || params[:patient_id])
 
     CorePerson.update_demographics(params, params[:user_id])
 
-    redirect_to "/demographics/#{patient.id}?user=#{(params[:user_id] rescue "")}" and return
+    redirect_to "/demographics/#{patient.id}?user_id=#{(params[:user_id] rescue "")}" and return
+  end
+
+  def search
+    if params[:user_id].nil?
+      redirect_to "/core_patient_registration/no_user" and return
+    end
+
+    @user = params[:user_id] rescue nil
+
+		@people = person_search(params)
+ 		@patients = []
+		@people.each do | person |
+			patient = get_patient(person) rescue nil
+			@patients << patient
+		end
+
+    # Track final destination
+    file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
+
+    if !params[:ext].nil?
+
+      f = File.open(file, "w")
+
+      f.write("#{Rails.env}:\n    host.path.#{params[:user_id]}: #{session["host_path"] = request.referrer}")
+
+      f.close
+
+    end
+
+    @destination = nil
+
+    if File.exists?(file)
+
+      @destination = YAML.load_file(file)["#{Rails.env
+        }"]["host.path.#{params[:user_id]}"].strip
+
+    end
+
+  end
+
+  def person_search(params)
+    people = []
+    people = search_by_identifier(params[:identifier]) if params[:identifier]
+    return people.first.id unless people.blank? || people.size > 1
+    people = CorePerson.find(:all, :include => [:names, :patient], :conditions => [
+        "gender = ? AND \
+     person_name.given_name = ? AND \
+     person_name.family_name = ?",
+        params[:gender],
+        params[:given_name],
+        params[:family_name]
+      ]) if people.blank?
+
+    if people.length < 15
+      matching_people = people.collect{| person |
+        person.person_id
+      }
+      # raise matching_people.to_yaml
+      people_like = CorePerson.find(:all, :limit => 15, :include => [:names, :patient], :conditions => [
+          "gender = ? AND \
+     person_name.given_name LIKE ? AND \
+     person_name.family_name LIKE ? AND person.person_id NOT IN (?)",
+          params[:gender],
+          (params[:given_name] || ''),
+          (params[:family_name] || ''),
+          matching_people
+        ], :order => "person_name.given_name ASC, person_name.family_name ASC")
+      people = people + people_like
+    end
+    
+    return people
+  end
+
+	def get_patient(person, current_date = Date.today)
+		patient = {}
+		patient["person_id"] = person.id
+
+		patient["patient_id"] = person.patient.id
+
+		patient["address"] = person.patient.address
+
+		patient["national_id"] = person.patient.national_id
+
+		patient["national_id_with_dashes"] = person.patient.national_id_with_dashes
+    
+		patient["name"] = person.patient.name
+    
+		patient["first_name"] = person.names.first.given_name rescue nil
+
+		patient["last_name"] = person.names.first.family_name rescue nil
+
+		patient["sex"] = person.gender
+    
+		patient["age"] = person.patient.age
+    
+		patient["age_in_months"] = person.patient.age_in_months(current_date)
+    
+		patient["dead"] = person.dead
+
+		patient["birth_date"] = person.patient.birthdate_formatted
+    
+		patient["birthdate_estimated"] = person.birthdate_estimated
+
+		patient["home_district"] = person.addresses.first.address2
+    
+		patient["traditional_authority"] = person.addresses.first.county_district
+
+    patient["state_province"] = person.addresses.first.state_province rescue person.addresses.first.city_village
+
+		patient["current_residence"] = person.addresses.first.city_village
+
+		patient["landmark"] = person.addresses.first.address1
+
+		patient["mothers_surname"] = person.names.first.family_name2
+
+		patient["occupation"] = person.patient.get_attribute("Occupation")
+    
+		patient["cell_phone_number"] = person.patient.get_attribute("Cell Phone Number")
+    
+		patient["office_phone_number"] = person.patient.get_attribute("Office phone number")
+    
+		patient["home_phone_number"] = person.patient.get_attribute("Home phone number")
+    
+		patient
+	end
+  
+  def family_names
+    searchname("family_name", params[:search_string])
+  end
+
+  def given_names
+    searchname("given_name", params[:search_string])
+  end
+
+  def family_name2
+    searchname("family_name2", params[:search_string])
+  end
+
+  def middle_name
+    searchname("middle_name", params[:search_string])
+  end
+
+  def searchname(field_name, search_string)
+    names = CorePersonName.find_most_common(field_name, search_string).collect{|person_name| person_name.send(field_name)}
+    
+    result = "<li>" + names.map{|n| n } .join("</li><li>") + "</li>"
+    render :text => result
+  end
+  
+  def select_person
+    raise params.to_yaml 
+  end
+
+  def user_login
+
+    link = get_global_property_value("user.management.url").to_s rescue nil
+
+
+    if link.nil?
+      flash[:error] = "Missing configuration for <br/>user management connection!"
+
+      redirect_to "/no_user" and return
+    end
+
+    host = request.host_with_port rescue ""
+
+    redirect_to "#{link}/login?ext=true&src=#{host}" and return if params[:ext_user_id].nil?
+
+  end
+
+  def user_logout
+
+    link = get_global_property_value("user.management.url").to_s rescue nil
+
+
+    if link.nil?
+      flash[:error] = "Missing configuration for <br/>user management connection!"
+
+      redirect_to "/no_user" and return
+    end
+
+    host = request.host_with_port rescue ""
+
+    redirect_to "#{link}/logout?ext=true&src=#{host}" and return if params[:ext_user_id].nil?
+
+  end
+
+  protected
+
+  def check_user
+
+    link = get_global_property_value("user.management.url").to_s rescue nil
+    
+    if link.nil?
+      flash[:error] = "Missing configuration for <br/>user management connection!"
+
+      redirect_to "/no_user" and return
+    end
+
+    @user = JSON.parse(RestClient.get("#{link}/verify/#{(params[:user_id])}")) rescue {}
+
+    if @user.empty?
+      redirect_to "/user_login" and return
+    end
+
+    if @user["token"].nil?
+      redirect_to "/user_login" and return
+    end
+
   end
 
 end
