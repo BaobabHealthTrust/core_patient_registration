@@ -260,6 +260,22 @@ class CorePerson < ActiveRecord::Base
     label.print(1)
   end
 
+  def baby_national_id_label
+    return unless self.national_id
+    sex =  self.patient.person.gender.match(/F/i) ? "(F)" : "(M)"
+    address = self.address.strip[0..24].humanize.delete("'") rescue ""
+    label = ZebraPrinter::StandardLabel.new
+    label.font_size = 2
+    label.font_horizontal_multiplier = 2
+    label.font_vertical_multiplier = 2
+    label.left_margin = 50
+    label.draw_barcode(50,180,0,1,5,15,120,false,"#{self.national_id}")
+    label.draw_multi_text("#{self.name.titleize.delete("'")}") #'
+    label.draw_multi_text("#{self.national_id_with_dashes} #{self.birthdate_formatted}#{sex}")
+    label.draw_multi_text("#{address}")
+    label.print(1)
+  end
+
   def national_id(force = true)
     id = self.patient.patient_identifiers.find_by_identifier_type(CorePatientIdentifierType.find_by_name("National id").id).identifier rescue nil
     return id unless force

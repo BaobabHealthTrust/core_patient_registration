@@ -142,3 +142,1583 @@ Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 201
 Redirected to http://0.0.0.0/user_login
 Filter chain halted as [:check_user] rendered_or_redirected.
 Completed in 71ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#scan (for 127.0.0.1 at 2013-01-08 11:53:46) [GET]
+  Parameters: {"identifier"=>"L2D25U", "user_id"=>"43", "ext"=>"true", "location_id"=>"721"}
+  [4;36;1mCorePerson Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatientIdentifier Load (0.4ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (voided = 0) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.`identifier` = 'L2D25U')) [0m
+  [4;35;1mCorePatient Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatient Load (16.1ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.`patient_id` = 78 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) [0m
+  [4;35;1mCorePerson Load (11.5ms)[0m   [0mSELECT * FROM `person` WHERE (`person`.person_id = 78 AND (`person`.`voided` = 0)) AND (person.voided = 0) LIMIT 1[0m
+  [4;36;1mCorePatient Load (0.3ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 78 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (14.6ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifier Load (0.3ms)[0m   [0mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 78 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Redirected to http://localhost:3006/clinic?user_id=43&ext_patient_id=78
+Completed in 318ms (DB: 48) | 302 Found [http://localhost/scan?user_id=43&ext=true&location_id=721&identifier=L2D25U]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 2013-01-09 08:20:01) [GET]
+Redirected to http://0.0.0.0/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 445ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#scan (for 127.0.0.1 at 2013-01-09 08:58:23) [GET]
+  Parameters: {"identifier"=>"L2D25U", "ext"=>"true", "user_id"=>"43", "location_id"=>"726"}
+  [4;36;1mCorePerson Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatientIdentifier Load (0.4ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (voided = 0) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.`identifier` = 'L2D25U')) [0m
+  [4;35;1mCorePatient Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatient Load (0.4ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.`patient_id` = 78 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) [0m
+  [4;35;1mCorePerson Load (0.4ms)[0m   [0mSELECT * FROM `person` WHERE (`person`.person_id = 78 AND (`person`.`voided` = 0)) AND (person.voided = 0) LIMIT 1[0m
+  [4;36;1mCorePatient Load (0.2ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 78 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.5ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifier Load (0.3ms)[0m   [0mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 78 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Redirected to http://localhost:3006/?user_id=43&location_id=726&ext_patient_id=78
+Completed in 250ms (DB: 8) | 302 Found [http://localhost/scan?user_id=43&ext=true&location_id=726&identifier=L2D25U]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 12:06:29) [POST]
+  Parameters: {"person"=>{"names"=>{"given_name"=>"Baby 1", "last_name"=>"Banda"}, "birth_month"=>"1", "birth_day"=>"6", "gender"=>"Male", "birth_year"=>"2013"}, "user_id"=>"43", "location_id"=>"726"}
+  [4;36;1mCorePerson Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (18.2ms)[0m   [0mINSERT INTO `person` (`birthdate_estimated`, `changed_by`, `date_changed`, `death_date`, `cause_of_death`, `voided_by`, `date_created`, `void_reason`, `dead`, `birthdate`, `voided`, `gender`, `uuid`, `creator`, `date_voided`) VALUES(0, 1, '2013-01-09 10:06:30', NULL, NULL, NULL, '2013-01-09 10:06:30', NULL, 0, NULL, 0, 'M', '3ced058f-5a44-11e2-8781-30f9edafb6df', 1, NULL)[0m
+  [4;36;1mSQL (84.2ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.3ms)[0m   [0;1mUPDATE `person` SET `date_changed` = '2013-01-09 10:06:30', `birthdate` = '2013-01-06' WHERE `person_id` = 90[0m
+  [4;35;1mSQL (62.5ms)[0m   [0mCOMMIT[0m
+
+ActiveRecord::UnknownAttributeError (unknown attribute: last_name):
+  app/models/core_person.rb:177:in `create_from_form'
+  app/models/core_person.rb:128:in `create_patient_from_dde'
+  app/controllers/core_patient_registration_controller.rb:523:in `create_baby'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:516:in `accept_and_process_next_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/utils.rb:470:in `safe_fork'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (25.4ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 2013-01-09 12:08:26) [GET]
+Redirected to http://0.0.0.0/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 28ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 12:08:40) [POST]
+  Parameters: {"user_id"=>"43", "person"=>{"gender"=>"Male", "birth_month"=>"1", "birth_day"=>"6", "names"=>{"given_name"=>"Baby 1", "last_name"=>"Banda"}, "birth_year"=>"2013"}, "location_id"=>"726"}
+  [4;36;1mCorePerson Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.5ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.6ms)[0m   [0mINSERT INTO `person` (`gender`, `birthdate_estimated`, `dead`, `voided`, `date_created`, `date_changed`, `creator`, `changed_by`, `death_date`, `voided_by`, `date_voided`, `birthdate`, `cause_of_death`, `void_reason`, `uuid`) VALUES('M', 0, 0, 0, '2013-01-09 10:08:40', '2013-01-09 10:08:40', 1, 1, NULL, NULL, NULL, NULL, NULL, NULL, '8ac338b3-5a44-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (87.3ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.3ms)[0m   [0;1mUPDATE `person` SET `birthdate` = '2013-01-06', `date_changed` = '2013-01-09 10:08:40' WHERE `person_id` = 91[0m
+  [4;35;1mSQL (74.2ms)[0m   [0mCOMMIT[0m
+
+ActiveRecord::UnknownAttributeError (unknown attribute: last_name):
+  app/models/core_person.rb:177:in `create_from_form'
+  app/models/core_person.rb:128:in `create_patient_from_dde'
+  app/controllers/core_patient_registration_controller.rb:523:in `create_baby'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:516:in `accept_and_process_next_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/utils.rb:470:in `safe_fork'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (70.0ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 2013-01-09 12:09:08) [GET]
+Redirected to http://0.0.0.0/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 34ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 12:09:22) [POST]
+  Parameters: {"location_id"=>"726", "user_id"=>"43", "person"=>{"birth_day"=>"6", "gender"=>"Male", "birth_year"=>"2013", "names"=>{"family_name"=>"Banda", "given_name"=>"Baby 1"}, "birth_month"=>"1"}}
+  [4;36;1mCorePerson Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.4ms)[0m   [0mINSERT INTO `person` (`date_created`, `voided_by`, `birthdate`, `death_date`, `voided`, `gender`, `creator`, `birthdate_estimated`, `date_voided`, `cause_of_death`, `uuid`, `dead`, `changed_by`, `void_reason`, `date_changed`) VALUES('2013-01-09 10:09:22', NULL, NULL, NULL, 0, 'M', 1, 0, NULL, NULL, 'a3ecba9e-5a44-11e2-8781-30f9edafb6df', 0, 1, NULL, '2013-01-09 10:09:22')[0m
+  [4;36;1mSQL (110.9ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (4.5ms)[0m   [0;1mUPDATE `person` SET `birthdate` = '2013-01-06', `date_changed` = '2013-01-09 10:09:23' WHERE `person_id` = 92[0m
+  [4;35;1mSQL (48.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (26.1ms)[0m   [0;1mINSERT INTO `person_name` (`date_created`, `voided_by`, `family_name2`, `family_name`, `voided`, `degree`, `preferred`, `prefix`, `creator`, `middle_name`, `family_name_suffix`, `date_voided`, `family_name_prefix`, `uuid`, `changed_by`, `person_id`, `given_name`, `void_reason`, `date_changed`) VALUES('2013-01-09 10:09:23', NULL, NULL, 'Banda', 0, NULL, 0, NULL, 1, NULL, NULL, NULL, NULL, 'a407a3ef-5a44-11e2-8781-30f9edafb6df', 1, 92, 'Baby 1', NULL, '2013-01-09 10:09:23')[0m
+  [4;35;1mSQL (53.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mCorePatient Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.3ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 92 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+
+NoMethodError (undefined method `patient_identifiers' for nil:NilClass):
+  app/models/core_person.rb:132:in `create_patient_from_dde'
+  app/controllers/core_patient_registration_controller.rb:523:in `create_baby'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:516:in `accept_and_process_next_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/utils.rb:470:in `safe_fork'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (68.8ms)
+Rendered rescues/_request_and_response (1.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 2013-01-09 12:11:14) [GET]
+Redirected to http://0.0.0.0/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 34ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 12:11:16) [POST]
+  Parameters: {"person"=>{"birth_day"=>"6", "gender"=>"Male", "birth_year"=>"2013", "names"=>{"given_name"=>"Baby 1", "family_name"=>"Banda"}, "birth_month"=>"1", "patient"=>""}, "user_id"=>"43", "location_id"=>"726"}
+  [4;36;1mCorePerson Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.5ms)[0m   [0mINSERT INTO `person` (`birthdate`, `gender`, `date_created`, `voided_by`, `void_reason`, `dead`, `date_voided`, `birthdate_estimated`, `death_date`, `date_changed`, `uuid`, `cause_of_death`, `voided`, `creator`, `changed_by`) VALUES(NULL, 'M', '2013-01-09 10:11:16', NULL, NULL, 0, NULL, 0, NULL, '2013-01-09 10:11:16', 'e7b55229-5a44-11e2-8781-30f9edafb6df', NULL, 0, 1, 1)[0m
+  [4;36;1mSQL (93.3ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.4ms)[0m   [0;1mUPDATE `person` SET `date_changed` = '2013-01-09 10:11:16', `birthdate` = '2013-01-06' WHERE `person_id` = 93[0m
+  [4;35;1mSQL (41.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (0.3ms)[0m   [0;1mINSERT INTO `person_name` (`middle_name`, `degree`, `date_created`, `voided_by`, `void_reason`, `prefix`, `person_id`, `given_name`, `family_name2`, `date_voided`, `family_name_suffix`, `date_changed`, `uuid`, `preferred`, `family_name`, `voided`, `family_name_prefix`, `creator`, `changed_by`) VALUES(NULL, NULL, '2013-01-09 10:11:16', NULL, NULL, NULL, 93, 'Baby 1', NULL, NULL, NULL, '2013-01-09 10:11:16', 'e7cc2bad-5a44-11e2-8781-30f9edafb6df', 0, 'Banda', 0, NULL, 1, 1)[0m
+  [4;35;1mSQL (47.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.4ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 93 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (16.5ms)[0m   [0;1mINSERT INTO `patient` (`date_created`, `voided_by`, `void_reason`, `tribe`, `date_voided`, `date_changed`, `voided`, `creator`, `changed_by`, `patient_id`) VALUES('2013-01-09 10:11:16', NULL, NULL, NULL, NULL, '2013-01-09 10:11:16', 0, 1, 1, 93)[0m
+  [4;35;1mSQL (73.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (29.4ms)[0m   [0;1mINSERT INTO `patient_identifier` (`date_created`, `voided_by`, `void_reason`, `date_voided`, `uuid`, `identifier`, `identifier_type`, `preferred`, `voided`, `location_id`, `creator`, `patient_id`) VALUES('2013-01-09 10:11:16', NULL, NULL, NULL, 'e7e6debb-5a44-11e2-8781-30f9edafb6df', 'JE4TCR', 3, 0, 0, 1, 1, 93)[0m
+  [4;35;1mSQL (75.2ms)[0m   [0mCOMMIT[0m
+Rendering template within layouts/application
+Rendering print/print
+Completed in 985ms (View: 86, DB: 388) | 200 OK [http://localhost/create_baby?user_id=43&location_id=726]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 13:02:19) [POST]
+  Parameters: {"person"=>{"birth_day"=>"6", "gender"=>"Male", "birth_year"=>"2013", "names"=>{"given_name"=>"Baby 1", "family_name"=>"Banda"}, "birth_month"=>"1", "patient"=>""}, "user_id"=>"43", "location_id"=>"726"}
+  [4;36;1mCorePerson Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (22.1ms)[0m   [0mINSERT INTO `person` (`birthdate`, `gender`, `date_created`, `voided_by`, `void_reason`, `dead`, `date_voided`, `birthdate_estimated`, `death_date`, `date_changed`, `uuid`, `cause_of_death`, `voided`, `creator`, `changed_by`) VALUES(NULL, 'M', '2013-01-09 11:02:19', NULL, NULL, 0, NULL, 0, NULL, '2013-01-09 11:02:19', '0959d890-5a4c-11e2-8781-30f9edafb6df', NULL, 0, 1, 1)[0m
+  [4;36;1mSQL (94.3ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.4ms)[0m   [0;1mUPDATE `person` SET `date_changed` = '2013-01-09 11:02:19', `birthdate` = '2013-01-06' WHERE `person_id` = 94[0m
+  [4;35;1mSQL (63.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (14.6ms)[0m   [0;1mINSERT INTO `person_name` (`middle_name`, `degree`, `date_created`, `voided_by`, `void_reason`, `prefix`, `person_id`, `given_name`, `family_name2`, `date_voided`, `family_name_suffix`, `date_changed`, `uuid`, `preferred`, `family_name`, `voided`, `family_name_prefix`, `creator`, `changed_by`) VALUES(NULL, NULL, '2013-01-09 11:02:19', NULL, NULL, NULL, 94, 'Baby 1', NULL, NULL, NULL, '2013-01-09 11:02:19', '0976e401-5a4c-11e2-8781-30f9edafb6df', 0, 'Banda', 0, NULL, 1, 1)[0m
+  [4;35;1mSQL (79.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.3ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 94 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (14.4ms)[0m   [0;1mINSERT INTO `patient` (`date_created`, `voided_by`, `void_reason`, `tribe`, `date_voided`, `date_changed`, `voided`, `creator`, `changed_by`, `patient_id`) VALUES('2013-01-09 11:02:19', NULL, NULL, NULL, NULL, '2013-01-09 11:02:19', 0, 1, 1, 94)[0m
+  [4;35;1mSQL (79.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (11.9ms)[0m   [0;1mINSERT INTO `patient_identifier` (`date_created`, `voided_by`, `void_reason`, `date_voided`, `uuid`, `identifier`, `identifier_type`, `preferred`, `voided`, `location_id`, `creator`, `patient_id`) VALUES('2013-01-09 11:02:19', NULL, NULL, NULL, '0998e52f-5a4c-11e2-8781-30f9edafb6df', 'KFK483', 3, 0, 0, 1, 1, 94)[0m
+  [4;35;1mSQL (81.3ms)[0m   [0mCOMMIT[0m
+
+NameError (uninitialized constant CorePatientRegistrationController::Relationship):
+  app/controllers/core_patient_registration_controller.rb:531:in `create_baby'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:516:in `accept_and_process_next_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/utils.rb:470:in `safe_fork'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (60.0ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 2013-01-09 13:02:34) [GET]
+Redirected to http://0.0.0.0/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 39ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 13:02:36) [POST]
+  Parameters: {"user_id"=>"43", "location_id"=>"726", "person"=>{"names"=>{"given_name"=>"Baby 1", "family_name"=>"Banda"}, "birth_month"=>"1", "gender"=>"Male", "birth_day"=>"6", "birth_year"=>"2013", "patient"=>""}}
+  [4;36;1mCorePerson Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (22.0ms)[0m   [0mINSERT INTO `person` (`dead`, `creator`, `date_voided`, `changed_by`, `voided`, `uuid`, `gender`, `death_date`, `void_reason`, `birthdate`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `date_created`, `voided_by`) VALUES(0, 1, NULL, 1, 0, '13a445cb-5a4c-11e2-8781-30f9edafb6df', 'M', NULL, NULL, NULL, '2013-01-09 11:02:36', 0, NULL, '2013-01-09 11:02:36', NULL)[0m
+  [4;36;1mSQL (73.7ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.7ms)[0m   [0;1mUPDATE `person` SET `date_changed` = '2013-01-09 11:02:36', `birthdate` = '2013-01-06' WHERE `person_id` = 95[0m
+  [4;35;1mSQL (40.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (23.3ms)[0m   [0;1mINSERT INTO `person_name` (`person_id`, `middle_name`, `creator`, `date_voided`, `voided`, `changed_by`, `uuid`, `prefix`, `family_name_prefix`, `preferred`, `void_reason`, `date_changed`, `given_name`, `family_name2`, `degree`, `family_name`, `family_name_suffix`, `date_created`, `voided_by`) VALUES(95, NULL, 1, NULL, 0, 1, '13bb65d4-5a4c-11e2-8781-30f9edafb6df', NULL, NULL, 0, NULL, '2013-01-09 11:02:36', 'Baby 1', NULL, NULL, 'Banda', NULL, '2013-01-09 11:02:36', NULL)[0m
+  [4;35;1mSQL (56.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.6ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 95 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (1.2ms)[0m   [0;1mINSERT INTO `patient` (`creator`, `date_voided`, `changed_by`, `voided`, `patient_id`, `void_reason`, `tribe`, `date_changed`, `date_created`, `voided_by`) VALUES(1, NULL, 1, 0, 95, NULL, NULL, '2013-01-09 11:02:37', '2013-01-09 11:02:37', NULL)[0m
+  [4;35;1mSQL (86.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.2ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (14.2ms)[0m   [0;1mINSERT INTO `patient_identifier` (`creator`, `identifier`, `identifier_type`, `date_voided`, `voided`, `uuid`, `patient_id`, `preferred`, `location_id`, `void_reason`, `date_created`, `voided_by`) VALUES(1, 'M2Y31X', 3, NULL, 0, '13d9fc89-5a4c-11e2-8781-30f9edafb6df', 95, 0, 1, NULL, '2013-01-09 11:02:37', NULL)[0m
+  [4;35;1mSQL (67.7ms)[0m   [0mCOMMIT[0m
+
+NameError (uninitialized constant CorePatientRegistrationController::Relationship):
+  app/controllers/core_patient_registration_controller.rb:531:in `create_baby'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:516:in `accept_and_process_next_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/utils.rb:470:in `safe_fork'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (23.8ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 2013-01-09 13:06:47) [GET]
+Redirected to http://0.0.0.0/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 35ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 13:07:34) [POST]
+  Parameters: {"user_id"=>"43", "person"=>{"birth_year"=>"2013", "birth_day"=>"6", "names"=>{"given_name"=>"Baby 1", "family_name"=>"Banda"}, "gender"=>"Male", "patient"=>"", "birth_month"=>"1"}, "location_id"=>"726"}
+  [4;36;1mCorePerson Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (2.1ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (1.0ms)[0m   [0mINSERT INTO `person` (`void_reason`, `voided`, `birthdate`, `date_voided`, `birthdate_estimated`, `death_date`, `date_created`, `voided_by`, `uuid`, `dead`, `date_changed`, `cause_of_death`, `changed_by`, `creator`, `gender`) VALUES(NULL, 0, NULL, NULL, 0, NULL, '2013-01-09 11:07:35', NULL, 'c5821dca-5a4c-11e2-8781-30f9edafb6df', 0, '2013-01-09 11:07:35', NULL, 1, 1, 'M')[0m
+  [4;36;1mSQL (108.9ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.3ms)[0m   [0;1mUPDATE `person` SET `date_changed` = '2013-01-09 11:07:35', `birthdate` = '2013-01-06' WHERE `person_id` = 96[0m
+  [4;35;1mSQL (40.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (0.4ms)[0m   [0;1mINSERT INTO `person_name` (`preferred`, `given_name`, `void_reason`, `voided`, `person_id`, `date_voided`, `family_name_suffix`, `date_created`, `voided_by`, `uuid`, `family_name_prefix`, `family_name`, `date_changed`, `changed_by`, `prefix`, `family_name2`, `degree`, `creator`, `middle_name`) VALUES(0, 'Baby 1', NULL, 0, 96, NULL, NULL, '2013-01-09 11:07:35', NULL, 'c59b1eb3-5a4c-11e2-8781-30f9edafb6df', NULL, 'Banda', '2013-01-09 11:07:35', 1, NULL, NULL, NULL, 1, NULL)[0m
+  [4;35;1mSQL (45.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.5ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 96 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (0.4ms)[0m   [0;1mINSERT INTO `patient` (`void_reason`, `patient_id`, `voided`, `date_voided`, `date_created`, `voided_by`, `date_changed`, `changed_by`, `tribe`, `creator`) VALUES(NULL, 96, 0, NULL, '2013-01-09 11:07:35', NULL, '2013-01-09 11:07:35', 1, NULL, 1)[0m
+  [4;35;1mSQL (78.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (0.3ms)[0m   [0;1mINSERT INTO `patient_identifier` (`identifier_type`, `patient_id`, `preferred`, `void_reason`, `voided`, `date_voided`, `date_created`, `voided_by`, `uuid`, `location_id`, `identifier`, `creator`) VALUES(3, 96, 0, NULL, 0, NULL, '2013-01-09 11:07:35', NULL, 'c5b4081d-5a4c-11e2-8781-30f9edafb6df', 1, 'JFK4TW', 1)[0m
+  [4;35;1mSQL (93.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCoreRelationship Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `relationship`[0m
+  [4;35;1mCoreRelationshipType Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `relationship_type`[0m
+  [4;36;1mCoreRelationshipType Load (0.1ms)[0m   [0;1mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCoreRelationship Create (0.0ms)[0m   [0mMysql::Error: Column 'person_b' cannot be null: INSERT INTO `relationship` (`relationship`, `void_reason`, `voided`, `date_voided`, `date_created`, `voided_by`, `uuid`, `creator`, `person_a`, `person_b`) VALUES(11, NULL, 0, NULL, '2013-01-09 11:07:35', NULL, 'c5cba8f7-5a4c-11e2-8781-30f9edafb6df', 1, 96, NULL)[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mROLLBACK[0m
+
+ActiveRecord::StatementInvalid (Mysql::Error: Column 'person_b' cannot be null: INSERT INTO `relationship` (`relationship`, `void_reason`, `voided`, `date_voided`, `date_created`, `voided_by`, `uuid`, `creator`, `person_a`, `person_b`) VALUES(11, NULL, 0, NULL, '2013-01-09 11:07:35', NULL, 'c5cba8f7-5a4c-11e2-8781-30f9edafb6df', 1, 96, NULL)):
+  app/controllers/core_patient_registration_controller.rb:531:in `create_baby'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:516:in `accept_and_process_next_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/utils.rb:470:in `safe_fork'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (35.0ms)
+Rendered rescues/_request_and_response (1.0ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 2013-01-09 13:08:04) [GET]
+Redirected to http://0.0.0.0/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 30ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 13:09:20) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"726", "user_id"=>"43", "person"=>{"birth_day"=>"6", "patient"=>"", "names"=>{"family_name"=>"Banda", "given_name"=>"Baby 1"}, "birth_month"=>"1", "gender"=>"Male", "birth_year"=>"2013"}}
+  [4;36;1mCorePerson Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.5ms)[0m   [0mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 11:09:21', NULL, 1, NULL, 0, '2013-01-09 11:09:21', 0, NULL, 1, NULL, 'M', '04d35116-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (115.2ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.4ms)[0m   [0;1mUPDATE `person` SET `birthdate` = '2013-01-06', `date_changed` = '2013-01-09 11:09:21' WHERE `person_id` = 97[0m
+  [4;35;1mSQL (62.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (0.3ms)[0m   [0;1mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 11:09:21', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Banda', '2013-01-09 11:09:21', 97, 'Baby 1', NULL, NULL, 1, 0, NULL, '04f0f118-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (65.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.7ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 97 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (0.4ms)[0m   [0;1mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 11:09:21', NULL, 97, NULL, 1, NULL, 0, '2013-01-09 11:09:21', 1)[0m
+  [4;35;1mSQL (107.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (0.2ms)[0m   [0;1mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 97, '2013-01-09 11:09:21', NULL, 1, NULL, 0, 1, 3, 0, 'J5P5K8', '050f48e1-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (101.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCoreRelationship Columns (1.5ms)[0m   [0;1mSHOW FIELDS FROM `relationship`[0m
+  [4;35;1mCoreRelationshipType Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `relationship_type`[0m
+  [4;36;1mCoreRelationshipType Load (0.1ms)[0m   [0;1mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCoreRelationship Create (0.2ms)[0m   [0mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 11:09:22', NULL, 1, NULL, 0, 11, 97, 78, '05280d1d-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (76.4ms)[0m   [0;1mCOMMIT[0m
+Completed in 1118ms (View: 1, DB: 542) | 200 OK [http://localhost/create_baby?user_id=43&location_id=726]
+  [4;35;1mSQL (0.2ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 13:10:15) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"726", "user_id"=>"43", "person"=>{"birth_day"=>"6", "patient"=>"", "names"=>{"family_name"=>"Banda", "given_name"=>"Baby 1"}, "birth_month"=>"1", "gender"=>"Male", "birth_year"=>"2013"}}
+  [4;35;1mCorePerson Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `person`[0m
+  [4;36;1mCorePersonName Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `person_name`[0m
+  [4;35;1mCorePersonAddress Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `person_address`[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePerson Create (0.4ms)[0m   [0;1mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 11:10:16', NULL, 1, NULL, 0, '2013-01-09 11:10:16', 0, NULL, 1, NULL, 'M', '2560fdd1-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (60.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePerson Update (0.4ms)[0m   [0mUPDATE `person` SET `birthdate` = '2013-01-06', `date_changed` = '2013-01-09 11:10:16' WHERE `person_id` = 98[0m
+  [4;36;1mSQL (108.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePersonName Create (0.5ms)[0m   [0mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 11:10:16', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Banda', '2013-01-09 11:10:16', 98, 'Baby 1', NULL, NULL, 1, 0, NULL, '257c7577-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (80.8ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatient Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatientIdentifier Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;35;1mCorePatient Load (0.3ms)[0m   [0mSELECT * FROM `patient` WHERE (`patient`.patient_id = 98 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePatient Create (0.4ms)[0m   [0mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 11:10:16', NULL, 98, NULL, 1, NULL, 0, '2013-01-09 11:10:16', 1)[0m
+  [4;36;1mSQL (80.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePatientIdentifier Create (0.5ms)[0m   [0mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 98, '2013-01-09 11:10:16', NULL, 1, NULL, 0, 1, 3, 0, 'JFTFM3', '259ae615-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (70.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCoreRelationship Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `relationship`[0m
+  [4;36;1mCoreRelationshipType Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `relationship_type`[0m
+  [4;35;1mCoreRelationshipType Load (0.1ms)[0m   [0mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCoreRelationship Create (0.2ms)[0m   [0;1mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 11:10:16', NULL, 1, NULL, 0, 11, 98, 78, '25a818fe-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (43.9ms)[0m   [0mCOMMIT[0m
+Completed in 950ms (View: 1, DB: 457) | 200 OK [http://localhost/create_baby?user_id=43&location_id=726]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 13:11:51) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"726", "user_id"=>"43", "person"=>{"birth_day"=>"6", "patient"=>"", "names"=>{"family_name"=>"Banda", "given_name"=>"Baby 1"}, "birth_month"=>"1", "gender"=>"Male", "birth_year"=>"2013"}}
+  [4;36;1mCorePerson Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.3ms)[0m   [0mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 11:11:51', NULL, 1, NULL, 0, '2013-01-09 11:11:51', 0, NULL, 1, NULL, 'M', '5e7c25f1-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (102.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.4ms)[0m   [0;1mUPDATE `person` SET `birthdate` = '2013-01-06', `date_changed` = '2013-01-09 11:11:51' WHERE `person_id` = 99[0m
+  [4;35;1mSQL (96.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (0.5ms)[0m   [0;1mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 11:11:52', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Banda', '2013-01-09 11:11:52', 99, 'Baby 1', NULL, NULL, 1, 0, NULL, '5e9ca334-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (101.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.9ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 99 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (0.3ms)[0m   [0;1mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 11:11:52', NULL, 99, NULL, 1, NULL, 0, '2013-01-09 11:11:52', 1)[0m
+  [4;35;1mSQL (69.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.2ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (0.3ms)[0m   [0;1mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 99, '2013-01-09 11:11:52', NULL, 1, NULL, 0, 1, 3, 0, 'K1VPX8', '5ebcbfaa-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (61.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCoreRelationship Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `relationship`[0m
+  [4;35;1mCoreRelationshipType Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `relationship_type`[0m
+  [4;36;1mCoreRelationshipType Load (0.1ms)[0m   [0;1mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCoreRelationship Create (0.4ms)[0m   [0mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 11:11:52', NULL, 1, NULL, 0, 11, 99, 78, '5ec8ce2f-5a4d-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (61.1ms)[0m   [0;1mCOMMIT[0m
+Completed in 1053ms (View: 1, DB: 508) | 200 OK [http://localhost/create_baby?user_id=43&location_id=726]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 14:11:26) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"", "user_id"=>"43", "person"=>{"birth_day"=>"9", "patient"=>"", "names"=>{"family_name"=>"Kamunga", "given_name"=>"Baby -1"}, "birth_month"=>"1", "gender"=>"", "birth_year"=>"2013"}}
+  [4;35;1mCorePerson Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person`[0m
+  [4;36;1mCorePersonName Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_name`[0m
+  [4;35;1mCorePersonAddress Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_address`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePerson Create (0.3ms)[0m   [0;1mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 12:11:26', NULL, 1, NULL, 0, '2013-01-09 12:11:26', 0, NULL, 1, NULL, '', 'b12dc051-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (54.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePerson Update (0.2ms)[0m   [0mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 12:11:26' WHERE `person_id` = 100[0m
+  [4;36;1mSQL (97.8ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePersonName Create (0.3ms)[0m   [0mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 12:11:26', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Kamunga', '2013-01-09 12:11:26', 100, 'Baby -1', NULL, NULL, 1, 0, NULL, 'b1464fe2-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (83.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatient Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatientIdentifier Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;35;1mCorePatient Load (0.2ms)[0m   [0mSELECT * FROM `patient` WHERE (`patient`.patient_id = 100 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePatient Create (0.2ms)[0m   [0mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 12:11:26', NULL, 100, NULL, 1, NULL, 0, '2013-01-09 12:11:26', 1)[0m
+  [4;36;1mSQL (88.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePatientIdentifier Create (0.3ms)[0m   [0mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 100, '2013-01-09 12:11:26', NULL, 1, NULL, 0, 1, 3, 0, 'M40AWJ', 'b1640997-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (89.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCoreRelationship Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `relationship`[0m
+  [4;36;1mCoreRelationshipType Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `relationship_type`[0m
+  [4;35;1mCoreRelationshipType Load (0.1ms)[0m   [0mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCoreRelationship Create (0.2ms)[0m   [0;1mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 12:11:27', NULL, 1, NULL, 0, 11, 100, 78, 'b173a697-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (500.7ms)[0m   [0mCOMMIT[0m
+Completed in 1396ms (View: 1, DB: 923) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 14:11:48) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"", "user_id"=>"43", "person"=>{"birth_day"=>"9", "patient"=>"", "names"=>{"family_name"=>"Kamunga", "given_name"=>"Baby -1"}, "birth_month"=>"1", "gender"=>"", "birth_year"=>"2013"}}
+  [4;36;1mCorePerson Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.3ms)[0m   [0mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 12:11:49', NULL, 1, NULL, 0, '2013-01-09 12:11:49', 0, NULL, 1, NULL, '', 'bea675c5-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (54.8ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.3ms)[0m   [0;1mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 12:11:49' WHERE `person_id` = 101[0m
+  [4;35;1mSQL (86.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (0.3ms)[0m   [0;1mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 12:11:49', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Kamunga', '2013-01-09 12:11:49', 101, 'Baby -1', NULL, NULL, 1, 0, NULL, 'bebd5ef4-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (72.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.3ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 101 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (0.2ms)[0m   [0;1mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 12:11:49', NULL, 101, NULL, 1, NULL, 0, '2013-01-09 12:11:49', 1)[0m
+  [4;35;1mSQL (76.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (0.2ms)[0m   [0;1mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 101, '2013-01-09 12:11:49', NULL, 1, NULL, 0, 1, 3, 0, 'JTKTCG', 'bed7b08c-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (78.2ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCoreRelationship Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `relationship`[0m
+  [4;35;1mCoreRelationshipType Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `relationship_type`[0m
+  [4;36;1mCoreRelationshipType Load (0.1ms)[0m   [0;1mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCoreRelationship Create (0.2ms)[0m   [0mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 12:11:49', NULL, 1, NULL, 0, 11, 101, 78, 'bee5a771-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (79.1ms)[0m   [0;1mCOMMIT[0m
+Completed in 909ms (View: 1, DB: 456) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 14:13:30) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"", "user_id"=>"43", "person"=>{"birth_day"=>"9", "patient"=>"", "names"=>{"family_name"=>"Kamunga", "given_name"=>"Baby -1"}, "birth_month"=>"1", "gender"=>"", "birth_year"=>"2013"}}
+  [4;35;1mCorePerson Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `person`[0m
+  [4;36;1mCorePersonName Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_name`[0m
+  [4;35;1mCorePersonAddress Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_address`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePerson Create (0.2ms)[0m   [0;1mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 12:13:31', NULL, 1, NULL, 0, '2013-01-09 12:13:31', 0, NULL, 1, NULL, '', 'fb8890b8-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (53.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePerson Update (0.2ms)[0m   [0mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 12:13:31' WHERE `person_id` = 102[0m
+  [4;36;1mSQL (109.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (9.5ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePersonName Create (0.3ms)[0m   [0mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 12:13:31', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Kamunga', '2013-01-09 12:13:31', 102, 'Baby -1', NULL, NULL, 1, 0, NULL, 'fba7c7ec-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (96.2ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatient Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatientIdentifier Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;35;1mCorePatient Load (0.4ms)[0m   [0mSELECT * FROM `patient` WHERE (`patient`.patient_id = 102 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePatient Create (0.2ms)[0m   [0mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 12:13:31', NULL, 102, NULL, 1, NULL, 0, '2013-01-09 12:13:31', 1)[0m
+  [4;36;1mSQL (97.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePatientIdentifier Create (0.2ms)[0m   [0mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 102, '2013-01-09 12:13:31', NULL, 1, NULL, 0, 1, 3, 0, 'LRJ1MH', 'fbca8708-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (89.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCoreRelationship Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `relationship`[0m
+  [4;36;1mCoreRelationshipType Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `relationship_type`[0m
+  [4;35;1mCoreRelationshipType Load (0.1ms)[0m   [0mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCoreRelationship Create (20.8ms)[0m   [0;1mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 12:13:31', NULL, 1, NULL, 0, 11, 102, 78, 'fbda7ad8-5a55-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (77.3ms)[0m   [0mCOMMIT[0m
+Completed in 1019ms (View: 0, DB: 561) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 14:14:18) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"", "user_id"=>"43", "person"=>{"birth_day"=>"9", "patient"=>"", "names"=>{"family_name"=>"Kamunga", "given_name"=>"Baby -1"}, "birth_month"=>"1", "gender"=>"", "birth_year"=>"2013"}}
+  [4;36;1mCorePerson Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.3ms)[0m   [0mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 12:14:18', NULL, 1, NULL, 0, '2013-01-09 12:14:18', 0, NULL, 1, NULL, '', '17c89ec7-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (54.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.2ms)[0m   [0;1mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 12:14:18' WHERE `person_id` = 103[0m
+  [4;35;1mSQL (109.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (0.2ms)[0m   [0;1mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 12:14:18', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Kamunga', '2013-01-09 12:14:18', 103, 'Baby -1', NULL, NULL, 1, 0, NULL, '17e2c857-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (95.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.2ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 103 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (0.3ms)[0m   [0;1mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 12:14:19', NULL, 103, NULL, 1, NULL, 0, '2013-01-09 12:14:19', 1)[0m
+  [4;35;1mSQL (97.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (0.2ms)[0m   [0;1mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 103, '2013-01-09 12:14:19', NULL, 1, NULL, 0, 1, 3, 0, 'JLADK0', '180ac14d-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (56.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCoreRelationship Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `relationship`[0m
+  [4;35;1mCoreRelationshipType Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `relationship_type`[0m
+  [4;36;1mCoreRelationshipType Load (0.1ms)[0m   [0;1mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCoreRelationship Create (0.3ms)[0m   [0mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 12:14:19', NULL, 1, NULL, 0, 11, 103, 78, '18158b99-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (53.1ms)[0m   [0;1mCOMMIT[0m
+Completed in 974ms (View: 1, DB: 475) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 14:15:22) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"", "user_id"=>"43", "person"=>{"birth_day"=>"9", "patient"=>"", "names"=>{"family_name"=>"Kamunga", "given_name"=>"Baby -1"}, "birth_month"=>"1", "gender"=>"", "birth_year"=>"2013"}}
+  [4;35;1mCorePerson Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person`[0m
+  [4;36;1mCorePersonName Columns (1.4ms)[0m   [0;1mSHOW FIELDS FROM `person_name`[0m
+  [4;35;1mCorePersonAddress Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_address`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePerson Create (15.6ms)[0m   [0;1mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 12:15:22', NULL, 1, NULL, 0, '2013-01-09 12:15:22', 0, NULL, 1, NULL, '', '3e08a5e4-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (117.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePerson Update (0.2ms)[0m   [0mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 12:15:23' WHERE `person_id` = 104[0m
+  [4;36;1mSQL (86.9ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePersonName Create (0.3ms)[0m   [0mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 12:15:23', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Kamunga', '2013-01-09 12:15:23', 104, 'Baby -1', NULL, NULL, 1, 0, NULL, '3e2b70aa-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (105.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatient Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatientIdentifier Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;35;1mCorePatient Load (0.3ms)[0m   [0mSELECT * FROM `patient` WHERE (`patient`.patient_id = 104 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePatient Create (0.2ms)[0m   [0mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 12:15:23', NULL, 104, NULL, 1, NULL, 0, '2013-01-09 12:15:23', 1)[0m
+  [4;36;1mSQL (89.6ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePatientIdentifier Create (0.2ms)[0m   [0mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 104, '2013-01-09 12:15:23', NULL, 1, NULL, 0, 1, 3, 0, 'M2VDD7', '3e4c6e45-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (89.8ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCoreRelationship Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `relationship`[0m
+  [4;36;1mCoreRelationshipType Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `relationship_type`[0m
+  [4;35;1mCoreRelationshipType Load (0.1ms)[0m   [0mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCoreRelationship Create (0.2ms)[0m   [0;1mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 12:15:23', NULL, 1, NULL, 0, 11, 104, 78, '3e62e22d-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (78.2ms)[0m   [0mCOMMIT[0m
+Completed in 1041ms (View: 1, DB: 592) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 14:18:50) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"", "user_id"=>"43", "person"=>{"birth_day"=>"9", "patient"=>"", "names"=>{"family_name"=>"Kamunga", "given_name"=>"Baby -1"}, "birth_month"=>"1", "gender"=>"", "birth_year"=>"2013"}}
+  [4;36;1mCorePerson Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.2ms)[0m   [0mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 12:18:50', NULL, 1, NULL, 0, '2013-01-09 12:18:50', 0, NULL, 1, NULL, '', 'ba051d35-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (66.7ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.2ms)[0m   [0;1mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 12:18:50' WHERE `person_id` = 105[0m
+  [4;35;1mSQL (99.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (0.2ms)[0m   [0;1mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 12:18:51', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Kamunga', '2013-01-09 12:18:51', 105, 'Baby -1', NULL, NULL, 1, 0, NULL, 'ba202002-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (69.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.3ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 105 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (0.2ms)[0m   [0;1mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 12:18:51', NULL, 105, NULL, 1, NULL, 0, '2013-01-09 12:18:51', 1)[0m
+  [4;35;1mSQL (77.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (0.2ms)[0m   [0;1mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 105, '2013-01-09 12:18:51', NULL, 1, NULL, 0, 1, 3, 0, 'JKWGXC', 'ba39f3ff-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (88.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCoreRelationship Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `relationship`[0m
+  [4;35;1mCoreRelationshipType Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `relationship_type`[0m
+  [4;36;1mCoreRelationshipType Load (0.1ms)[0m   [0;1mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCoreRelationship Create (0.3ms)[0m   [0mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 12:18:51', NULL, 1, NULL, 0, 11, 105, 78, 'ba499f56-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (89.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mCorePatientIdentifier Load (0.3ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 105 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Completed in 997ms (View: 1, DB: 501) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;35;1mSQL (0.0ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 14:19:59) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"", "user_id"=>"43", "person"=>{"birth_day"=>"9", "patient"=>"", "names"=>{"family_name"=>"Kamunga", "given_name"=>"Baby -1"}, "birth_month"=>"1", "gender"=>"", "birth_year"=>"2013"}}
+  [4;35;1mCorePerson Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person`[0m
+  [4;36;1mCorePersonName Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_name`[0m
+  [4;35;1mCorePersonAddress Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_address`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePerson Create (0.3ms)[0m   [0;1mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 12:20:00', NULL, 1, NULL, 0, '2013-01-09 12:20:00', 0, NULL, 1, NULL, '', 'e33e2193-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (40.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePerson Update (0.3ms)[0m   [0mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 12:20:00' WHERE `person_id` = 106[0m
+  [4;36;1mSQL (87.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePersonName Create (0.3ms)[0m   [0mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 12:20:00', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Kamunga', '2013-01-09 12:20:00', 106, 'Baby -1', NULL, NULL, 1, 0, NULL, 'e352de66-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (83.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatient Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatientIdentifier Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;35;1mCorePatient Load (0.3ms)[0m   [0mSELECT * FROM `patient` WHERE (`patient`.patient_id = 106 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePatient Create (0.2ms)[0m   [0mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 12:20:00', NULL, 106, NULL, 1, NULL, 0, '2013-01-09 12:20:00', 1)[0m
+  [4;36;1mSQL (65.8ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePatientIdentifier Create (0.3ms)[0m   [0mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 106, '2013-01-09 12:20:00', NULL, 1, NULL, 0, 1, 3, 0, 'J1F013', 'e36d0e7a-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (78.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCoreRelationship Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `relationship`[0m
+  [4;36;1mCoreRelationshipType Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `relationship_type`[0m
+  [4;35;1mCoreRelationshipType Load (0.3ms)[0m   [0mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCoreRelationship Create (0.2ms)[0m   [0;1mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 12:20:00', NULL, 1, NULL, 0, 11, 106, 78, 'e37b4025-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (133.2ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifier Load (0.3ms)[0m   [0mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 106 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Completed in 931ms (View: 0, DB: 498) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 14:20:19) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"", "user_id"=>"43", "person"=>{"birth_day"=>"9", "patient"=>"", "names"=>{"family_name"=>"Kamunga", "given_name"=>"Baby -1"}, "birth_month"=>"1", "gender"=>"", "birth_year"=>"2013"}}
+  [4;36;1mCorePerson Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.4ms)[0m   [0mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 12:20:19', NULL, 1, NULL, 0, '2013-01-09 12:20:19', 0, NULL, 1, NULL, '', 'ef06457a-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (58.8ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.2ms)[0m   [0;1mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 12:20:19' WHERE `person_id` = 107[0m
+  [4;35;1mSQL (86.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (0.5ms)[0m   [0;1mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 12:20:19', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Kamunga', '2013-01-09 12:20:19', 107, 'Baby -1', NULL, NULL, 1, 0, NULL, 'ef1deb42-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (81.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.3ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 107 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (0.2ms)[0m   [0;1mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 12:20:20', NULL, 107, NULL, 1, NULL, 0, '2013-01-09 12:20:20', 1)[0m
+  [4;35;1mSQL (87.0ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (0.2ms)[0m   [0;1mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 107, '2013-01-09 12:20:20', NULL, 1, NULL, 0, 1, 3, 0, 'M2VXJD', 'ef3b5712-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (89.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCoreRelationship Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `relationship`[0m
+  [4;35;1mCoreRelationshipType Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `relationship_type`[0m
+  [4;36;1mCoreRelationshipType Load (0.1ms)[0m   [0;1mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCoreRelationship Create (0.2ms)[0m   [0mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 12:20:20', NULL, 1, NULL, 0, 11, 107, 78, 'ef4b5e12-5a56-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (75.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mCorePatientIdentifier Load (0.3ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 107 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Completed in 931ms (View: 0, DB: 490) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 14:34:13) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"", "user_id"=>"43", "person"=>{"birth_day"=>"9", "patient"=>"", "names"=>{"family_name"=>"Kamunga", "given_name"=>"Baby -1"}, "birth_month"=>"1", "gender"=>"", "birth_year"=>"2013"}}
+  [4;35;1mCorePerson Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person`[0m
+  [4;36;1mCorePersonName Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person_name`[0m
+  [4;35;1mCorePersonAddress Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_address`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePerson Create (0.3ms)[0m   [0;1mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 12:34:13', NULL, 1, NULL, 0, '2013-01-09 12:34:13', 0, NULL, 1, NULL, '', 'e013b07d-5a58-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (99.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePerson Update (0.3ms)[0m   [0mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 12:34:13' WHERE `person_id` = 108[0m
+  [4;36;1mSQL (86.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePersonName Create (0.3ms)[0m   [0mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 12:34:13', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Kamunga', '2013-01-09 12:34:13', 108, 'Baby -1', NULL, NULL, 1, 0, NULL, 'e0318bdc-5a58-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (84.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatient Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatientIdentifier Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;35;1mCorePatient Load (0.6ms)[0m   [0mSELECT * FROM `patient` WHERE (`patient`.patient_id = 108 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePatient Create (0.3ms)[0m   [0mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 12:34:14', NULL, 108, NULL, 1, NULL, 0, '2013-01-09 12:34:14', 1)[0m
+  [4;36;1mSQL (73.6ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePatientIdentifier Create (0.3ms)[0m   [0mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 108, '2013-01-09 12:34:14', NULL, 1, NULL, 0, 1, 3, 0, 'JYCYMU', 'e04db12b-5a58-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (67.7ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCoreRelationship Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `relationship`[0m
+  [4;36;1mCoreRelationshipType Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `relationship_type`[0m
+  [4;35;1mCoreRelationshipType Load (0.1ms)[0m   [0mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCoreRelationship Create (0.2ms)[0m   [0;1mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 12:34:14', NULL, 1, NULL, 0, 11, 108, 78, 'e05a565a-5a58-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (76.5ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifier Load (0.3ms)[0m   [0mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 108 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Completed in 957ms (View: 0, DB: 498) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 14:35:04) [POST]
+  Parameters: {"mother_id"=>"78", "location_id"=>"", "user_id"=>"43", "person"=>{"birth_day"=>"9", "patient"=>"", "names"=>{"family_name"=>"Kamunga", "given_name"=>"Baby -1"}, "birth_month"=>"1", "gender"=>"", "birth_year"=>"2013"}}
+  [4;36;1mCorePerson Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.2ms)[0m   [0mINSERT INTO `person` (`dead`, `date_voided`, `birthdate`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `date_changed`, `birthdate_estimated`, `cause_of_death`, `changed_by`, `death_date`, `gender`, `uuid`) VALUES(0, NULL, NULL, '2013-01-09 12:35:04', NULL, 1, NULL, 0, '2013-01-09 12:35:04', 0, NULL, 1, NULL, '', 'fe5851b2-5a58-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (92.8ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.3ms)[0m   [0;1mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 12:35:04' WHERE `person_id` = 109[0m
+  [4;35;1mSQL (45.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (0.2ms)[0m   [0;1mINSERT INTO `person_name` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `family_name_suffix`, `family_name_prefix`, `voided`, `prefix`, `family_name`, `date_changed`, `person_id`, `given_name`, `middle_name`, `family_name2`, `changed_by`, `preferred`, `degree`, `uuid`) VALUES(NULL, '2013-01-09 12:35:04', NULL, 1, NULL, NULL, NULL, 0, NULL, 'Kamunga', '2013-01-09 12:35:04', 109, 'Baby -1', NULL, NULL, 1, 0, NULL, 'fe743f93-5a58-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (84.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.3ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 109 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (0.2ms)[0m   [0;1mINSERT INTO `patient` (`date_voided`, `date_created`, `voided_by`, `patient_id`, `tribe`, `creator`, `void_reason`, `voided`, `date_changed`, `changed_by`) VALUES(NULL, '2013-01-09 12:35:04', NULL, 109, NULL, 1, NULL, 0, '2013-01-09 12:35:04', 1)[0m
+  [4;35;1mSQL (76.4ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (0.2ms)[0m   [0;1mINSERT INTO `patient_identifier` (`date_voided`, `patient_id`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `location_id`, `identifier_type`, `preferred`, `identifier`, `uuid`) VALUES(NULL, 109, '2013-01-09 12:35:04', NULL, 1, NULL, 0, 1, 3, 0, 'HG3JJ8', 'fe905c7c-5a58-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (77.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCoreRelationship Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `relationship`[0m
+  [4;35;1mCoreRelationshipType Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `relationship_type`[0m
+  [4;36;1mCoreRelationshipType Load (0.2ms)[0m   [0;1mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCoreRelationship Create (0.2ms)[0m   [0mINSERT INTO `relationship` (`date_voided`, `date_created`, `voided_by`, `creator`, `void_reason`, `voided`, `relationship`, `person_a`, `person_b`, `uuid`) VALUES(NULL, '2013-01-09 12:35:04', NULL, 1, NULL, 0, 11, 109, 78, 'fe9e8304-5a58-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (87.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mCorePatientIdentifier Load (0.3ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 109 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Completed in 946ms (View: 0, DB: 473) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 2013-01-09 16:18:42) [GET]
+Redirected to http://0.0.0.0/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 38ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 16:40:52) [POST]
+  Parameters: {"user_id"=>"43", "mother_id"=>"78", "person"=>{"birth_year"=>"2013", "names"=>{"given_name"=>"Baby -1", "family_name"=>"Kamunga"}, "birth_month"=>"1", "patient"=>"", "gender"=>"", "birth_day"=>"9"}, "location_id"=>""}
+  [4;36;1mCorePerson Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.3ms)[0m   [0mINSERT INTO `person` (`dead`, `void_reason`, `voided`, `birthdate_estimated`, `date_created`, `changed_by`, `voided_by`, `date_voided`, `gender`, `date_changed`, `birthdate`, `death_date`, `cause_of_death`, `creator`, `uuid`) VALUES(0, NULL, 0, 0, '2013-01-09 14:40:52', 1, NULL, NULL, '', '2013-01-09 14:40:52', NULL, NULL, NULL, 1, '9181ec6b-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (120.4ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.3ms)[0m   [0;1mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 14:40:53' WHERE `person_id` = 110[0m
+  [4;35;1mSQL (64.1ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (0.2ms)[0m   [0;1mINSERT INTO `person_name` (`family_name_suffix`, `void_reason`, `given_name`, `voided`, `date_created`, `person_id`, `middle_name`, `family_name`, `voided_by`, `date_voided`, `changed_by`, `prefix`, `degree`, `family_name2`, `date_changed`, `preferred`, `family_name_prefix`, `creator`, `uuid`) VALUES(NULL, NULL, 'Baby -1', 0, '2013-01-09 14:40:53', 110, NULL, 'Kamunga', NULL, NULL, 1, NULL, NULL, NULL, '2013-01-09 14:40:53', 0, NULL, 1, '919f7fc7-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (61.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (1.1ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.3ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 110 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (0.3ms)[0m   [0;1mINSERT INTO `patient` (`patient_id`, `void_reason`, `voided`, `date_created`, `tribe`, `changed_by`, `voided_by`, `date_voided`, `date_changed`, `creator`) VALUES(110, NULL, 0, '2013-01-09 14:40:53', NULL, 1, NULL, NULL, '2013-01-09 14:40:53', 1)[0m
+  [4;35;1mSQL (110.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (0.3ms)[0m   [0;1mINSERT INTO `patient_identifier` (`patient_id`, `void_reason`, `voided`, `date_created`, `identifier_type`, `voided_by`, `date_voided`, `preferred`, `identifier`, `location_id`, `creator`, `uuid`) VALUES(110, NULL, 0, '2013-01-09 14:40:53', 3, NULL, NULL, 0, 'KK84GT', 1, 1, '91bd2701-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (89.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCoreRelationship Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `relationship`[0m
+  [4;35;1mCoreRelationshipType Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `relationship_type`[0m
+  [4;36;1mCoreRelationshipType Load (0.1ms)[0m   [0;1mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCoreRelationship Create (0.2ms)[0m   [0mINSERT INTO `relationship` (`void_reason`, `person_a`, `relationship`, `person_b`, `voided`, `date_created`, `voided_by`, `date_voided`, `creator`, `uuid`) VALUES(NULL, 110, 11, 78, 0, '2013-01-09 14:40:53', NULL, NULL, 1, '91d21720-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (77.0ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mCorePatientIdentifier Load (0.3ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 110 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Completed in 989ms (View: 1, DB: 533) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 16:41:11) [POST]
+  Parameters: {"user_id"=>"43", "mother_id"=>"78", "person"=>{"birth_year"=>"2013", "names"=>{"given_name"=>"Baby -1", "family_name"=>"Kamunga"}, "birth_month"=>"1", "patient"=>"", "gender"=>"", "birth_day"=>"9"}, "location_id"=>""}
+  [4;35;1mCorePerson Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person`[0m
+  [4;36;1mCorePersonName Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_name`[0m
+  [4;35;1mCorePersonAddress Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `person_address`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePerson Create (0.2ms)[0m   [0;1mINSERT INTO `person` (`dead`, `void_reason`, `voided`, `birthdate_estimated`, `date_created`, `changed_by`, `voided_by`, `date_voided`, `gender`, `date_changed`, `birthdate`, `death_date`, `cause_of_death`, `creator`, `uuid`) VALUES(0, NULL, 0, 0, '2013-01-09 14:41:11', 1, NULL, NULL, '', '2013-01-09 14:41:11', NULL, NULL, NULL, 1, '9c876f6d-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (42.7ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePerson Update (0.2ms)[0m   [0mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 14:41:11' WHERE `person_id` = 111[0m
+  [4;36;1mSQL (98.2ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePersonName Create (0.2ms)[0m   [0mINSERT INTO `person_name` (`family_name_suffix`, `void_reason`, `given_name`, `voided`, `date_created`, `person_id`, `middle_name`, `family_name`, `voided_by`, `date_voided`, `changed_by`, `prefix`, `degree`, `family_name2`, `date_changed`, `preferred`, `family_name_prefix`, `creator`, `uuid`) VALUES(NULL, NULL, 'Baby -1', 0, '2013-01-09 14:41:11', 111, NULL, 'Kamunga', NULL, NULL, 1, NULL, NULL, NULL, '2013-01-09 14:41:11', 0, NULL, 1, '9c9e165f-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (83.9ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatient Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatientIdentifier Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;35;1mCorePatient Load (0.3ms)[0m   [0mSELECT * FROM `patient` WHERE (`patient`.patient_id = 111 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePatient Create (0.2ms)[0m   [0mINSERT INTO `patient` (`patient_id`, `void_reason`, `voided`, `date_created`, `tribe`, `changed_by`, `voided_by`, `date_voided`, `date_changed`, `creator`) VALUES(111, NULL, 0, '2013-01-09 14:41:11', NULL, 1, NULL, NULL, '2013-01-09 14:41:11', 1)[0m
+  [4;36;1mSQL (77.6ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePatientIdentifier Create (0.2ms)[0m   [0mINSERT INTO `patient_identifier` (`patient_id`, `void_reason`, `voided`, `date_created`, `identifier_type`, `voided_by`, `date_voided`, `preferred`, `identifier`, `location_id`, `creator`, `uuid`) VALUES(111, NULL, 0, '2013-01-09 14:41:11', 3, NULL, NULL, 0, 'HXF1DA', 1, 1, '9cb9f2b0-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (81.3ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCoreRelationship Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `relationship`[0m
+  [4;36;1mCoreRelationshipType Columns (0.5ms)[0m   [0;1mSHOW FIELDS FROM `relationship_type`[0m
+  [4;35;1mCoreRelationshipType Load (0.1ms)[0m   [0mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCoreRelationship Create (0.2ms)[0m   [0;1mINSERT INTO `relationship` (`void_reason`, `person_a`, `relationship`, `person_b`, `voided`, `date_created`, `voided_by`, `date_voided`, `creator`, `uuid`) VALUES(NULL, 111, 11, 78, 0, '2013-01-09 14:41:11', NULL, NULL, 1, '9cc8520a-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (77.9ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifier Load (0.3ms)[0m   [0mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 111 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Completed in 863ms (View: 0, DB: 472) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-09 16:41:33) [POST]
+  Parameters: {"user_id"=>"43", "mother_id"=>"78", "person"=>{"birth_year"=>"2013", "names"=>{"given_name"=>"Baby -1", "family_name"=>"Kamunga"}, "birth_month"=>"1", "patient"=>"", "gender"=>"", "birth_day"=>"9"}, "location_id"=>""}
+  [4;36;1mCorePerson Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePerson Create (0.2ms)[0m   [0mINSERT INTO `person` (`dead`, `void_reason`, `voided`, `birthdate_estimated`, `date_created`, `changed_by`, `voided_by`, `date_voided`, `gender`, `date_changed`, `birthdate`, `death_date`, `cause_of_death`, `creator`, `uuid`) VALUES(0, NULL, 0, 0, '2013-01-09 14:41:34', 1, NULL, NULL, '', '2013-01-09 14:41:34', NULL, NULL, NULL, 1, 'aa115ec1-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (63.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePerson Update (0.3ms)[0m   [0;1mUPDATE `person` SET `birthdate` = '2013-01-09', `date_changed` = '2013-01-09 14:41:34' WHERE `person_id` = 112[0m
+  [4;35;1mSQL (122.2ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePersonName Create (0.2ms)[0m   [0;1mINSERT INTO `person_name` (`family_name_suffix`, `void_reason`, `given_name`, `voided`, `date_created`, `person_id`, `middle_name`, `family_name`, `voided_by`, `date_voided`, `changed_by`, `prefix`, `degree`, `family_name2`, `date_changed`, `preferred`, `family_name_prefix`, `creator`, `uuid`) VALUES(NULL, NULL, 'Baby -1', 0, '2013-01-09 14:41:34', 112, NULL, 'Kamunga', NULL, NULL, 1, NULL, NULL, NULL, '2013-01-09 14:41:34', 0, NULL, 1, 'aa2ef19d-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (116.2ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatient Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatient Load (0.2ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 112 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mBEGIN[0m
+  [4;36;1mCorePatient Create (0.3ms)[0m   [0;1mINSERT INTO `patient` (`patient_id`, `void_reason`, `voided`, `date_created`, `tribe`, `changed_by`, `voided_by`, `date_voided`, `date_changed`, `creator`) VALUES(112, NULL, 0, '2013-01-09 14:41:34', NULL, 1, NULL, NULL, '2013-01-09 14:41:34', 1)[0m
+  [4;35;1mSQL (78.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePatientIdentifier Create (0.2ms)[0m   [0;1mINSERT INTO `patient_identifier` (`patient_id`, `void_reason`, `voided`, `date_created`, `identifier_type`, `voided_by`, `date_voided`, `preferred`, `identifier`, `location_id`, `creator`, `uuid`) VALUES(112, NULL, 0, '2013-01-09 14:41:34', 3, NULL, NULL, 0, 'LG07TY', 1, 1, 'aa502266-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;35;1mSQL (100.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCoreRelationship Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `relationship`[0m
+  [4;35;1mCoreRelationshipType Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `relationship_type`[0m
+  [4;36;1mCoreRelationshipType Load (0.1ms)[0m   [0;1mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCoreRelationship Create (0.2ms)[0m   [0mINSERT INTO `relationship` (`void_reason`, `person_a`, `relationship`, `person_b`, `voided`, `date_created`, `voided_by`, `date_voided`, `creator`, `uuid`) VALUES(NULL, 112, 11, 78, 0, '2013-01-09 14:41:34', NULL, NULL, 1, 'aa61a4fb-5a6a-11e2-8781-30f9edafb6df')[0m
+  [4;36;1mSQL (93.1ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Load (0.1ms)[0m   [0mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;36;1mCorePatientIdentifier Load (0.3ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 112 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Completed in 1036ms (View: 0, DB: 583) | 200 OK [http://localhost/create_baby?user_id=43&location_id=]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 2013-01-10 08:57:42) [GET]
+Redirected to http://0.0.0.0/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 96ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#scan (for 127.0.0.1 at 2013-01-10 09:14:07) [GET]
+  Parameters: {"user_id"=>"43", "identifier"=>"L2D25U", "ext"=>"true", "location_id"=>"726"}
+  [4;36;1mCorePerson Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.7ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mCorePatientIdentifier Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatientIdentifier Load (0.6ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (voided = 0) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.`identifier` = 'L2D25U')) [0m
+  [4;35;1mCorePatient Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatient Load (0.3ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.`patient_id` = 78 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) [0m
+  [4;35;1mCorePerson Load (0.4ms)[0m   [0mSELECT * FROM `person` WHERE (`person`.person_id = 78 AND (`person`.`voided` = 0)) AND (person.voided = 0) LIMIT 1[0m
+  [4;36;1mCorePatient Load (0.2ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 78 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.3ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifier Load (0.4ms)[0m   [0mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 78 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Redirected to http://localhost:3006/?user_id=43&location_id=726&ext_patient_id=78
+Completed in 233ms (DB: 9) | 302 Found [http://localhost/scan?user_id=43&ext=true&location_id=726&identifier=L2D25U]
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-10 10:03:50) [POST]
+  Parameters: {"user_id"=>"43", "person"=>{"birth_year"=>"2013", "patient"=>"", "gender"=>"", "birth_day"=>"10", "birth_month"=>"1", "names"=>{"given_name"=>"Baby -1", "family_name"=>"Kamunga"}}, "mother_id"=>"78", "location_id"=>""}
+  [4;36;1mCorePerson Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+
+Errno::ECONNREFUSED (Connection refused - connect(2)):
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `initialize'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `open'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `connect'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/timeout.rb:53:in `timeout'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/timeout.rb:101:in `timeout'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `connect'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:553:in `do_start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:542:in `start'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient/request.rb:170:in `transmit'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient/request.rb:64:in `execute'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient/request.rb:33:in `execute'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient.rb:72:in `post'
+  app/models/core_person.rb:119:in `create_patient_from_dde'
+  app/controllers/core_patient_registration_controller.rb:523:in `create_baby'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:516:in `accept_and_process_next_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/utils.rb:470:in `safe_fork'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (62.6ms)
+Rendered rescues/_request_and_response (0.9ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-10 10:06:06) [POST]
+  Parameters: {"user_id"=>"43", "person"=>{"birth_year"=>"2013", "patient"=>"", "gender"=>"", "birth_day"=>"10", "birth_month"=>"1", "names"=>{"given_name"=>"Baby -1", "family_name"=>"Kamunga"}}, "mother_id"=>"78", "location_id"=>""}
+  [4;35;1mCorePerson Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `person`[0m
+  [4;36;1mCorePersonName Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person_name`[0m
+  [4;35;1mCorePersonAddress Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person_address`[0m
+
+Errno::ECONNREFUSED (Connection refused - connect(2)):
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `initialize'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `open'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `connect'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/timeout.rb:53:in `timeout'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/timeout.rb:101:in `timeout'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `connect'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:553:in `do_start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:542:in `start'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient/request.rb:170:in `transmit'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient/request.rb:64:in `execute'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient/request.rb:33:in `execute'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient.rb:72:in `post'
+  app/models/core_person.rb:119:in `create_patient_from_dde'
+  app/controllers/core_patient_registration_controller.rb:523:in `create_baby'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:516:in `accept_and_process_next_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/utils.rb:470:in `safe_fork'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (65.1ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-10 10:08:42) [POST]
+  Parameters: {"user_id"=>"43", "person"=>{"birth_year"=>"2013", "patient"=>"", "gender"=>"", "birth_day"=>"10", "birth_month"=>"1", "names"=>{"given_name"=>"Baby -1", "family_name"=>"Kamunga"}}, "mother_id"=>"78", "location_id"=>"726"}
+  [4;36;1mCorePerson Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+
+Errno::ECONNREFUSED (Connection refused - connect(2)):
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `initialize'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `open'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `connect'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/timeout.rb:53:in `timeout'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/timeout.rb:101:in `timeout'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:560:in `connect'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:553:in `do_start'
+  /home/chimwemwe/.rvm/rubies/ruby-1.8.7-p370/lib/ruby/1.8/net/http.rb:542:in `start'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient/request.rb:170:in `transmit'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient/request.rb:64:in `execute'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient/request.rb:33:in `execute'
+  /home/chimwemwe/.rvm/gems/ruby-1.8.7-p370@tutorials/gems/rest-client-1.6.3/lib/restclient.rb:72:in `post'
+  app/models/core_person.rb:119:in `create_patient_from_dde'
+  app/controllers/core_patient_registration_controller.rb:523:in `create_baby'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/rack/request_handler.rb:96:in `process_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:516:in `accept_and_process_next_request'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_request_handler.rb:274:in `main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:321:in `start_request_handler'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `send'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/utils.rb:470:in `safe_fork'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:270:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:180:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/classic_rails/application_spawner.rb:149:in `start'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:219:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:132:in `lookup_or_add'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:214:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:82:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server_collection.rb:79:in `synchronize'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:213:in `spawn_rails_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:132:in `spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/spawn_manager.rb:275:in `handle_spawn_application'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `__send__'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:357:in `server_main_loop'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/lib/phusion_passenger/abstract_server.rb:206:in `start_synchronously'
+  /home/chimwemwe/.passenger/standalone/3.0.18-x86_64-ruby1.8.7-linux-gcc4.7.2-1002/support/helper-scripts/passenger-spawn-server:99
+
+Rendered rescues/_trace (23.9ms)
+Rendered rescues/_request_and_response (0.3ms)
+Rendering rescues/layout (internal_server_error)
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#create_baby (for 127.0.0.1 at 2013-01-10 10:09:35) [POST]
+  Parameters: {"user_id"=>"43", "person"=>{"birth_year"=>"2013", "patient"=>"", "gender"=>"", "birth_day"=>"10", "birth_month"=>"1", "names"=>{"given_name"=>"Baby -1", "family_name"=>"Kamunga"}}, "mother_id"=>"78", "location_id"=>"726"}
+  [4;35;1mCorePerson Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person`[0m
+  [4;36;1mCorePersonName Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person_name`[0m
+  [4;35;1mCorePersonAddress Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_address`[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCorePerson Create (20.6ms)[0m   [0;1mINSERT INTO `person` (`death_date`, `cause_of_death`, `void_reason`, `creator`, `changed_by`, `gender`, `birthdate_estimated`, `birthdate`, `uuid`, `voided_by`, `date_voided`, `dead`, `date_changed`, `voided`, `date_created`) VALUES(NULL, NULL, NULL, 1, 1, '', 0, NULL, '1284b1b0-5afd-11e2-b384-30f9edafb6df', NULL, NULL, 0, '2013-01-10 08:09:35', 0, '2013-01-10 08:09:35')[0m
+  [4;35;1mSQL (110.6ms)[0m   [0mCOMMIT[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePerson Update (0.3ms)[0m   [0mUPDATE `person` SET `date_changed` = '2013-01-10 08:09:35', `birthdate` = '2013-01-10' WHERE `person_id` = 113[0m
+  [4;36;1mSQL (108.8ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePersonName Create (18.0ms)[0m   [0mINSERT INTO `person_name` (`preferred`, `family_name_prefix`, `family_name_suffix`, `void_reason`, `creator`, `changed_by`, `given_name`, `prefix`, `degree`, `uuid`, `voided_by`, `date_voided`, `person_id`, `voided`, `date_changed`, `middle_name`, `family_name`, `family_name2`, `date_created`) VALUES(0, NULL, NULL, NULL, 1, 1, 'Baby -1', NULL, NULL, '12aabe44-5afd-11e2-b384-30f9edafb6df', NULL, NULL, 113, 0, '2013-01-10 08:09:36', NULL, 'Kamunga', NULL, '2013-01-10 08:09:36')[0m
+  [4;36;1mSQL (99.2ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatient Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatientIdentifier Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;35;1mCorePatient Load (0.3ms)[0m   [0mSELECT * FROM `patient` WHERE (`patient`.patient_id = 113 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mCorePatient Create (16.7ms)[0m   [0mINSERT INTO `patient` (`void_reason`, `creator`, `changed_by`, `tribe`, `voided_by`, `date_voided`, `date_changed`, `voided`, `patient_id`, `date_created`) VALUES(NULL, 1, 1, NULL, NULL, NULL, '2013-01-10 08:09:36', 0, 113, '2013-01-10 08:09:36')[0m
+  [4;36;1mSQL (96.5ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mBEGIN[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSELECT UUID() as uuid[0m
+  [4;35;1mCorePatientIdentifier Create (0.2ms)[0m   [0mINSERT INTO `patient_identifier` (`preferred`, `identifier_type`, `identifier`, `void_reason`, `creator`, `uuid`, `voided_by`, `date_voided`, `patient_id`, `location_id`, `voided`, `date_created`) VALUES(0, 3, 'L8TH5R', NULL, 1, '12d1060a-5afd-11e2-b384-30f9edafb6df', NULL, NULL, 113, 1, 0, '2013-01-10 08:09:36')[0m
+  [4;36;1mSQL (79.3ms)[0m   [0;1mCOMMIT[0m
+  [4;35;1mCoreRelationship Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `relationship`[0m
+  [4;36;1mCoreRelationshipType Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `relationship_type`[0m
+  [4;35;1mCoreRelationshipType Load (0.3ms)[0m   [0mSELECT * FROM `relationship_type` WHERE (`relationship_type`.`a_is_to_b` = 'Child' AND `relationship_type`.`b_is_to_a` = 'Parent') ORDER BY weight DESC LIMIT 1[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mBEGIN[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSELECT UUID() as uuid[0m
+  [4;36;1mCoreRelationship Create (18.6ms)[0m   [0;1mINSERT INTO `relationship` (`void_reason`, `relationship`, `creator`, `uuid`, `voided_by`, `date_voided`, `voided`, `person_a`, `person_b`, `date_created`) VALUES(NULL, 11, 1, '12e31fe8-5afd-11e2-b384-30f9edafb6df', NULL, NULL, 0, 113, 78, '2013-01-10 08:09:36')[0m
+  [4;35;1mSQL (66.8ms)[0m   [0mCOMMIT[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifier Load (0.3ms)[0m   [0mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 113 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Completed in 1563ms (View: 1, DB: 643) | 200 OK [http://localhost/create_baby?user_id=43&location_id=726]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#scan (for 127.0.0.1 at 2013-01-10 15:30:39) [GET]
+  Parameters: {"user_id"=>"43", "identifier"=>"M2VXJD", "ext"=>"true", "location_id"=>"721"}
+  [4;36;1mCorePerson Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatientIdentifier Load (0.3ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (voided = 0) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.`identifier` = 'M2VXJD')) [0m
+  [4;35;1mCorePatient Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatient Load (0.6ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.`patient_id` = 107 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) [0m
+  [4;35;1mCorePerson Load (0.3ms)[0m   [0mSELECT * FROM `person` WHERE (`person`.person_id = 107 AND (`person`.`voided` = 0)) AND (person.voided = 0) LIMIT 1[0m
+  [4;36;1mCorePatient Load (0.2ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 107 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifier Load (0.4ms)[0m   [0mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 107 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Redirected to http://localhost:3007/?user_id=43&location_id=721&ext_patient_id=107
+Completed in 73ms (DB: 7) | 302 Found [http://localhost/scan?user_id=43&ext=true&location_id=721&identifier=M2VXJD]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 2013-01-11 08:31:43) [GET]
+Redirected to http://0.0.0.0/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 87ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#scan (for 127.0.0.1 at 2013-01-11 08:52:46) [GET]
+  Parameters: {"user_id"=>"43", "location_id"=>"726", "ext"=>"true", "identifier"=>"L8TH5R"}
+  [4;36;1mCorePerson Columns (1.6ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.6ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mCorePatientIdentifier Columns (1.2ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatientIdentifier Load (0.4ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (voided = 0) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.`identifier` = 'L8TH5R')) [0m
+  [4;35;1mCorePatient Columns (1.3ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatient Load (0.6ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.`patient_id` = 113 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) [0m
+  [4;35;1mCorePerson Load (0.4ms)[0m   [0mSELECT * FROM `person` WHERE (`person`.person_id = 113 AND (`person`.`voided` = 0)) AND (person.voided = 0) LIMIT 1[0m
+  [4;36;1mCorePatient Load (0.4ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 113 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifierType Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.8ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifier Load (0.5ms)[0m   [0mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 113 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Redirected to http://localhost:3007/?user_id=43&location_id=726&ext_patient_id=113
+Completed in 314ms (DB: 12) | 302 Found [http://localhost/scan?user_id=43&ext=true&location_id=726&identifier=L8TH5R]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#search (for 127.0.0.1 at 2013-01-11 11:12:43) [GET]
+  Parameters: {"user_id"=>"43", "location_id"=>"726", "ext"=>"true"}
+  [4;36;1mCorePerson Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.8ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mCorePatient Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatientIdentifier Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;35;1mCorePerson Load Including Associations (0.7ms)[0m   [0mSELECT `person`.`person_id` AS t0_r0, `person`.`gender` AS t0_r1, `person`.`birthdate` AS t0_r2, `person`.`birthdate_estimated` AS t0_r3, `person`.`dead` AS t0_r4, `person`.`death_date` AS t0_r5, `person`.`cause_of_death` AS t0_r6, `person`.`creator` AS t0_r7, `person`.`date_created` AS t0_r8, `person`.`changed_by` AS t0_r9, `person`.`date_changed` AS t0_r10, `person`.`voided` AS t0_r11, `person`.`voided_by` AS t0_r12, `person`.`date_voided` AS t0_r13, `person`.`void_reason` AS t0_r14, `person`.`uuid` AS t0_r15, `person_name`.`person_name_id` AS t1_r0, `person_name`.`preferred` AS t1_r1, `person_name`.`person_id` AS t1_r2, `person_name`.`prefix` AS t1_r3, `person_name`.`given_name` AS t1_r4, `person_name`.`middle_name` AS t1_r5, `person_name`.`family_name_prefix` AS t1_r6, `person_name`.`family_name` AS t1_r7, `person_name`.`family_name2` AS t1_r8, `person_name`.`family_name_suffix` AS t1_r9, `person_name`.`degree` AS t1_r10, `person_name`.`creator` AS t1_r11, `person_name`.`date_created` AS t1_r12, `person_name`.`voided` AS t1_r13, `person_name`.`voided_by` AS t1_r14, `person_name`.`date_voided` AS t1_r15, `person_name`.`void_reason` AS t1_r16, `person_name`.`changed_by` AS t1_r17, `person_name`.`date_changed` AS t1_r18, `person_name`.`uuid` AS t1_r19, `patient`.`patient_id` AS t2_r0, `patient`.`tribe` AS t2_r1, `patient`.`creator` AS t2_r2, `patient`.`date_created` AS t2_r3, `patient`.`changed_by` AS t2_r4, `patient`.`date_changed` AS t2_r5, `patient`.`voided` AS t2_r6, `patient`.`voided_by` AS t2_r7, `patient`.`date_voided` AS t2_r8, `patient`.`void_reason` AS t2_r9 FROM `person` LEFT OUTER JOIN `person_name` ON person_name.person_id = person.person_id AND person_name.`voided` = 0 LEFT OUTER JOIN `patient` ON patient.patient_id = person.person_id AND patient.`voided` = 0 WHERE (gender = NULL AND person_name.given_name = NULL AND person_name.family_name = NULL) AND (person.voided = 0) [0m
+  [4;36;1mCorePerson Load IDs For Limited Eager Loading (0.3ms)[0m   [0;1mSELECT DISTINCT `person`.person_id FROM `person` LEFT OUTER JOIN `person_name` ON person_name.person_id = person.person_id AND person_name.`voided` = 0 WHERE (gender = NULL AND person_name.given_name LIKE '' AND person_name.family_name LIKE '' AND person.person_id NOT IN (NULL)) AND (person.voided = 0) ORDER BY person_name.given_name ASC, person_name.family_name ASC LIMIT 15[0m
+Rendering template within layouts/application
+Rendering core_patient_registration/search
+Completed in 182ms (View: 55, DB: 5) | 200 OK [http://localhost/search?user_id=43&ext=true&location_id=726]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#given_names (for 127.0.0.1 at 2013-01-11 11:12:45) [GET]
+  Parameters: {"search_string"=>""}
+  [4;35;1mCorePersonName Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonName Load (106.1ms)[0m   [0;1mSELECT DISTINCT given_name AS given_name, person_name_id AS id FROM person_name INNER JOIN person ON person.person_id = person_name.person_id WHERE person.voided = 0 AND person_name.voided = 0 AND given_name LIKE '%%' GROUP BY given_name ORDER BY INSTR(given_name,"") ASC, COUNT(given_name) DESC, given_name ASC LIMIT 10[0m
+Completed in 115ms (View: 0, DB: 108) | 200 OK [http://localhost/core_patient_registration/given_names?search_string=]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#family_names (for 127.0.0.1 at 2013-01-11 11:12:48) [GET]
+  Parameters: {"search_string"=>""}
+  [4;35;1mCorePersonName Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonName Load (1.3ms)[0m   [0;1mSELECT DISTINCT family_name AS family_name, person_name_id AS id FROM person_name INNER JOIN person ON person.person_id = person_name.person_id WHERE person.voided = 0 AND person_name.voided = 0 AND family_name LIKE '%%' GROUP BY family_name ORDER BY INSTR(family_name,"") ASC, COUNT(family_name) DESC, family_name ASC LIMIT 10[0m
+Completed in 10ms (View: 0, DB: 2) | 200 OK [http://localhost/core_patient_registration/family_names?search_string=]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#search (for 127.0.0.1 at 2013-01-11 11:12:51) [GET]
+  Parameters: {"family_name"=>"Banda", "user_id"=>"43", "create_patient"=>"", "relation"=>"", "gender"=>"F", "given_name"=>"Baby -1"}
+  [4;35;1mCorePerson Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person`[0m
+  [4;36;1mCorePersonName Columns (1.8ms)[0m   [0;1mSHOW FIELDS FROM `person_name`[0m
+  [4;35;1mCorePersonAddress Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `person_address`[0m
+  [4;36;1mCorePatient Columns (1.2ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePerson Load Including Associations (0.6ms)[0m   [0;1mSELECT `person`.`person_id` AS t0_r0, `person`.`gender` AS t0_r1, `person`.`birthdate` AS t0_r2, `person`.`birthdate_estimated` AS t0_r3, `person`.`dead` AS t0_r4, `person`.`death_date` AS t0_r5, `person`.`cause_of_death` AS t0_r6, `person`.`creator` AS t0_r7, `person`.`date_created` AS t0_r8, `person`.`changed_by` AS t0_r9, `person`.`date_changed` AS t0_r10, `person`.`voided` AS t0_r11, `person`.`voided_by` AS t0_r12, `person`.`date_voided` AS t0_r13, `person`.`void_reason` AS t0_r14, `person`.`uuid` AS t0_r15, `person_name`.`person_name_id` AS t1_r0, `person_name`.`preferred` AS t1_r1, `person_name`.`person_id` AS t1_r2, `person_name`.`prefix` AS t1_r3, `person_name`.`given_name` AS t1_r4, `person_name`.`middle_name` AS t1_r5, `person_name`.`family_name_prefix` AS t1_r6, `person_name`.`family_name` AS t1_r7, `person_name`.`family_name2` AS t1_r8, `person_name`.`family_name_suffix` AS t1_r9, `person_name`.`degree` AS t1_r10, `person_name`.`creator` AS t1_r11, `person_name`.`date_created` AS t1_r12, `person_name`.`voided` AS t1_r13, `person_name`.`voided_by` AS t1_r14, `person_name`.`date_voided` AS t1_r15, `person_name`.`void_reason` AS t1_r16, `person_name`.`changed_by` AS t1_r17, `person_name`.`date_changed` AS t1_r18, `person_name`.`uuid` AS t1_r19, `patient`.`patient_id` AS t2_r0, `patient`.`tribe` AS t2_r1, `patient`.`creator` AS t2_r2, `patient`.`date_created` AS t2_r3, `patient`.`changed_by` AS t2_r4, `patient`.`date_changed` AS t2_r5, `patient`.`voided` AS t2_r6, `patient`.`voided_by` AS t2_r7, `patient`.`date_voided` AS t2_r8, `patient`.`void_reason` AS t2_r9 FROM `person` LEFT OUTER JOIN `person_name` ON person_name.person_id = person.person_id AND person_name.`voided` = 0 LEFT OUTER JOIN `patient` ON patient.patient_id = person.person_id AND patient.`voided` = 0 WHERE (gender = 'F' AND person_name.given_name = 'Baby -1' AND person_name.family_name = 'Banda') AND (person.voided = 0) [0m
+  [4;35;1mCorePerson Load IDs For Limited Eager Loading (0.3ms)[0m   [0mSELECT DISTINCT `person`.person_id FROM `person` LEFT OUTER JOIN `person_name` ON person_name.person_id = person.person_id AND person_name.`voided` = 0 WHERE (gender = 'F' AND person_name.given_name LIKE 'Baby -1' AND person_name.family_name LIKE 'Banda' AND person.person_id NOT IN (NULL)) AND (person.voided = 0) ORDER BY person_name.given_name ASC, person_name.family_name ASC LIMIT 15[0m
+Rendering template within layouts/application
+Rendering core_patient_registration/search
+Completed in 125ms (View: 4, DB: 7) | 200 OK [http://localhost/search?given_name=Baby+-1&family_name=Banda&gender=F&user_id=43&create_patient=&relation=]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#search (for 127.0.0.1 at 2013-01-11 11:12:55) [GET]
+  Parameters: {"user_id"=>"43"}
+  [4;36;1mCorePerson Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mCorePatient Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatientIdentifier Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;35;1mCorePerson Load Including Associations (0.1ms)[0m   [0mSELECT `person`.`person_id` AS t0_r0, `person`.`gender` AS t0_r1, `person`.`birthdate` AS t0_r2, `person`.`birthdate_estimated` AS t0_r3, `person`.`dead` AS t0_r4, `person`.`death_date` AS t0_r5, `person`.`cause_of_death` AS t0_r6, `person`.`creator` AS t0_r7, `person`.`date_created` AS t0_r8, `person`.`changed_by` AS t0_r9, `person`.`date_changed` AS t0_r10, `person`.`voided` AS t0_r11, `person`.`voided_by` AS t0_r12, `person`.`date_voided` AS t0_r13, `person`.`void_reason` AS t0_r14, `person`.`uuid` AS t0_r15, `person_name`.`person_name_id` AS t1_r0, `person_name`.`preferred` AS t1_r1, `person_name`.`person_id` AS t1_r2, `person_name`.`prefix` AS t1_r3, `person_name`.`given_name` AS t1_r4, `person_name`.`middle_name` AS t1_r5, `person_name`.`family_name_prefix` AS t1_r6, `person_name`.`family_name` AS t1_r7, `person_name`.`family_name2` AS t1_r8, `person_name`.`family_name_suffix` AS t1_r9, `person_name`.`degree` AS t1_r10, `person_name`.`creator` AS t1_r11, `person_name`.`date_created` AS t1_r12, `person_name`.`voided` AS t1_r13, `person_name`.`voided_by` AS t1_r14, `person_name`.`date_voided` AS t1_r15, `person_name`.`void_reason` AS t1_r16, `person_name`.`changed_by` AS t1_r17, `person_name`.`date_changed` AS t1_r18, `person_name`.`uuid` AS t1_r19, `patient`.`patient_id` AS t2_r0, `patient`.`tribe` AS t2_r1, `patient`.`creator` AS t2_r2, `patient`.`date_created` AS t2_r3, `patient`.`changed_by` AS t2_r4, `patient`.`date_changed` AS t2_r5, `patient`.`voided` AS t2_r6, `patient`.`voided_by` AS t2_r7, `patient`.`date_voided` AS t2_r8, `patient`.`void_reason` AS t2_r9 FROM `person` LEFT OUTER JOIN `person_name` ON person_name.person_id = person.person_id AND person_name.`voided` = 0 LEFT OUTER JOIN `patient` ON patient.patient_id = person.person_id AND patient.`voided` = 0 WHERE (gender = NULL AND person_name.given_name = NULL AND person_name.family_name = NULL) AND (person.voided = 0) [0m
+  [4;36;1mCorePerson Load IDs For Limited Eager Loading (0.1ms)[0m   [0;1mSELECT DISTINCT `person`.person_id FROM `person` LEFT OUTER JOIN `person_name` ON person_name.person_id = person.person_id AND person_name.`voided` = 0 WHERE (gender = NULL AND person_name.given_name LIKE '' AND person_name.family_name LIKE '' AND person.person_id NOT IN (NULL)) AND (person.voided = 0) ORDER BY person_name.given_name ASC, person_name.family_name ASC LIMIT 15[0m
+Rendering template within layouts/application
+Rendering core_patient_registration/search
+Completed in 64ms (View: 4, DB: 4) | 200 OK [http://localhost/search?user_id=43]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.0ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#given_names (for 127.0.0.1 at 2013-01-11 11:12:55) [GET]
+  Parameters: {"search_string"=>""}
+  [4;35;1mCorePersonName Columns (0.8ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonName Load (0.1ms)[0m   [0;1mSELECT DISTINCT given_name AS given_name, person_name_id AS id FROM person_name INNER JOIN person ON person.person_id = person_name.person_id WHERE person.voided = 0 AND person_name.voided = 0 AND given_name LIKE '%%' GROUP BY given_name ORDER BY INSTR(given_name,"") ASC, COUNT(given_name) DESC, given_name ASC LIMIT 10[0m
+Completed in 9ms (View: 1, DB: 1) | 200 OK [http://localhost/core_patient_registration/given_names?search_string=]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#family_names (for 127.0.0.1 at 2013-01-11 11:12:57) [GET]
+  Parameters: {"search_string"=>""}
+  [4;35;1mCorePersonName Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonName Load (0.1ms)[0m   [0;1mSELECT DISTINCT family_name AS family_name, person_name_id AS id FROM person_name INNER JOIN person ON person.person_id = person_name.person_id WHERE person.voided = 0 AND person_name.voided = 0 AND family_name LIKE '%%' GROUP BY family_name ORDER BY INSTR(family_name,"") ASC, COUNT(family_name) DESC, family_name ASC LIMIT 10[0m
+Completed in 8ms (View: 0, DB: 1) | 200 OK [http://localhost/core_patient_registration/family_names?search_string=]
+  [4;35;1mSQL (0.1ms)[0m   [0mSET NAMES 'utf8'[0m
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#search (for 127.0.0.1 at 2013-01-11 11:13:01) [GET]
+  Parameters: {"family_name"=>"Banda", "user_id"=>"43", "create_patient"=>"", "relation"=>"", "gender"=>"M", "given_name"=>"Baby -1"}
+  [4;35;1mCorePerson Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `person`[0m
+  [4;36;1mCorePersonName Columns (1.3ms)[0m   [0;1mSHOW FIELDS FROM `person_name`[0m
+  [4;35;1mCorePersonAddress Columns (1.4ms)[0m   [0mSHOW FIELDS FROM `person_address`[0m
+  [4;36;1mCorePatient Columns (1.1ms)[0m   [0;1mSHOW FIELDS FROM `patient`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePerson Load Including Associations (0.5ms)[0m   [0;1mSELECT `person`.`person_id` AS t0_r0, `person`.`gender` AS t0_r1, `person`.`birthdate` AS t0_r2, `person`.`birthdate_estimated` AS t0_r3, `person`.`dead` AS t0_r4, `person`.`death_date` AS t0_r5, `person`.`cause_of_death` AS t0_r6, `person`.`creator` AS t0_r7, `person`.`date_created` AS t0_r8, `person`.`changed_by` AS t0_r9, `person`.`date_changed` AS t0_r10, `person`.`voided` AS t0_r11, `person`.`voided_by` AS t0_r12, `person`.`date_voided` AS t0_r13, `person`.`void_reason` AS t0_r14, `person`.`uuid` AS t0_r15, `person_name`.`person_name_id` AS t1_r0, `person_name`.`preferred` AS t1_r1, `person_name`.`person_id` AS t1_r2, `person_name`.`prefix` AS t1_r3, `person_name`.`given_name` AS t1_r4, `person_name`.`middle_name` AS t1_r5, `person_name`.`family_name_prefix` AS t1_r6, `person_name`.`family_name` AS t1_r7, `person_name`.`family_name2` AS t1_r8, `person_name`.`family_name_suffix` AS t1_r9, `person_name`.`degree` AS t1_r10, `person_name`.`creator` AS t1_r11, `person_name`.`date_created` AS t1_r12, `person_name`.`voided` AS t1_r13, `person_name`.`voided_by` AS t1_r14, `person_name`.`date_voided` AS t1_r15, `person_name`.`void_reason` AS t1_r16, `person_name`.`changed_by` AS t1_r17, `person_name`.`date_changed` AS t1_r18, `person_name`.`uuid` AS t1_r19, `patient`.`patient_id` AS t2_r0, `patient`.`tribe` AS t2_r1, `patient`.`creator` AS t2_r2, `patient`.`date_created` AS t2_r3, `patient`.`changed_by` AS t2_r4, `patient`.`date_changed` AS t2_r5, `patient`.`voided` AS t2_r6, `patient`.`voided_by` AS t2_r7, `patient`.`date_voided` AS t2_r8, `patient`.`void_reason` AS t2_r9 FROM `person` LEFT OUTER JOIN `person_name` ON person_name.person_id = person.person_id AND person_name.`voided` = 0 LEFT OUTER JOIN `patient` ON patient.patient_id = person.person_id AND patient.`voided` = 0 WHERE (gender = 'M' AND person_name.given_name = 'Baby -1' AND person_name.family_name = 'Banda') AND (person.voided = 0) [0m
+  [4;35;1mCorePerson Load IDs For Limited Eager Loading (0.4ms)[0m   [0mSELECT DISTINCT `person`.person_id FROM `person` LEFT OUTER JOIN `person_name` ON person_name.person_id = person.person_id AND person_name.`voided` = 0 WHERE (gender = 'M' AND person_name.given_name LIKE 'Baby -1' AND person_name.family_name LIKE 'Banda' AND person.person_id NOT IN (NULL)) AND (person.voided = 0) ORDER BY person_name.given_name ASC, person_name.family_name ASC LIMIT 15[0m
+Rendering template within layouts/application
+Rendering core_patient_registration/search
+Completed in 72ms (View: 7, DB: 7) | 200 OK [http://localhost/search?given_name=Baby+-1&family_name=Banda&gender=M&user_id=43&create_patient=&relation=]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#scan (for 127.0.0.1 at 2013-01-11 12:14:02) [GET]
+  Parameters: {"user_id"=>"43", "location_id"=>"726", "ext"=>"true", "identifier"=>"LG07TY"}
+  [4;36;1mCorePerson Columns (0.6ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (0.7ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatientIdentifier Load (0.5ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (voided = 0) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.`identifier` = 'LG07TY')) [0m
+  [4;35;1mCorePatient Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatient Load (0.3ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.`patient_id` = 112 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) [0m
+  [4;35;1mCorePerson Load (0.2ms)[0m   [0mSELECT * FROM `person` WHERE (`person`.person_id = 112 AND (`person`.`voided` = 0)) AND (person.voided = 0) LIMIT 1[0m
+  [4;36;1mCorePatient Load (0.2ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 112 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (0.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifier Load (0.3ms)[0m   [0mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 112 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Redirected to http://localhost:3008/?user_id=43&location_id=726&ext_patient_id=112
+Completed in 100ms (DB: 6) | 302 Found [http://localhost/scan?user_id=43&ext=true&location_id=726&identifier=LG07TY]
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.2ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#select_fields (for 127.0.0.1 at 2013-01-11 19:11:12) [GET]
+Redirected to http://0.0.0.0/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 86ms (DB: 0) | 302 Found [http://0.0.0.0/]
+  [4;36;1mSQL (0.1ms)[0m   [0;1mSET NAMES 'utf8'[0m
+  [4;35;1mSQL (0.0ms)[0m   [0mSET SQL_AUTO_IS_NULL=0[0m
+
+
+Processing CorePatientRegistrationController#scan (for 127.0.0.1 at 2013-01-11 22:36:05) [GET]
+  Parameters: {"identifier"=>"HXF1DA", "user_id"=>"43", "location_id"=>"726", "ext"=>"true"}
+  [4;36;1mCorePerson Columns (0.9ms)[0m   [0;1mSHOW FIELDS FROM `person`[0m
+  [4;35;1mCorePersonName Columns (1.0ms)[0m   [0mSHOW FIELDS FROM `person_name`[0m
+  [4;36;1mCorePersonAddress Columns (1.0ms)[0m   [0;1mSHOW FIELDS FROM `person_address`[0m
+  [4;35;1mCorePatientIdentifier Columns (0.6ms)[0m   [0mSHOW FIELDS FROM `patient_identifier`[0m
+  [4;36;1mCorePatientIdentifier Load (0.3ms)[0m   [0;1mSELECT * FROM `patient_identifier` WHERE (voided = 0) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.`identifier` = 'HXF1DA')) [0m
+  [4;35;1mCorePatient Columns (0.7ms)[0m   [0mSHOW FIELDS FROM `patient`[0m
+  [4;36;1mCorePatient Load (25.1ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.`patient_id` = 111 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) [0m
+  [4;35;1mCorePerson Load (11.5ms)[0m   [0mSELECT * FROM `person` WHERE (`person`.person_id = 111 AND (`person`.`voided` = 0)) AND (person.voided = 0) LIMIT 1[0m
+  [4;36;1mCorePatient Load (0.3ms)[0m   [0;1mSELECT * FROM `patient` WHERE (`patient`.patient_id = 111 AND (`patient`.`voided` = 0)) AND (patient.voided = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifierType Columns (0.9ms)[0m   [0mSHOW FIELDS FROM `patient_identifier_type`[0m
+  [4;36;1mCorePatientIdentifierType Load (15.1ms)[0m   [0;1mSELECT * FROM `patient_identifier_type` WHERE (`patient_identifier_type`.`name` = 'National id') AND (patient_identifier_type.retired = 0) LIMIT 1[0m
+  [4;35;1mCorePatientIdentifier Load (0.3ms)[0m   [0mSELECT * FROM `patient_identifier` WHERE (`patient_identifier`.`identifier_type` = 3) AND ((patient_identifier.voided = 0) AND (`patient_identifier`.patient_id = 111 AND (`patient_identifier`.`voided` = 0))) LIMIT 1[0m
+Redirected to http://localhost:3008/?user_id=43&location_id=726&ext_patient_id=111
+Completed in 252ms (DB: 58) | 302 Found [http://localhost/scan?user_id=43&ext=true&location_id=726&identifier=HXF1DA]

@@ -518,6 +518,33 @@ class CorePatientRegistrationController < ApplicationController
 
   end
 
+  def create_baby
+
+    person = CorePerson.create_patient_from_dde(params) if create_from_dde_server
+
+    if person.blank?
+
+      person = CorePerson.create_from_form(params[:person])
+
+    end
+
+    CoreRelationship.create(
+      :person_a => person.id,
+      :relationship => (CoreRelationshipType.find_by_a_is_to_b_and_b_is_to_a("Child", "Parent").id),
+      :person_b => params[:mother_id]
+    )
+
+    render :text => person.patient.national_id
+    
+  end
+
+  def baby_mother_national_id_label
+    @person = CorePerson.find(params[:patient_id])
+
+    print_string = @person.baby_national_id_label rescue (raise "Unable to find patient (#{params[:patient_id]}) or generate a national id label for that patient")
+    send_data(print_string,:type=>"application/label; charset=utf-8", :stream=> false, :filename=>"#{params[:patient_id]}#{rand(10000)}.lbl", :disposition => "inline")
+  end
+
   protected
 
   def check_user

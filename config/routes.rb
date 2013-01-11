@@ -32,6 +32,12 @@ ActionController::Routing::Routes.draw do |map|
 
   map.user_logout '/user_logout/:id', :controller => 'core_patient_registration', :action => 'user_logout'
 
+  map.baby_mother_national_id_label '/baby_mother_national_id_label', :controller => 'core_patient_registration', :action => 'baby_mother_national_id_label'
+
+  map.baby_mother_result '/baby_mother_result', :controller => 'core_patient_registration', :action => 'baby_mother_result'
+
+  map.create_baby '/create_baby', :controller => 'core_patient_registration', :action => 'create_baby'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:
