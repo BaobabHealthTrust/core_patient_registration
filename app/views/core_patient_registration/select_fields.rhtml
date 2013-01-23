@@ -2,6 +2,8 @@
   <!--
   var tt_cancel_destination = "<%= @destination %>";
 
+  var tt_cancel_show = "<%= @destination %>";
+
   function setFields(){
     var options = {
       "Middle Name":"show_middle_name",
@@ -42,6 +44,9 @@
 </script>
 
 <form action="/new_patient" method="get">
+  <input type='hidden' name='user_id' value='<%= params[:user_id] %>' />
+  <input type='hidden' name='location_id' value='<%= params[:location_id] %>' />
+  
   <select id="selection" name="selection" tt_onUnLoad="setFields()" optional
           helpText="Select patient extra details to capture" nested="true" multiple="multiple">
     <option></option>

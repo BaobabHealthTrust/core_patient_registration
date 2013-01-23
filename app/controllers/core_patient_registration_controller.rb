@@ -1,7 +1,8 @@
 
 class CorePatientRegistrationController < ApplicationController
   
-  before_filter :check_user, :except => [:user_login, :given_names, :family_names, :family_name2, :middle_name]
+  before_filter :check_user, :except => [:user_login, :given_names, :family_names, 
+    :family_name2, :middle_name, :district, :village, :traditional_authority]
 
   def new
 
@@ -61,7 +62,8 @@ class CorePatientRegistrationController < ApplicationController
 
     end
 
-    print_and_redirect("/national_id_label?patient_id=#{person.id}", "/select")
+    print_and_redirect("/national_id_label?patient_id=#{person.id}&user_id=#{params[:user_id]}", 
+      "/scan?user_id=#{params[:user_id]}&identifier=#{person.patient.national_id}")
 
   end
 
@@ -73,7 +75,7 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def select
-
+    
     if !params[:person].nil?
       if !params[:person][:id].blank? && params[:person][:id].to_i != 0
 
@@ -85,6 +87,8 @@ class CorePatientRegistrationController < ApplicationController
     
       else
         
+        redirect_to "/select_fields?user_id=#{params[:user_id]}&location_id=#{session[:location_id] || params[:location_id]}" and return
+
       end
     end
 
@@ -105,7 +109,7 @@ class CorePatientRegistrationController < ApplicationController
 
     end
 
-    @destination = nil
+    @destination = "/"
 
     if File.exists?(file)
 
@@ -338,13 +342,14 @@ class CorePatientRegistrationController < ApplicationController
       redirect_to "/core_patient_registration/no_user" and return
     end
 
-    @user = params[:user_id] rescue nil
+    # @user = params[:user_id] rescue nil
 
 		@people = person_search(params)
+
  		@patients = []
 		@people.each do | person |
 			patient = get_patient(person) rescue nil
-			@patients << patient
+			@patients << patient if !patient.nil?
 		end
 
     # Track final destination
@@ -360,7 +365,7 @@ class CorePatientRegistrationController < ApplicationController
 
     end
 
-    @destination = nil
+    @destination = "/?user_id=#{params[:user_id]}"
 
     if File.exists?(file)
 
@@ -391,13 +396,15 @@ class CorePatientRegistrationController < ApplicationController
       # raise matching_people.to_yaml
       people_like = CorePerson.find(:all, :limit => 15, :include => [:names, :patient], :conditions => [
           "gender = ? AND \
-     person_name.given_name LIKE ? AND \
-     person_name.family_name LIKE ? AND person.person_id NOT IN (?)",
+     (person_name.given_name LIKE ? OR \
+     person_name.family_name LIKE ?) AND person.person_id NOT IN (?)",
           params[:gender],
           (params[:given_name] || ''),
           (params[:family_name] || ''),
           matching_people
-        ], :order => "person_name.given_name ASC, person_name.family_name ASC")
+        ], :order => "person_name.given_name ASC, person_name.family_name ASC"
+      )
+      
       people = people + people_like
     end
     
@@ -406,15 +413,16 @@ class CorePatientRegistrationController < ApplicationController
 
 	def get_patient(person, current_date = Date.today)
 		patient = {}
+    
 		patient["person_id"] = person.id
 
 		patient["patient_id"] = person.patient.id
 
-		patient["address"] = person.patient.address
+		patient["address"] = person.patient.address rescue nil
 
 		patient["national_id"] = person.patient.national_id
 
-		patient["national_id_with_dashes"] = person.patient.national_id_with_dashes
+		patient["national_id_with_dashes"] = person.patient.national_id_with_dashes rescue (person.patient.national_id rescue nil)
     
 		patient["name"] = person.patient.name
     
@@ -434,25 +442,25 @@ class CorePatientRegistrationController < ApplicationController
     
 		patient["birthdate_estimated"] = person.birthdate_estimated
 
-		patient["home_district"] = person.addresses.first.address2
+		patient["home_district"] = person.addresses.first.address2 rescue nil
     
-		patient["traditional_authority"] = person.addresses.first.county_district
+		patient["traditional_authority"] = person.addresses.first.county_district rescue nil
 
-    patient["state_province"] = person.addresses.first.state_province rescue person.addresses.first.city_village
+    patient["state_province"] = person.addresses.first.state_province rescue (person.addresses.first.city_village rescue nil)
 
-		patient["current_residence"] = person.addresses.first.city_village
+		patient["current_residence"] = person.addresses.first.city_village rescue nil
 
-		patient["landmark"] = person.addresses.first.address1
+		patient["landmark"] = person.addresses.first.address1 rescue nil
 
 		patient["mothers_surname"] = person.names.first.family_name2
 
-		patient["occupation"] = person.patient.get_attribute("Occupation")
+		patient["occupation"] = person.patient.get_attribute("Occupation") rescue nil
     
-		patient["cell_phone_number"] = person.patient.get_attribute("Cell Phone Number")
+		patient["cell_phone_number"] = person.patient.get_attribute("Cell Phone Number") rescue nil
     
-		patient["office_phone_number"] = person.patient.get_attribute("Office phone number")
+		patient["office_phone_number"] = person.patient.get_attribute("Office phone number") rescue nil
     
-		patient["home_phone_number"] = person.patient.get_attribute("Home phone number")
+		patient["home_phone_number"] = person.patient.get_attribute("Home phone number") rescue nil
     
 		patient
 	end

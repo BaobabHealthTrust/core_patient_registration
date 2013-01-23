@@ -183,6 +183,14 @@ end -%>
     }
   }
 
+  function pointToNew(){
+    document.forms[0].action = "/new_patient";
+    __$('nextButton').onmousedown = function(){
+      gotoNextPage();
+      // document.forms[0].submit();
+    }
+  }
+
   function createControlAndAssignValue(control, name, value){
     if(!__$(control)){
       var hidden = document.createElement("input");
@@ -334,6 +342,70 @@ end -%>
       }%>
       Gender: <%= select_tag :gender, options_for_select({"" => "", "Male" => "M", "Female" => "F"}), {:helpText => "Gender"} %>
 
+      <% if params["Middle Name"] %>
+        <%= hidden_field_tag :show_middle_name, params["Middle Name"] %>
+      <% end %>
+
+      <% if params["Maiden Name"] %>
+        <%= hidden_field_tag :show_maiden_name, params["Maiden Name"] %>
+      <% end %>
+
+      <% if params["Home of Origin"] %>
+        <%= hidden_field_tag :show_region_of_origin, params["Home of Origin"] %>
+      <% end %>
+
+      <% if params["Home of Origin"] %>
+        <%= hidden_field_tag :show_district_of_origin, params["Home of Origin"] %>
+      <% end %>
+
+      <% if params["Home of Origin"] %>
+        <%= hidden_field_tag :show_t_a_of_origin, params["Home of Origin"] %>
+      <% end %>
+
+      <% if params["Home of Origin"] %>
+        <%= hidden_field_tag :show_home_village, params["Home of Origin"] %>
+      <% end %>
+
+      <% if params["Current District"] %>
+        <%= hidden_field_tag :show_current_region, params["Current District"] %>
+      <% end %>
+
+      <% if params["Current District"] %>
+        <%= hidden_field_tag :show_current_district, params["Current District"] %>
+      <% end %>
+
+      <% if params["Current T/A"] %>
+        <%= hidden_field_tag :show_current_t_a, params["Current T/A"] %>
+      <% end %>
+
+      <% if params["Current Village"] %>
+        <%= hidden_field_tag :show_current_village, params["Current Village"] %>
+      <% end %>
+
+      <% if params["Landmark or Plot"] %>
+        <%= hidden_field_tag :show_current_landmark, params["Landmark or Plot"] %>
+      <% end %>
+
+      <% if params["Cell Phone Number"] %>
+        <%= hidden_field_tag :show_cell_phone_number, params["Cell Phone Number"] %>
+      <% end %>
+
+      <% if params["Office Phone Number"] %>
+        <%= hidden_field_tag :show_office_phone_number, params["Office Phone Number"] %>
+      <% end %>
+
+      <% if params["Home Phone Number"] %>
+        <%= hidden_field_tag :show_home_phone_number, params["Home Phone Number"] %>
+      <% end %>
+
+      <% if params["Occupation"] %>
+        <%= hidden_field_tag :show_occupation, params["Occupation"] %>
+      <% end %>
+
+      <% if params["Nationality"] %>
+        <%= hidden_field_tag :show_nationality, params["Nationality"] %>
+      <% end %>
+
       <%= hidden_field_tag :user_id, "#{params[:user_id]}" %>
       <%= hidden_field_tag :create_patient, params[:create_patient] %>
       <%= hidden_field_tag :relation, params[:relation] %>
@@ -364,7 +436,7 @@ end -%>
               Create a new person with the identifier <%=h params[:identifier] -%>
             </option>
           <% else %>
-            <option value="0" onmousedown="changeNextButtonText('New Patient')">
+            <option value="0" onmousedown="pointToNew()">
               Create a new person with the name <%=h params[:given_name] -%> <%=h params[:family_name] -%>
             </option>
           <% end %>
@@ -376,7 +448,7 @@ end -%>
           <% end %>
         <% end %>
 
-        <% @patients.each do | patient |          
+        <% @patients.each do | patient |
           next if patient.blank? -%>
           <% if @relation.blank? %>
             <option value="<%= patient["person_id"] %>" onmousedown="changeNextButtonText('Select Patient')">
@@ -398,6 +470,71 @@ end -%>
       <input type="hidden" id="family_name2" name="family_name2" value="<%=h params[:family_name2] -%>" />
       <input type="hidden" id="address2" name="address2" value="<%=h params[:address2] -%>" />
       <input type="hidden" id="relation" name="relation" value="<%=h params[:relation] -%>" />
+
+      <% if params[:show_middle_name] %>
+        <%= hidden_field_tag :show_middle_name, params[:show_middle_name] %>
+      <% end %>
+
+      <% if params[:show_maiden_name] %>
+        <%= hidden_field_tag :show_maiden_name, params[:show_maiden_name] %>
+      <% end %>
+
+      <% if params[:show_region_of_origin] %>
+        <%= hidden_field_tag :show_region_of_origin, params[:show_region_of_origin] %>
+      <% end %>
+
+      <% if params[:show_district_of_origin] %>
+        <%= hidden_field_tag :show_district_of_origin, params[:show_district_of_origin] %>
+      <% end %>
+
+      <% if params[:show_t_a_of_origin] %>
+        <%= hidden_field_tag :show_t_a_of_origin, params[:show_t_a_of_origin] %>
+      <% end %>
+
+      <% if params[:show_home_village] %>
+        <%= hidden_field_tag :show_home_village, params[:show_home_village] %>
+      <% end %>
+
+      <% if params[:show_current_region] %>
+        <%= hidden_field_tag :show_current_region, params[:show_current_region] %>
+      <% end %>
+
+      <% if params[:show_current_district] %>
+        <%= hidden_field_tag :show_current_district, params[:show_current_district] %>
+      <% end %>
+
+      <% if params[:show_current_t_a] %>
+        <%= hidden_field_tag :show_current_t_a, params[:show_current_t_a] %>
+      <% end %>
+
+      <% if params[:show_current_village] %>
+        <%= hidden_field_tag :show_current_village, params[:show_current_village] %>
+      <% end %>
+
+      <% if params[:show_current_landmark] %>
+        <%= hidden_field_tag :show_current_landmark, params[:show_current_landmark] %>
+      <% end %>
+
+      <% if params[:show_cell_phone_number] %>
+        <%= hidden_field_tag :show_cell_phone_number, params[:show_cell_phone_number] %>
+      <% end %>
+
+      <% if params[:show_office_phone_number] %>
+        <%= hidden_field_tag :show_office_phone_number, params[:show_office_phone_number] %>
+      <% end %>
+
+      <% if params[:show_home_phone_number] %>
+        <%= hidden_field_tag :show_home_phone_number, params[:show_home_phone_number] %>
+      <% end %>
+
+      <% if params[:show_occupation] %>
+        <%= hidden_field_tag :show_occupation, params[:show_occupation] %>
+      <% end %>
+
+      <% if params[:show_nationality] %>
+        <%= hidden_field_tag :show_nationality, params[:show_nationality] %>
+      <% end %>
+
     <% end -%>
   <% end -%>
 

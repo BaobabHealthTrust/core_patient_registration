@@ -33,7 +33,7 @@
 
 <% form_tag :controller => "core_patient_registration", :action => "create" do |f| %>
 
-  <%= text_field_tag "person[names][given_name]", params[:first_name],
+  <%= text_field_tag "person[names][given_name]", params[:given_name],
     {:id => "first_name",
     :helptext => "First Name" } %>
 
@@ -41,11 +41,11 @@
     {:id => "middle_name",
     :helptext => "Middle Name" } if @show_middle_name %>
 
-  <%= text_field_tag "person[names][family_name]", params[:last_name],
+  <%= text_field_tag "person[names][family_name]", params[:family_name],
     {:id => "last_name",
     :helptext => "Last Name" } %>
 
-  <%= select_tag "person[gender]", options_for_select([["Male", "Male"], ["Female", "Female"], ["", ""]], params[:gender]),
+  <%= select_tag "person[gender]", options_for_select([["Male", "M"], ["Female", "F"], ["", ""]], params[:gender]),
     {:id => "gender",
     :helptext => "Gender" } %>
 
@@ -94,8 +94,8 @@
     :helptext => "Specify nationality",
     :condition => '__$("nationality").value == "Other"' } if @show_nationality %>
 
-  <%= select_tag "REGION OF ORIGIN", options_for_select([["Northern Region", "Northern Region"],
-      ["Central Region", "Central Region"], ["Southern Region", "Southern Region"], ["", ""]]),
+  <%= select_tag "REGION OF ORIGIN", options_for_select([["Northern Region", "Northern+Region"],
+      ["Central Region", "Central+Region"], ["Southern Region", "Southern+Region"], ["", ""]]),
     {:id => "region_of_origin",
     :helptext => "Region Of Origin" } if @show_region_of_origin %>
 
@@ -114,7 +114,8 @@
     :tt_onLoad => "set_ajaxURL_for_suggestions('/village?filter_value=', __$('ancestral_traditional_authority').value);",
     :helptext => "Home Village" } if @show_region_of_origin %>
 
-  <%= select_tag "CURRENT REGION", options_for_select([["Northern Region", "Northern Region"], ["Central Region", "Central Region"], ["Southern Region", "Southern Region"], ["", ""]]),
+  <%= select_tag "CURRENT REGION", options_for_select([["Northern Region", "Northern+Region"],
+      ["Central Region", "Central+Region"], ["Southern Region", "Southern+Region"], ["", ""]]),
     {:id => "current_region",
     :helptext => "Current Region" } if @show_current_district %>
 
@@ -170,5 +171,8 @@
 
   <%= hidden_field_tag "person[patient]", "" %>
 
+  <input type='hidden' name='user_id' value='<%= params[:user_id] %>' />
+  <input type='hidden' name='location_id' value='<%= params[:location_id] %>' />
+  
   <%= submit_tag 'Finish' %>
 <% end %>

@@ -8,6 +8,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.select  '/select',  :controller => 'core_patient_registration', :action => 'select'
 
+  map.select  '/select_fields',  :controller => 'core_patient_registration', :action => 'select_fields'
+
   map.select_fields '/select_fields', :controller => 'core_patient_registration', :action => 'select_fields'
 
   map.search  '/search',  :controller => 'core_patient_registration', :action => 'search'
