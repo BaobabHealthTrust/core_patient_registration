@@ -116,6 +116,8 @@ class CorePatientRegistrationController < ApplicationController
       @destination = YAML.load_file(file)["#{Rails.env
         }"]["host.path.#{params[:user_id]}"].strip
 
+      File.delete(file)
+
     end
 
   end
@@ -186,6 +188,8 @@ class CorePatientRegistrationController < ApplicationController
 
       @destination = YAML.load_file(file)["#{Rails.env
         }"]["host.path.#{params[:user_id]}"].strip
+
+      File.delete(file)
 
     end
 
@@ -300,7 +304,9 @@ class CorePatientRegistrationController < ApplicationController
 
       @destination = YAML.load_file(file)["#{Rails.env
         }"]["host.path.#{params[:user_id]}"].strip
-      
+
+      # File.delete(file)
+
     end
     
     @user = params[:user_id] rescue nil?
@@ -371,6 +377,8 @@ class CorePatientRegistrationController < ApplicationController
 
       @destination = YAML.load_file(file)["#{Rails.env
         }"]["host.path.#{params[:user_id]}"].strip
+
+      # File.delete(file)
 
     end
 
