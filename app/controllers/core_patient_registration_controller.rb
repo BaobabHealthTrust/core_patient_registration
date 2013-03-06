@@ -71,7 +71,11 @@ class CorePatientRegistrationController < ApplicationController
     @person = CorePerson.find(params[:patient_id])
 
     print_string = @person.national_id_label rescue (raise "Unable to find patient (#{params[:patient_id]}) or generate a national id label for that patient")
-    send_data(print_string,:type=>"application/label; charset=utf-8", :stream=> false, :filename=>"#{params[:patient_id]}#{rand(10000)}.lbl", :disposition => "inline")
+    send_data(print_string,
+      :type=>"application/label; charset=utf-8",
+      :stream=> false,
+      :filename=>"#{params[:patient_id]}#{rand(10000)}.lbl", 
+      :disposition => "inline")
   end
 
   def select
