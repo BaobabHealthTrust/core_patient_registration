@@ -176,7 +176,7 @@ end -%>
   }
 
   function pointToNew(){
-    document.forms[0].action = "/new_patient";
+    document.forms[0].action = "/core_patient_registration/new";
     __$('nextButton').onmousedown = function(){
       gotoNextPage();
       // document.forms[0].submit();

@@ -5,7 +5,7 @@ class CorePatientRegistrationController < ApplicationController
     :family_name2, :middle_name, :district, :village, :traditional_authority]
 
   def new
-
+    
     @show_middle_name = (params[:show_middle_name].to_s.downcase == "true" ? true : false) rescue false
 
     @show_maiden_name = (params[:show_maiden_name].to_s.downcase == "true" ? true : false) rescue false
@@ -177,7 +177,7 @@ class CorePatientRegistrationController < ApplicationController
     # Track final destination
     file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
 
-    if !params[:ext].nil? and !params[:remote].blank? and params[:remote].to_s != "true"
+    if !params[:ext].blank? && !params[:remote]
       f = File.open(file, "w")
 
       f.write("#{Rails.env}:\n    host.path.#{params[:user_id]}: #{session["host_path"] = request.referrer}")
@@ -192,7 +192,6 @@ class CorePatientRegistrationController < ApplicationController
 
       @destination = YAML.load_file(file)["#{Rails.env
         }"]["host.path.#{params[:user_id]}"].strip
-
      
     end
 
@@ -214,6 +213,15 @@ class CorePatientRegistrationController < ApplicationController
         print_and_redirect("/national_id_label?patient_id=#{dde_patient.patient.id}&user_id=#{params[:user_id]}", "/scan?user_id=#{params[:user_id]}&identifier=#{person.patient.national_id}&ext=#{params[:ext]}&remote=#{params[:remote]}&reround=true") and return
       end
 
+      if File.exists?(file)
+
+        @destination = YAML.load_file(file)["#{Rails.env
+        }"]["host.path.#{params[:user_id]}"].strip
+
+        File.delete(file)
+
+      end
+    
       redirect_to "#{@destination}#{ @destination.match(/\?/) ? "&" : "?"
           }ext_patient_id=#{person.id}" and return if !@destination.nil? and @destination.strip.length > 1
 

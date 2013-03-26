@@ -75,7 +75,7 @@ class CorePerson < ActiveRecord::Base
           {"addresses"=>
             {"address1"=> (address_params["address1"] rescue ""),
             "address2"=> (address_params["address2"] rescue ""),
-            "subregion"=> (address_params["subregion"] rescue ""),
+            "state_province"=> (address_params["state_province"] rescue ""),
             "county_district"=> (address_params["county_district"] rescue ""),
             "neighborhood_cell"=> (address_params["neighborhood_cell"] rescue ""),
             "city_village"=> (address_params["city_village"] rescue "")
