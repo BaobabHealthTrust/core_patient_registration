@@ -617,7 +617,7 @@ class CorePerson < ActiveRecord::Base
   end
 
   def district_of_origin
-    self.addresses.last.subregion rescue ""
+    self.addresses.last.address2 rescue ""
   end
 
   def current_residence_location
@@ -633,7 +633,7 @@ class CorePerson < ActiveRecord::Base
   end
 
   def current_district
-    self.addresses.last.address2 rescue ""
+    self.addresses.last.state_province rescue ""
   end
 
   def demographics
