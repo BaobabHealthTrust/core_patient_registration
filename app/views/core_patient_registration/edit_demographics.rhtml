@@ -136,7 +136,7 @@
       {:id => "region_of_origin",
       :helptext => "Region Of Origin" } %>
 
-    <%= select_tag "person[addresses][subregion]", options_for_select([["", ""]]),
+    <%= select_tag "person[addresses][address2]", options_for_select([["", ""]]),
       {:id => "district_of_origin",
       :tt_onLoad => "$('nextButton').style.display = 'block'; set_ajaxURL_for_suggestions('/district?filter_value=', __$('region_of_origin').value); ",
       :helptext => "District Of Origin" } %>
@@ -157,7 +157,7 @@
       {:id => "current_region",
       :helptext => "Current Region" } %>
 
-    <%= select_tag "person[addresses][address2]", options_for_select([["", ""]]),
+    <%= select_tag "person[addresses][state_province]", options_for_select([["", ""]]),
       {:id => "current_district",
       :tt_onLoad => "$('nextButton').style.display = 'block'; set_ajaxURL_for_suggestions('/district?filter_value=', __$('current_region').value); ",
       :helptext => "Current District" } %>

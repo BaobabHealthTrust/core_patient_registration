@@ -557,3 +557,378 @@ Processing CorePatientRegistrationController#select (for 127.0.0.1 at 2012-12-14
 Rendering template within layouts/application
 Rendering core_patient_registration/select
 Completed in 6ms (View: 5, DB: 0) | 200 OK [http://localhost/]
+
+
+Processing CorePatientRegistrationController#search (for 127.0.0.1 at 2013-03-19 21:44:49) [POST]
+  Parameters: {"location_id"=>"721", "user_id"=>"1", "ext"=>"true"}
+Rendering template within layouts/application
+Rendering core_patient_registration/search
+Completed in 50ms (View: 21, DB: 1) | 200 OK [http://localhost/search?user_id=1&ext=true&location_id=721]
+
+
+Processing CorePatientRegistrationController#given_names (for 127.0.0.1 at 2013-03-19 21:44:49) [GET]
+  Parameters: {"search_string"=>""}
+Completed in 4ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/given_names?search_string=]
+
+
+Processing CorePatientRegistrationController#family_names (for 127.0.0.1 at 2013-03-19 21:44:52) [GET]
+  Parameters: {"search_string"=>""}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/family_names?search_string=]
+
+
+Processing CorePatientRegistrationController#search (for 127.0.0.1 at 2013-03-19 21:44:57) [GET]
+  Parameters: {"family_name"=>"Mwale", "create_patient"=>"", "relation"=>"", "user_id"=>"1", "given_name"=>"Mary", "gender"=>"F"}
+Rendering template within layouts/application
+Rendering core_patient_registration/search
+Completed in 50ms (View: 4, DB: 5) | 200 OK [http://localhost/search?given_name=Mary&family_name=Mwale&gender=F&user_id=1&create_patient=&relation=]
+
+
+Processing CorePatientRegistrationController#select (for 127.0.0.1 at 2013-03-19 21:44:59) [POST]
+  Parameters: {"family_name"=>"Mwale", "identifier"=>"", "relation"=>"", "family_name2"=>"", "address2"=>"", "user_id"=>"1", "gender"=>"F", "given_name"=>"Mary", "person"=>{"id"=>"172"}}
+Redirected to http://localhost:3005/scan/MDU7DG?user_id=1
+Completed in 7ms (DB: 0) | 302 Found [http://localhost/select]
+
+
+Processing CorePatientRegistrationController#scan (for 127.0.0.1 at 2013-03-19 21:44:59) [GET]
+  Parameters: {"user_id"=>"1", "id"=>"MDU7DG"}
+Redirected to http://0.0.0.0:7000/?user_id=1&location_id=721&ext_patient_id=172
+Completed in 10ms (DB: 0) | 302 Found [http://localhost/scan/MDU7DG?user_id=1]
+
+
+Processing CorePatientRegistrationController#search (for 127.0.0.1 at 2013-03-19 21:45:40) [POST]
+  Parameters: {"location_id"=>"721", "user_id"=>"1", "ext"=>"true"}
+Rendering template within layouts/application
+Rendering core_patient_registration/search
+Completed in 14ms (View: 5, DB: 0) | 200 OK [http://localhost/search?user_id=1&ext=true&location_id=721]
+
+
+Processing CorePatientRegistrationController#given_names (for 127.0.0.1 at 2013-03-19 21:45:40) [GET]
+  Parameters: {"search_string"=>""}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/given_names?search_string=]
+
+
+Processing CorePatientRegistrationController#family_names (for 127.0.0.1 at 2013-03-19 21:45:43) [GET]
+  Parameters: {"search_string"=>""}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/family_names?search_string=]
+
+
+Processing CorePatientRegistrationController#search (for 127.0.0.1 at 2013-03-19 21:45:48) [GET]
+  Parameters: {"family_name"=>"Mwale", "create_patient"=>"", "relation"=>"", "user_id"=>"1", "given_name"=>"Mary", "gender"=>"F"}
+Rendering template within layouts/application
+Rendering core_patient_registration/search
+Completed in 30ms (View: 3, DB: 2) | 200 OK [http://localhost/search?given_name=Mary&family_name=Mwale&gender=F&user_id=1&create_patient=&relation=]
+
+
+Processing CorePatientRegistrationController#select (for 127.0.0.1 at 2013-03-19 21:45:51) [POST]
+  Parameters: {"family_name"=>"Mwale", "identifier"=>"", "relation"=>"", "family_name2"=>"", "address2"=>"", "user_id"=>"1", "gender"=>"F", "given_name"=>"Mary", "person"=>{"id"=>"172"}}
+Redirected to http://localhost:3005/scan/MDU7DG?user_id=1
+Completed in 13ms (DB: 1) | 302 Found [http://localhost/select]
+
+
+Processing CorePatientRegistrationController#scan (for 127.0.0.1 at 2013-03-19 21:45:51) [GET]
+  Parameters: {"user_id"=>"1", "id"=>"MDU7DG"}
+Redirected to http://0.0.0.0:7000/clinic?user_id=1&ext_patient_id=172
+Completed in 17ms (DB: 1) | 302 Found [http://localhost/scan/MDU7DG?user_id=1]
+
+
+Processing CorePatientRegistrationController#demographics (for 127.0.0.1 at 2013-03-19 21:51:30) [GET]
+  Parameters: {"user_id"=>"1", "id"=>"172", "ext"=>"true"}
+Rendering template within layouts/application
+Rendering core_patient_registration/demographics
+Completed in 46ms (View: 27, DB: 4) | 200 OK [http://localhost/demographics/172?user_id=1&ext=true]
+
+
+Processing CorePatientRegistrationController#demographics (for 127.0.0.1 at 2013-03-19 21:56:01) [GET]
+  Parameters: {"user_id"=>"1", "id"=>"172", "ext"=>"true"}
+Rendering template within layouts/application
+Rendering core_patient_registration/demographics
+Completed in 43ms (View: 24, DB: 2) | 200 OK [http://localhost/demographics/172?user_id=1&ext=true]
+
+
+Processing CorePatientRegistrationController#demographics (for 127.0.0.1 at 2013-03-19 21:56:19) [GET]
+  Parameters: {"user_id"=>"1", "id"=>"172", "ext"=>"true"}
+Rendering template within layouts/application
+Rendering core_patient_registration/demographics
+Completed in 67ms (View: 28, DB: 2) | 200 OK [http://localhost/demographics/172?user_id=1&ext=true]
+
+
+Processing CorePatientRegistrationController#edit_demographics (for 127.0.0.1 at 2013-03-19 21:56:34) [GET]
+  Parameters: {"field"=>"middle_name", "user_id"=>"1", "id"=>"172"}
+Rendering template within layouts/application
+Rendering core_patient_registration/edit_demographics
+Completed in 18ms (View: 9, DB: 0) | 200 OK [http://localhost/edit_demographics/172?user_id=1&field=middle_name]
+
+
+Processing CorePatientRegistrationController#update_demographics (for 127.0.0.1 at 2013-03-19 21:57:00) [POST]
+  Parameters: {"person_id"=>"172", "user_id"=>"1", "id"=>"172", "person"=>{"patient"=>"", "names"=>{"middle_name"=>"Pogh"}}}
+Redirected to http://localhost:3005/demographics/172?user_id=1
+Completed in 96ms (DB: 72) | 302 Found [http://localhost/update_demographics/172]
+
+
+Processing CorePatientRegistrationController#demographics (for 127.0.0.1 at 2013-03-19 21:57:00) [GET]
+  Parameters: {"user_id"=>"1", "id"=>"172"}
+Rendering template within layouts/application
+Rendering core_patient_registration/demographics
+Completed in 35ms (View: 17, DB: 3) | 200 OK [http://localhost/demographics/172?user_id=1]
+
+
+Processing CorePatientRegistrationController#edit_demographics (for 127.0.0.1 at 2013-03-19 21:57:03) [GET]
+  Parameters: {"field"=>"current_district", "user_id"=>"1", "id"=>"172"}
+Rendering template within layouts/application
+Rendering core_patient_registration/edit_demographics
+Completed in 25ms (View: 11, DB: 0) | 200 OK [http://localhost/edit_demographics/172?user_id=1&field=current_district]
+
+
+Processing CorePatientRegistrationController#district (for 127.0.0.1 at 2013-03-19 21:57:06) [GET]
+  Parameters: {"filter_value"=>"Central Region", "search_string"=>""}
+Completed in 6ms (View: 0, DB: 2) | 200 OK [http://localhost/district?filter_value=Central%20Region&search_string=]
+
+
+Processing CorePatientRegistrationController#traditional_authority (for 127.0.0.1 at 2013-03-19 21:57:08) [GET]
+  Parameters: {"filter_value"=>"Lilongwe", "search_string"=>""}
+Completed in 4ms (View: 0, DB: 1) | 200 OK [http://localhost/traditional_authority?filter_value=Lilongwe&search_string=]
+
+
+Processing CorePatientRegistrationController#village (for 127.0.0.1 at 2013-03-19 21:57:10) [GET]
+  Parameters: {"filter_value"=>"Chitekwere", "search_string"=>""}
+Completed in 10ms (View: 0, DB: 3) | 200 OK [http://localhost/village?filter_value=Chitekwere&search_string=]
+
+
+Processing CorePatientRegistrationController#update_demographics (for 127.0.0.1 at 2013-03-19 21:57:17) [POST]
+  Parameters: {"person_id"=>"172", "user_id"=>"1", "CURRENT AREA OF RESIDENCE"=>"Chitekwere", "id"=>"172", "person"=>{"addresses"=>{"city_village"=>"Biwi  III Trading Centre", "address2"=>"Lilongwe", "address1"=>"Hgfo"}, "patient"=>""}, "CURRENT REGION"=>"Central Region"}
+Redirected to http://localhost:3005/demographics/172?user_id=1
+Completed in 104ms (DB: 84) | 302 Found [http://localhost/update_demographics/172]
+
+
+Processing CorePatientRegistrationController#demographics (for 127.0.0.1 at 2013-03-19 21:57:17) [GET]
+  Parameters: {"user_id"=>"1", "id"=>"172"}
+Rendering template within layouts/application
+Rendering core_patient_registration/demographics
+Completed in 26ms (View: 15, DB: 2) | 200 OK [http://localhost/demographics/172?user_id=1]
+
+
+Processing CorePatientRegistrationController#edit_demographics (for 127.0.0.1 at 2013-03-19 21:57:23) [GET]
+  Parameters: {"field"=>"home_district", "user_id"=>"1", "id"=>"172"}
+Rendering template within layouts/application
+Rendering core_patient_registration/edit_demographics
+Completed in 23ms (View: 10, DB: 0) | 200 OK [http://localhost/edit_demographics/172?user_id=1&field=home_district]
+
+
+Processing CorePatientRegistrationController#district (for 127.0.0.1 at 2013-03-19 21:57:25) [GET]
+  Parameters: {"filter_value"=>"Central Region", "search_string"=>""}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/district?filter_value=Central%20Region&search_string=]
+
+
+Processing CorePatientRegistrationController#traditional_authority (for 127.0.0.1 at 2013-03-19 21:57:26) [GET]
+  Parameters: {"filter_value"=>"Lilongwe City", "search_string"=>""}
+Completed in 2ms (View: 0, DB: 1) | 200 OK [http://localhost/traditional_authority?filter_value=Lilongwe%20City&search_string=]
+
+
+Processing CorePatientRegistrationController#village (for 127.0.0.1 at 2013-03-19 21:57:29) [GET]
+  Parameters: {"filter_value"=>"Area 12", "search_string"=>""}
+Completed in 2ms (View: 0, DB: 1) | 200 OK [http://localhost/village?filter_value=Area%2012&search_string=]
+
+
+Processing CorePatientRegistrationController#update_demographics (for 127.0.0.1 at 2013-03-19 21:57:30) [POST]
+  Parameters: {"person_id"=>"172", "user_id"=>"1", "id"=>"172", "REGION OF ORIGIN"=>"Central Region", "person"=>{"addresses"=>{"subregion"=>"Lilongwe City", "county_district"=>"Area 12", "neighborhood_cell"=>"Vine Yard Cottage House"}, "patient"=>""}}
+Redirected to http://localhost:3005/demographics/172?user_id=1
+Completed in 102ms (DB: 93) | 302 Found [http://localhost/update_demographics/172]
+
+
+Processing CorePatientRegistrationController#demographics (for 127.0.0.1 at 2013-03-19 21:57:30) [GET]
+  Parameters: {"user_id"=>"1", "id"=>"172"}
+Rendering template within layouts/application
+Rendering core_patient_registration/demographics
+Completed in 19ms (View: 11, DB: 1) | 200 OK [http://localhost/demographics/172?user_id=1]
+
+
+Processing CorePatientRegistrationController#edit_demographics (for 127.0.0.1 at 2013-03-19 21:57:35) [GET]
+  Parameters: {"field"=>"home_village", "user_id"=>"1", "id"=>"172"}
+Rendering template within layouts/application
+Rendering core_patient_registration/edit_demographics
+Completed in 11ms (View: 5, DB: 0) | 200 OK [http://localhost/edit_demographics/172?user_id=1&field=home_village]
+
+
+Processing CorePatientRegistrationController#district (for 127.0.0.1 at 2013-03-19 21:57:39) [GET]
+  Parameters: {"filter_value"=>"Northern Region", "search_string"=>""}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/district?filter_value=Northern%20Region&search_string=]
+
+
+Processing CorePatientRegistrationController#traditional_authority (for 127.0.0.1 at 2013-03-19 21:57:41) [GET]
+  Parameters: {"filter_value"=>"Rumphi", "search_string"=>""}
+Completed in 2ms (View: 0, DB: 1) | 200 OK [http://localhost/traditional_authority?filter_value=Rumphi&search_string=]
+
+
+Processing CorePatientRegistrationController#village (for 127.0.0.1 at 2013-03-19 21:57:43) [GET]
+  Parameters: {"filter_value"=>"S/C Chapinduka", "search_string"=>""}
+Completed in 2ms (View: 0, DB: 1) | 200 OK [http://localhost/village?filter_value=S/C%20Chapinduka&search_string=]
+
+
+Processing CorePatientRegistrationController#update_demographics (for 127.0.0.1 at 2013-03-19 21:57:45) [POST]
+  Parameters: {"person_id"=>"172", "user_id"=>"1", "id"=>"172", "REGION OF ORIGIN"=>"Northern Region", "person"=>{"addresses"=>{"subregion"=>"Rumphi", "county_district"=>"S/C Chapinduka", "neighborhood_cell"=>"Chiziwachapapwa Mkandawire"}, "patient"=>""}}
+Redirected to http://localhost:3005/demographics/172?user_id=1
+Completed in 92ms (DB: 75) | 302 Found [http://localhost/update_demographics/172]
+
+
+Processing CorePatientRegistrationController#demographics (for 127.0.0.1 at 2013-03-19 21:57:45) [GET]
+  Parameters: {"user_id"=>"1", "id"=>"172"}
+Rendering template within layouts/application
+Rendering core_patient_registration/demographics
+Completed in 32ms (View: 20, DB: 3) | 200 OK [http://localhost/demographics/172?user_id=1]
+
+
+Processing CorePatientRegistrationController#edit_demographics (for 127.0.0.1 at 2013-03-19 21:57:50) [GET]
+  Parameters: {"field"=>"occupation", "user_id"=>"1", "id"=>"172"}
+Rendering template within layouts/application
+Rendering core_patient_registration/edit_demographics
+Completed in 10ms (View: 4, DB: 0) | 200 OK [http://localhost/edit_demographics/172?user_id=1&field=occupation]
+
+
+Processing CorePatientRegistrationController#update_demographics (for 127.0.0.1 at 2013-03-19 21:57:55) [POST]
+  Parameters: {"person_id"=>"172", "user_id"=>"1", "id"=>"172", "person"=>{"attributes"=>{"occupation"=>"Business"}, "patient"=>""}}
+Redirected to http://localhost:3005/demographics/172?user_id=1
+Completed in 107ms (DB: 91) | 302 Found [http://localhost/update_demographics/172]
+
+
+Processing CorePatientRegistrationController#demographics (for 127.0.0.1 at 2013-03-19 21:57:55) [GET]
+  Parameters: {"user_id"=>"1", "id"=>"172"}
+Rendering template within layouts/application
+Rendering core_patient_registration/demographics
+Completed in 22ms (View: 12, DB: 2) | 200 OK [http://localhost/demographics/172?user_id=1]
+
+
+Processing CorePatientRegistrationController#search (for 127.0.0.1 at 2013-03-19 21:58:33) [POST]
+  Parameters: {"user_id"=>"1", "ext"=>"true", "location_id"=>"721"}
+Rendering template within layouts/application
+Rendering core_patient_registration/search
+Completed in 24ms (View: 14, DB: 1) | 200 OK [http://localhost/search?user_id=1&ext=true&location_id=721]
+
+
+Processing CorePatientRegistrationController#given_names (for 127.0.0.1 at 2013-03-19 21:58:33) [GET]
+  Parameters: {"search_string"=>""}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/given_names?search_string=]
+
+
+Processing CorePatientRegistrationController#given_names (for 127.0.0.1 at 2013-03-19 21:58:36) [GET]
+  Parameters: {"search_string"=>"D"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/given_names?search_string=D]
+
+
+Processing CorePatientRegistrationController#given_names (for 127.0.0.1 at 2013-03-19 21:58:36) [GET]
+  Parameters: {"search_string"=>"De"}
+Completed in 2ms (View: 0, DB: 1) | 200 OK [http://localhost/core_patient_registration/given_names?search_string=De]
+
+
+Processing CorePatientRegistrationController#given_names (for 127.0.0.1 at 2013-03-19 21:58:39) [GET]
+  Parameters: {"search_string"=>"Del"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/given_names?search_string=Del]
+
+
+Processing CorePatientRegistrationController#given_names (for 127.0.0.1 at 2013-03-19 21:58:41) [GET]
+  Parameters: {"search_string"=>"Deli"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/given_names?search_string=Deli]
+
+
+Processing CorePatientRegistrationController#given_names (for 127.0.0.1 at 2013-03-19 21:58:42) [GET]
+  Parameters: {"search_string"=>"Deliw"}
+Completed in 1ms (View: 0, DB: 1) | 200 OK [http://localhost/core_patient_registration/given_names?search_string=Deliw]
+
+
+Processing CorePatientRegistrationController#given_names (for 127.0.0.1 at 2013-03-19 21:58:43) [GET]
+  Parameters: {"search_string"=>"Deliwe"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/given_names?search_string=Deliwe]
+
+
+Processing CorePatientRegistrationController#family_names (for 127.0.0.1 at 2013-03-19 21:58:44) [GET]
+  Parameters: {"search_string"=>""}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/family_names?search_string=]
+
+
+Processing CorePatientRegistrationController#family_names (for 127.0.0.1 at 2013-03-19 21:58:47) [GET]
+  Parameters: {"search_string"=>"N"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/family_names?search_string=N]
+
+
+Processing CorePatientRegistrationController#family_names (for 127.0.0.1 at 2013-03-19 21:58:48) [GET]
+  Parameters: {"search_string"=>"Nk"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/family_names?search_string=Nk]
+
+
+Processing CorePatientRegistrationController#family_names (for 127.0.0.1 at 2013-03-19 21:58:50) [GET]
+  Parameters: {"search_string"=>"Nkh"}
+Completed in 1ms (View: 0, DB: 1) | 200 OK [http://localhost/core_patient_registration/family_names?search_string=Nkh]
+
+
+Processing CorePatientRegistrationController#family_names (for 127.0.0.1 at 2013-03-19 21:58:50) [GET]
+  Parameters: {"search_string"=>"Nkho"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/family_names?search_string=Nkho]
+
+
+Processing CorePatientRegistrationController#family_names (for 127.0.0.1 at 2013-03-19 21:58:52) [GET]
+  Parameters: {"search_string"=>"Nkhom"}
+Completed in 1ms (View: 0, DB: 0) | 200 OK [http://localhost/core_patient_registration/family_names?search_string=Nkhom]
+
+
+Processing CorePatientRegistrationController#family_names (for 127.0.0.1 at 2013-03-19 21:58:53) [GET]
+  Parameters: {"search_string"=>"Nkhoma"}
+Completed in 2ms (View: 0, DB: 1) | 200 OK [http://localhost/core_patient_registration/family_names?search_string=Nkhoma]
+
+
+Processing CorePatientRegistrationController#search (for 127.0.0.1 at 2013-03-19 21:58:56) [GET]
+  Parameters: {"user_id"=>"1", "create_patient"=>"", "relation"=>"", "family_name"=>"Nkhoma", "given_name"=>"Deliwe", "gender"=>"F"}
+Rendering template within layouts/application
+Rendering core_patient_registration/search
+Completed in 22ms (View: 6, DB: 1) | 200 OK [http://localhost/search?given_name=Deliwe&family_name=Nkhoma&gender=F&user_id=1&create_patient=&relation=]
+
+
+Processing CorePatientRegistrationController#new (for 127.0.0.1 at 2013-03-19 21:58:59) [POST]
+  Parameters: {"user_id"=>"1", "person"=>{"id"=>"0"}, "relation"=>"", "identifier"=>"", "family_name"=>"Nkhoma", "address2"=>"", "family_name2"=>"", "gender"=>"F", "given_name"=>"Deliwe"}
+Rendering template within layouts/application
+Rendering core_patient_registration/new
+Completed in 15ms (View: 9, DB: 0) | 200 OK [http://localhost/new_patient]
+
+
+Processing CorePatientRegistrationController#create (for 127.0.0.1 at 2013-03-19 21:59:21) [POST]
+  Parameters: {"user_id"=>"1", "person"=>{"age_estimate"=>"", "birth_day"=>"19", "patient"=>"", "birth_month"=>"8", "names"=>{"family_name"=>"Nkhomag", "given_name"=>"Deliwe"}, "birth_year"=>"1990", "gender"=>"F"}, "location_id"=>""}
+Rendering template within layouts/application
+Rendering print/print
+Completed in 772ms (View: 40, DB: 271) | 200 OK [http://localhost/core_patient_registration/create]
+
+
+Processing CorePatientRegistrationController#national_id_label (for 127.0.0.1 at 2013-03-19 21:59:22) [GET]
+  Parameters: {"user_id"=>"1", "patient_id"=>"173"}
+Sending data 1732354.lbl
+Completed in 14ms (View: 0, DB: 1) | 200 OK [http://localhost/national_id_label?patient_id=173&user_id=1]
+
+
+Processing CorePatientRegistrationController#scan (for 127.0.0.1 at 2013-03-19 21:59:28) [GET]
+  Parameters: {"user_id"=>"1", "identifier"=>"L97XEW"}
+Redirected to http://0.0.0.0:7000/clinic?user_id=1&ext_patient_id=173
+Completed in 17ms (DB: 1) | 302 Found [http://localhost/scan?user_id=1&identifier=L97XEW]
+
+
+Processing CorePatientRegistrationController#demographics (for 127.0.0.1 at 2013-03-19 21:59:34) [GET]
+  Parameters: {"user_id"=>"1", "id"=>"173", "ext"=>"true"}
+Rendering template within layouts/application
+Rendering core_patient_registration/demographics
+Completed in 44ms (View: 24, DB: 5) | 200 OK [http://localhost/demographics/173?user_id=1&ext=true]
+
+
+Processing CorePatientRegistrationController#national_id_label (for 127.0.0.1 at 2013-03-19 22:27:35) [GET]
+  Parameters: {"user_id"=>"1", "patient_id"=>"173"}
+
+ActiveRecord::RecordNotFound (Couldn't find CorePerson with ID=173):
+  app/controllers/core_patient_registration_controller.rb:71:in `national_id_label'
+
+Rendering rescues/layout (not_found)
+
+
+Processing CorePatientRegistrationController#select (for 127.0.0.1 at 2013-03-19 22:52:25) [GET]
+Redirected to http://localhost:3005/user_login
+Filter chain halted as [:check_user] rendered_or_redirected.
+Completed in 3ms (DB: 0) | 302 Found [http://localhost/select]
+
+
+Processing CorePatientRegistrationController#user_login (for 127.0.0.1 at 2013-03-19 22:52:25) [GET]
+Redirected to http://localhost:3004/login?ext=true&src=localhost:3005
+Completed in 0ms (DB: 0) | 302 Found [http://localhost/user_login]

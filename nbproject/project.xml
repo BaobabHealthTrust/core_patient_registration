@@ -2,7 +2,7 @@
     <type>org.netbeans.modules.ruby.railsprojects</type>
     <configuration>
         <data xmlns="http://www.netbeans.org/ns/rails-project/1">
-            <name>core_patient_registration</name>
+            <name>reg</name>
         </data>
     </configuration>
 </project>
