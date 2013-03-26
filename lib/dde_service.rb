@@ -26,12 +26,12 @@ module DDEService
 
     def get_full_attribute(attribute)
       CorePersonAttribute.find(:first,:conditions =>["voided = 0 AND person_attribute_type_id = ? AND person_id = ?",
-          PersonAttributeType.find_by_name(attribute).id,self.person.id]) rescue nil
+          CorePersonAttributeType.find_by_name(attribute).id,self.person.id]) rescue nil
     end
 
     def set_attribute(attribute, value)
       CorePersonAttribute.create(:person_id => self.person.person_id, :value => value,
-        :person_attribute_type_id => (PersonAttributeType.find_by_name(attribute).id))
+        :person_attribute_type_id => (CorePersonAttributeType.find_by_name(attribute).id))
     end
 
     def get_full_identifier(identifier)
@@ -261,7 +261,7 @@ module DDEService
   end
 
   def self.search_by_identifier(identifier)
-    people = PatientIdentifier.find_all_by_identifier(identifier).map{|id|
+    people = CorePatientIdentifier.find_all_by_identifier(identifier).map{|id|
       id.patient.person
     } unless identifier.blank? rescue nil
     return people unless people.blank?
@@ -327,7 +327,7 @@ module DDEService
       person_params["gender"] = 'M'
 		end
 
-		person = Person.create(person_params)
+		person = CorePerson.create(person_params)
 
 		unless birthday_params.empty?
 		  if birthday_params["birth_year"] == "Unknown"
@@ -342,19 +342,19 @@ module DDEService
 		person.addresses.create(address_params) unless address_params.empty? rescue nil
 
 		person.person_attributes.create(
-		  :person_attribute_type_id => PersonAttributeType.find_by_name("Occupation").person_attribute_type_id,
+		  :person_attribute_type_id => CorePersonAttributeType.find_by_name("Occupation").person_attribute_type_id,
 		  :value => params["occupation"]) unless params["occupation"].blank? rescue nil
 
 		person.person_attributes.create(
-		  :person_attribute_type_id => PersonAttributeType.find_by_name("Cell Phone Number").person_attribute_type_id,
+		  :person_attribute_type_id => CorePersonAttributeType.find_by_name("Cell Phone Number").person_attribute_type_id,
 		  :value => params["cell_phone_number"]) unless params["cell_phone_number"].blank? rescue nil
 
 		person.person_attributes.create(
-		  :person_attribute_type_id => PersonAttributeType.find_by_name("Office Phone Number").person_attribute_type_id,
+		  :person_attribute_type_id => CorePersonAttributeType.find_by_name("Office Phone Number").person_attribute_type_id,
 		  :value => params["office_phone_number"]) unless params["office_phone_number"].blank? rescue nil
 
 		person.person_attributes.create(
-		  :person_attribute_type_id => PersonAttributeType.find_by_name("Home Phone Number").person_attribute_type_id,
+		  :person_attribute_type_id => CorePersonAttributeType.find_by_name("Home Phone Number").person_attribute_type_id,
 		  :value => params["home_phone_number"]) unless params["home_phone_number"].blank? rescue nil
 
     # TODO handle the birthplace attribute
@@ -435,9 +435,9 @@ module DDEService
 
     #update or add new person attribute
     person_attribute_params.each{|attribute_type_name, attribute|
-      attribute_type = PersonAttributeType.find_by_name(attribute_type_name.humanize.titleize) || PersonAttributeType.find_by_name("Unknown id")
+      attribute_type = CorePersonAttributeType.find_by_name(attribute_type_name.humanize.titleize) || CorePersonAttributeType.find_by_name("Unknown id")
       #find if attribute already exists
-      exists_person_attribute = PersonAttribute.find(:first, :conditions => ["person_id = ? AND person_attribute_type_id = ?", person.id, attribute_type.person_attribute_type_id]) rescue nil
+      exists_person_attribute = CorePersonAttribute.find(:first, :conditions => ["person_id = ? AND person_attribute_type_id = ?", person.id, attribute_type.person_attribute_type_id]) rescue nil
       if exists_person_attribute
         exists_person_attribute.update_attributes({'value' => attribute})
       else
@@ -564,11 +564,11 @@ module DDEService
 
     identifier_type = CorePatientIdentifierType.find_by_name("National id")
 
-    current_national_id = PatientIdentifier.find(:first,
+    current_national_id = CorePatientIdentifier.find(:first,
       :conditions => ["patient_id = ? AND voided = 0 AND
                         identifier_type = ?",local_person_id , identifier_type.id])
 
-    patient_identifier = PatientIdentifier.new
+    patient_identifier = CorePatientIdentifier.new
     patient_identifier.type = CorePatientIdentifierType.find_by_name("National id")
     patient_identifier.identifier = new_npid
     patient_identifier.patient_id = local_person_id
