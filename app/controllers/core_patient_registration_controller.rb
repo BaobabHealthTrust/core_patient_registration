@@ -689,7 +689,18 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def duplicates
- 
+    
+    file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
+    
+    @destination = "/"
+
+    if File.exists?(file)
+
+      @final_destination = YAML.load_file(file)["#{Rails.env
+        }"]["host.path.#{params[:user_id]}"].strip   
+
+    end
+
     @duplicates = []
     people = person_search(params[:search_params])
    
@@ -706,7 +717,7 @@ class CorePatientRegistrationController < ApplicationController
 
     @selected_identifier = params[:search_params][:identifier]
 
-  
+    render :layout => "menu"
   end
 
   def reassign_dde_national_id
@@ -715,6 +726,18 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def remote_duplicates
+
+    file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
+
+    @destination = "/"
+
+    if File.exists?(file)
+
+      @final_destination = YAML.load_file(file)["#{Rails.env
+        }"]["host.path.#{params[:user_id]}"].strip
+
+    end
+    
     if params[:patient_id]
       @primary_patient = CorePerson.get_patient(Person.find(params[:patient_id]))
     else
@@ -731,7 +754,7 @@ class CorePatientRegistrationController < ApplicationController
     if @primary_patient.blank? and @dde_duplicates.blank?
       redirect_to :action => 'search',:identifier => params[:identifier] and return
     end
-  
+    render :layout => "menu"
   end
 
   def create_person_from_dde

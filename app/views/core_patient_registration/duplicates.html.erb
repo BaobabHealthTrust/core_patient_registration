@@ -1,6 +1,6 @@
 
 <script>
-  tt_cancel_destination = "/core_patient_registration/?user_id=<%params[:user_id]%>";
+  tt_cancel_destination = "<%=h @final_destination%>";
 
   function newID(patient_id,national_id) {
     document.location = "/core_patient_registration/remote_duplicates?patient_id=" + patient_id + "&identifier=" + national_id + "&user_id=<%=  params[:user_id]%>";
