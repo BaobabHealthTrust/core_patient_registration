@@ -173,7 +173,7 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def scan
-
+    
     # Track final destination
     file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
 
@@ -199,7 +199,7 @@ class CorePatientRegistrationController < ApplicationController
     results = CorePerson.search_by_identifier(identifier)
 
     if results.length > 1 || results.to_s == "found duplicate identifiers"
-      
+      params[:identifier] = params[:id] if params[:identifier].blank? && params[:id].length > 5
       redirect_to :action => 'duplicates' ,:search_params => params, :user_id => params[:user_id]
        
     elsif results.length > 0

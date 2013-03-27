@@ -466,7 +466,7 @@ end -%>
 
           next if patient.blank? -%>
           <% if @relation.blank? %>
-            <option value="<%= patient.person_id rescue nil %>" onmousedown="changeNextButtonText('Select Patient')">
+            
             <% else %>
             <option value="<%= patient.person_id rescue nil %>" onmousedown="changeNextButtonText('Select Guardian')">
             <% end %>
