@@ -48,7 +48,7 @@ development:
   show_office_phone_number: true
   show_home_phone_number: true
   show_occupation: true
-  user.management.url: http://localhost:3004
+  user.management.url: http://localhost:3005
 
 test: &TEST
   create.from.dde.server: false
