@@ -1,8 +1,5 @@
 
-class CorePatientRegistrationController < ApplicationController
-  
-  before_filter :check_user, :except => [:user_login, :given_names, :family_names, 
-    :family_name2, :middle_name, :district, :village, :traditional_authority]
+class CorePatientRegistrationController < ApplicationController  
 
   def new
     
@@ -173,16 +170,18 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def scan
-    
-    # Track final destination
-    file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
+
+      # Track final destination
+    file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml" if params[:user_id]
+   
 
     if !params[:ext].blank? && !params[:remote]
-      f = File.open(file, "w")
+      f = File.open(file, "w") rescue nil
+      if request.referrer.match("#{request.raw_host_with_port}") && f.present?
 
-      f.write("#{Rails.env}:\n    host.path.#{params[:user_id]}: #{session["host_path"] = request.referrer}")
-
-      f.close
+        f.write("#{Rails.env}:\n    host.path.#{params[:user_id]}: #{session["host_path"] = request.referrer}")
+        f.close
+      end      
 
     end
 
@@ -194,7 +193,7 @@ class CorePatientRegistrationController < ApplicationController
         }"]["host.path.#{params[:user_id]}"].strip
      
     end
-
+		@destination = @destination + "&user_id=#{params[:user_id]}" if !@destination.match("user_id")
     identifier = params[:identifier] || params[:id]
     results = CorePerson.search_by_identifier(identifier)
 
@@ -215,12 +214,16 @@ class CorePatientRegistrationController < ApplicationController
 
       if File.exists?(file)
 
-        @destination = YAML.load_file(file)["#{Rails.env
-        }"]["host.path.#{params[:user_id]}"].strip
+        @destination = YAML.load_file(file)["#{Rails.env}"]["host.path.#{params[:user_id]}"].strip
 
-        File.delete(file)
+         File.delete(file)
 
       end
+      
+      host = request.raw_host_with_port.gsub("localhost", "0.0.0.0").gsub("127.0.0.1", "0.0.0.0")
+      ext_host = @destination.gsub("localhost", "0.0.0.0").gsub("127.0.0.1", "0.0.0.0")
+     
+      @destination ="/patients/show/#{person.id}?patient_id=#{person.id}&user_id=#{params[:user_id]}"  if ext_host.match("#{host}")
     
       redirect_to "#{@destination}#{ @destination.match(/\?/) ? "&" : "?"
           }ext_patient_id=#{person.id}" and return if !@destination.nil? and @destination.strip.length > 1
@@ -424,7 +427,6 @@ class CorePatientRegistrationController < ApplicationController
     @people = person_search(params)
     @search_results = {}
     @patients = []
-
     (CorePerson.search_from_remote(params) || []).each do |data|
       national_id = data["person"]["data"]["patient"]["identifiers"]["National id"] rescue nil
       national_id = data["person"]["value"] if national_id.blank? rescue nil
@@ -793,7 +795,7 @@ class CorePatientRegistrationController < ApplicationController
 
   def check_user
 
-    link = get_global_property_value("user.management.url").to_s rescue nil
+    link = get_global_property_value("user.management.url").to_s
     
     if link.nil?
       flash[:error] = "Missing configuration for <br/>user management connection!"
