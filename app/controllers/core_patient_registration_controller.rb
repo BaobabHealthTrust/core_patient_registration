@@ -177,8 +177,7 @@ class CorePatientRegistrationController < ApplicationController
 
     if !params[:ext].blank? && !params[:remote]
       f = File.open(file, "w") rescue nil
-      if request.referrer.match("#{request.raw_host_with_port}") && f.present?
-
+      if f.present?
         f.write("#{Rails.env}:\n    host.path.#{params[:user_id]}: #{session["host_path"] = request.referrer}")
         f.close
       end      
