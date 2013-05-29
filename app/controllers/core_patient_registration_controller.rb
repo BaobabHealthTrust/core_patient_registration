@@ -673,12 +673,12 @@ class CorePatientRegistrationController < ApplicationController
     end
 
     CoreRelationship.create(
-      :person_a => person.id,
-      :relationship => (CoreRelationshipType.find_by_a_is_to_b_and_b_is_to_a("Child", "Parent").id),
-      :person_b => params[:mother_id]
+      :person_b => person.id,
+      :relationship => (CoreRelationshipType.find_by_a_is_to_b_and_b_is_to_a("Parent", "Child").id),
+      :person_a => params[:mother_id]
     )
 
-    render :text => person.patient.national_id
+    render :text => person.patient.national_id.to_json
     
   end
 
