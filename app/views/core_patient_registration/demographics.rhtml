@@ -159,6 +159,14 @@
             Finish
           </span>
         </button>
+
+        <button class="blue" style="float: right; margin: 8px; width: 260px; margin-right: 20px;"
+                onclick="window.location='/core_patient_registration/national_id_label/<%=  @patient.id %>?patient_id=<%=  @patient.id %>&user_id=<%= params[:user_id] %>'">
+          <span>
+            Print Registration Label
+          </span>
+        </button>
+        
       </div>
     </td>
   </tr>
