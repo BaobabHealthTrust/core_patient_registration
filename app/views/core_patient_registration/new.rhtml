@@ -1,7 +1,7 @@
 <script type="text/javascript" language="javascript">
   <!--
   
-  tt_cancel_destination = "/select"
+  tt_cancel_destination = "<%= !@destination.blank?? @destination : '/' %>"
 
   function set_ajaxURL_for_suggestions(url, filter_value) {
     $('touchscreenInput'+tstCurrentPage).setAttribute('ajaxURL', url + filter_value + "&search_string=");

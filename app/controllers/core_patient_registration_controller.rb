@@ -46,6 +46,7 @@ class CorePatientRegistrationController < ApplicationController
     @occupations = ['','Driver','Housewife','Messenger','Business','Farmer','Salesperson','Teacher',
       'Student','Security guard','Domestic worker', 'Police','Office worker',
       'Preschool child','Mechanic','Prisoner','Craftsman','Healthcare Worker','Soldier'].sort.concat(["Other","Unknown"])
+    @destination = request.referrer
     
   end
 
