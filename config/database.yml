@@ -18,7 +18,7 @@ development:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: core_patient_registration_development
+  database: bart2_flat_tables
   pool: 5
   username: root
   password: admin
@@ -41,7 +41,7 @@ production:
   adapter: mysql
   encoding: utf8
   reconnect: false
-  database: core_patient_registration_production
+  database: bart2_flat_tables
   pool: 5
   username: root
   password: admin
