@@ -1,8 +1,8 @@
 <script type="text/javascript">
   <!--
-  var tt_cancel_destination = "<%= @destination %>";
+  var tt_cancel_destination = "<%= (@destination.strip != "/" ? @destination : "/user_logout") %>";
 
-  var tt_cancel_show = "<%= @destination %>";
+  var tt_cancel_show = "<%= (@destination.strip != "/" ? @destination : "/user_logout") %>";
 
   function setFields(){
     var options = {
@@ -39,6 +39,29 @@
 
     __$("selection").setAttribute("disabled", "true");
   }
+
+  function renameCancel(){
+    if(__$('cancelButton')){
+      __$('cancelButton').innerHTML = '<span>Logout</span>';
+      
+      __$('cancelButton').onmousedown = function(){
+        var save = false;
+        
+        tstMessageBar.innerHTML = "Are you sure you want to Logout?<br/>" +
+        "<button onmousedown='hideMessage(); cancelEntry();'><span>Yes</span></button>" +
+        (save?"<button onmousedown='var completeField = document.createElement(\"input\"); \n\
+				completeField.type = \"hidden\"; completeField.value = \"false\"; completeField.name = \"complete\"; \n\
+				document.forms[0].appendChild(completeField); document.forms[0].submit(); hideMessage();'><span>Save</span></button>":"") +
+        "<button onmousedown='hideMessage();'><span>No</span></button>";
+        
+        tstMessageBar.style.display = "block";
+      }
+    } else {
+      setTimeout("renameCancel()", 100);
+    }
+  }
+
+  setTimeout("renameCancel()", 100);
 
   //-->
 </script>
