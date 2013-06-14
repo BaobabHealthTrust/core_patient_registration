@@ -37,6 +37,18 @@ protected
 
   def check_patient_user
   
+    if !params[:token].nil?
+      session[:token] = params[:token]
+    end
+
+    if !params[:user_id].nil?
+      session[:user_id] = params[:user_id]
+    end
+
+    if !params[:location_id].nil?
+      session[:location_id] = params[:location_id]
+    end
+
     link = get_global_property_value("user.management.url").to_s rescue nil
 
     if link.nil?

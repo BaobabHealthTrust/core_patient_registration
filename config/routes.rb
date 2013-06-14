@@ -40,6 +40,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.create_baby '/create_baby', :controller => 'core_patient_registration', :action => 'create_baby'
 
+  map.no_user '/no_user', :controller => 'core_patient_registration', :action => 'no_user'
+
+  map.no_patient '/no_patient', :controller => 'core_patient_registration', :action => 'no_patient'
+
   # The priority is based upon order of creation: first created -> highest priority.
 
   # Sample of regular route:

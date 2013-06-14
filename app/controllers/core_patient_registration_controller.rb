@@ -1,5 +1,6 @@
 
-class CorePatientRegistrationController < ApplicationController  
+class CorePatientRegistrationController < ApplicationController 
+  unloadable   
 
   def new
     
