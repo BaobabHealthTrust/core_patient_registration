@@ -1,5 +1,6 @@
 
-class CorePatientRegistrationController < ApplicationController  
+class CorePatientRegistrationController < ApplicationController 
+  unloadable   
 
   def new
     
@@ -326,7 +327,7 @@ class CorePatientRegistrationController < ApplicationController
 
     end
     
-    @user = params[:user_id] rescue nil?
+    @user = params[:user_id] || session[:user_id] rescue nil
 
   end
 
@@ -337,7 +338,7 @@ class CorePatientRegistrationController < ApplicationController
       redirect_to "/select" and return
     end
 
-    @user = params[:user_id] rescue nil
+    @user = params[:user_id] || session[:user_id] rescue nil
 
     @field = params[:field] rescue nil
 
@@ -430,6 +431,7 @@ class CorePatientRegistrationController < ApplicationController
 
     @relation = params[:relation]
     @people = person_search(params)
+    
     @search_results = {}
     @patients = []
     (CorePerson.search_from_remote(params) || []).each do |data|
@@ -456,8 +458,12 @@ class CorePatientRegistrationController < ApplicationController
       @search_results[results.national_id] = results
     end if create_from_dde_server
 
-    (@people || []).each do | person |
-      patient = CorePerson.get_patient(person) #rescue nil
+    (@people || []).each do | person_id |
+      
+      person = CorePerson.find(person_id)
+      
+      patient = CorePerson.get_patient(person) rescue nil      
+
       next if patient.blank?
       results = PersonSearch.new(patient.national_id || patient.patient_id)
       results.national_id = patient.national_id
@@ -531,11 +537,11 @@ class CorePatientRegistrationController < ApplicationController
         params[:gender],
         params[:given_name],
         params[:family_name]
-      ]) if people.blank?
+      ]).collect{|p| p.person_id} if people.blank?
 
     if people.length < 15
-      matching_people = people.collect{| person |
-        person.person_id
+      matching_people = people.collect{| person_id |
+        person_id
       }
       # raise matching_people.to_yaml
       people_like = CorePerson.find(:all, :limit => 15, :include => [:names, :patient], :conditions => [
@@ -547,9 +553,10 @@ class CorePatientRegistrationController < ApplicationController
           (params[:family_name] || ''),
           matching_people
         ], :order => "person_name.given_name ASC, person_name.family_name ASC"
-      )
+      ).collect{|p| p.person_id}
       
-      people = people + people_like
+      people = (people + people_like)[0, 15]
+     
     end
     return people
   end
@@ -798,28 +805,6 @@ class CorePatientRegistrationController < ApplicationController
 
 
   protected
-
-  def check_user
-
-    link = get_global_property_value("user.management.url").to_s
-    
-    if link.nil?
-      flash[:error] = "Missing configuration for <br/>user management connection!"
-
-      redirect_to "/no_user" and return
-    end
-
-    @user = JSON.parse(RestClient.get("#{link}/verify/#{(params[:user_id])}")) rescue {}
-
-    if @user.empty?
-      redirect_to "/user_login" and return
-    end
-
-    if @user["token"].nil?
-      redirect_to "/user_login" and return
-    end
-
-  end
 
   def cul_age(birthdate , birthdate_estimated , date_created = Date.today, today = Date.today)
 

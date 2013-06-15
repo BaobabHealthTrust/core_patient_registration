@@ -35,11 +35,20 @@ Rails::Initializer.run do |config|
 
   # Set Time.zone default to the specified zone and make Active Record auto-convert to this zone.
   # Run "rake -D time" for a list of tasks for finding time zone names.
-  config.time_zone = 'UTC'
+  # config.time_zone = 'UTC'
 
   # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
   # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}')]
   # config.i18n.default_locale = :de
+  config.frameworks -= [ :action_web_service, :action_mailer, :active_resource ]
+  config.log_level = :debug
+  config.action_controller.session_store = :active_record_store
+  config.active_record.schema_format = :sql
+  
+  config.action_controller.session = {
+    :session_key => 'bart_session',
+    :secret      => '8sgdhr431ba87cfd9bea177ba3d344a67acb0f179753f37d28db8bd102134261cdb4b1dbacccb126435631686d66e148a203fac1c5d71eea6abf955a66a472ce'
+  }  
 end
 
 require 'rest-client'
