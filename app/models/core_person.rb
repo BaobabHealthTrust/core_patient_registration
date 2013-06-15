@@ -160,6 +160,7 @@ class CorePerson < ActiveRecord::Base
 	end
 
   def self.create_from_form(params)
+    
     return nil if params.blank?
 		address_params = params["addresses"]
 		names_params = params["names"]
@@ -225,13 +226,7 @@ class CorePerson < ActiveRecord::Base
         identifier_type = CorePatientIdentifierType.find_by_name(identifier_type_name) || CorePatientIdentifierType.find_by_name("Unknown id")
         patient.patient_identifiers.create("identifier" => identifier, "identifier_type" => identifier_type.patient_identifier_type_id)
 		  } if params["identifiers"]
-=begin
-		  patient_params["identifiers"].each{|identifier_type_name, identifier|
-        next if identifier.blank?
-        identifier_type = PatientIdentifierType.find_by_name(identifier_type_name) || PatientIdentifierType.find_by_name("Unknown id")
-        patient.patient_identifiers.create("identifier" => identifier, "identifier_type" => identifier_type.patient_identifier_type_id)
-		  } if patient_params["identifiers"]
-=end
+
 		  # This might actually be a national id, but currently we wouldn't know
 		  #patient.patient_identifiers.create("identifier" => patient_params["identifier"], "identifier_type" => PatientIdentifierType.find_by_name("Unknown id")) unless params["identifier"].blank?
 		end
@@ -507,7 +502,7 @@ class CorePerson < ActiveRecord::Base
     patient.person_id = person.id
     patient.patient_id = person.patient.id
     patient.arv_number = get_patient_identifier(person.patient, 'ARV Number')
-    patient.address = person.addresses.first.city_village
+    patient.address = person.addresses.first.city_village rescue nil
     patient.national_id = get_patient_identifier(person.patient, 'National id')
 	  patient.national_id_with_dashes = get_national_id_with_dashes(person.patient)
     patient.name = person.names.first.given_name + ' ' + person.names.first.family_name rescue nil
@@ -518,14 +513,14 @@ class CorePerson < ActiveRecord::Base
     patient.age_in_months = age_in_months(person, current_date)
     patient.dead = person.dead
     patient.birth_date = birthdate_formatted(person)
-    patient.birthdate_estimated = person.birthdate_estimated
-    patient.current_district = person.addresses.first.state_province
-    patient.home_district = person.addresses.first.address2
-    patient.traditional_authority = person.addresses.first.county_district
-    patient.current_residence = person.addresses.first.city_village
-    patient.landmark = person.addresses.first.address1
-    patient.home_village = person.addresses.first.neighborhood_cell
-    patient.mothers_surname = person.names.first.family_name2
+    patient.birthdate_estimated = person.birthdate_estimated rescue nil
+    patient.current_district = person.addresses.first.state_province rescue nil
+    patient.home_district = person.addresses.first.address2 rescue nil
+    patient.traditional_authority = person.addresses.first.county_district rescue nil
+    patient.current_residence = person.addresses.first.city_village rescue nil
+    patient.landmark = person.addresses.first.address1 rescue nil
+    patient.home_village = person.addresses.first.neighborhood_cell rescue nil
+    patient.mothers_surname = person.names.first.family_name2 rescue nil
     patient.eid_number = get_patient_identifier(person.patient, 'EID Number') rescue nil
     patient.pre_art_number = get_patient_identifier(person.patient, 'Pre ART Number (Old format)') rescue nil
     patient.archived_filing_number = get_patient_identifier(person.patient, 'Archived filing number')rescue nil
@@ -535,7 +530,46 @@ class CorePerson < ActiveRecord::Base
     patient.office_phone_number = get_attribute(person, 'Office phone number')
     patient.home_phone_number = get_attribute(person, 'Home phone number')
     patient.guardian = art_guardian(person.patient) rescue nil
-    patient
+    patient    
+  end
+
+  def self.get_patient_identifier(patient, identifier_type)
+    patient_identifier_type_id = PatientIdentifierType.find_by_name(identifier_type).patient_identifier_type_id rescue nil
+    patient_identifier = PatientIdentifier.find(:first, :select => "identifier",
+      :conditions  =>["patient_id = ? and identifier_type = ?", patient.id, patient_identifier_type_id],
+      :order => "date_created DESC" ).identifier rescue nil
+    return patient_identifier
+  end
+
+  def self.get_national_id_with_dashes(patient, force = true)
+    id = self.get_national_id(patient, force)
+    if id.length > 7
+      id[0..4] + "-" + id[5..8] + "-" + id[9..-1] rescue id
+    else
+      "#{id[0..2]}-#{id[3..(id.length-1)]}"
+    end
+  end
+
+  def self.birthdate_formatted(person)
+    if person.birthdate_estimated==1
+      if person.birthdate.day == 1 and person.birthdate.month == 7
+        person.birthdate.strftime("??/???/%Y")
+      elsif person.birthdate.day == 15
+        person.birthdate.strftime("??/%b/%Y")
+      elsif person.birthdate.day == 1 and person.birthdate.month == 1
+        person.birthdate.strftime("??/???/%Y")
+      end
+    else
+      person.birthdate.strftime("%d/%b/%Y")
+    end
+  end
+  
+
+  def self.get_national_id(patient, force = true)
+    id = patient.patient_identifiers.find_by_identifier_type(CorePatientIdentifierType.find_by_name("National id").id).identifier rescue nil
+    return id unless force
+    id ||= CorePatientIdentifierType.find_by_name("National id").next_identifier(:patient => patient).identifier
+    id
   end
   
   def age(today = Date.today)
@@ -553,11 +587,21 @@ class CorePerson < ActiveRecord::Base
         today.month < birth_date.month && self.date_created.year == today.year) ? 1 : 0
   end
 
+  def self.sex(person)
+    value = nil
+    if person.gender == "M"
+      value = "Male"
+    elsif person.gender == "F"
+      value = "Female"
+    end
+    value
+  end
+
   def age_in_months(today = Date.today)
     years = (today.year - self.birthdate.year)
     months = (today.month - self.birthdate.month)
     (years * 12) + months
-  end
+  end 
     
   def maiden_name
     self.names.last.family_name2 rescue ""
@@ -671,6 +715,26 @@ class CorePerson < ActiveRecord::Base
     }
   end
 
+  def self.age_in_months(person, today = Date.today)
+    years = (today.year - person.birthdate.year)
+    months = (today.month - person.birthdate.month)
+    (years * 12) + months
+  end
+  
+  def self.age(person, today = Date.today)
+    return nil if person.birthdate.nil?
+
+    # This code which better accounts for leap years
+    patient_age = (today.year - person.birthdate.year) + ((today.month - person.birthdate.month) + ((today.day - person.birthdate.day) < 0 ? -1 : 0) < 0 ? -1 : 0)
+
+    # If the birthdate was estimated this year, we round up the age, that way if
+    # it is March and the patient says they are 25, they stay 25 (not become 24)
+    birth_date=person.birthdate
+    estimate=person.birthdate_estimated==1
+    patient_age += (estimate && birth_date.month == 7 && birth_date.day == 1  &&
+        today.month < birth_date.month && person.date_created.year == today.year) ? 1 : 0
+  end
+
   def check_old_national_id(identifier, user_id)
     create_from_dde_server = get_global_property_value('create.from.dde.server').to_s == "true" rescue false
     
@@ -753,6 +817,11 @@ class CorePerson < ActiveRecord::Base
       end
     end
     
+  end
+
+  def self.get_attribute(person, attribute)
+    CorePersonAttribute.find(:first,:conditions =>["voided = 0 AND person_attribute_type_id = ? AND person_id = ?",
+        PersonAttributeType.find_by_name(attribute).id, person.id]).value rescue nil
   end
 
   def get_full_attribute(attribute)

@@ -18,8 +18,11 @@ class CorePatient < ActiveRecord::Base
     "#{self.person.names.first.given_name} #{self.person.names.first.family_name}"
   end
 
-  def national_id
-    self.patient_identifiers.find_by_identifier_type(CorePatientIdentifierType.find_by_name("National id").id).identifier rescue nil
+  def national_id(force = true)
+    id = self.patient_identifiers.find_by_identifier_type(CorePatientIdentifierType.find_by_name("National id").id).identifier rescue nil
+    return id unless force
+    id ||= CorePatientIdentifierType.find_by_name("National id").next_identifier(:patient => self).identifier
+    id
   end
 
   def address
@@ -49,14 +52,14 @@ class CorePatient < ActiveRecord::Base
     id = national_id
     length = id.length
     case length
-      when 13
-        id[0..4] + "-" + id[5..8] + "-" + id[9..-1] rescue id
-      when 9
-        id[0..2] + "-" + id[3..6] + "-" + id[7..-1] rescue id
-      when 6
-        id[0..2] + "-" + id[3..-1] rescue id
-      else
-        id
+    when 13
+      id[0..4] + "-" + id[5..8] + "-" + id[9..-1] rescue id
+    when 9
+      id[0..2] + "-" + id[3..6] + "-" + id[7..-1] rescue id
+    when 6
+      id[0..2] + "-" + id[3..-1] rescue id
+    else
+      id
     end
   end
 

@@ -172,7 +172,7 @@ class CorePatientRegistrationController < ApplicationController
 
   def scan
 
-      # Track final destination
+    # Track final destination
     file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml" if params[:user_id]
    
 
@@ -185,7 +185,7 @@ class CorePatientRegistrationController < ApplicationController
 
     end
 
-    @destination = nil
+    @destination = ""
 
     if File.exists?(file)
 
@@ -193,7 +193,7 @@ class CorePatientRegistrationController < ApplicationController
         }"]["host.path.#{params[:user_id]}"].strip
      
     end
-		@destination = @destination + "&user_id=#{params[:user_id]}" if !@destination.match("user_id")
+		@destination = @destination + "&user_id=#{params[:user_id]}"  rescue @distination if @destination.present? and !@destination.match("user_id")
     identifier = params[:identifier] || params[:id]
     results = CorePerson.search_by_identifier(identifier)
 
@@ -208,18 +208,21 @@ class CorePatientRegistrationController < ApplicationController
       dde_patient = DDEService::Patient.new(person.patient)
       national_id_replaced = dde_patient.check_old_national_id(params[:identifier])
 
-      if (national_id_replaced.to_s == "true" || params[:identifier] != dde_patient.patient.national_id) && !params[:reround]
-        print_and_redirect("/national_id_label?patient_id=#{dde_patient.patient.id}&user_id=#{params[:user_id]}", "/scan?user_id=#{params[:user_id]}&identifier=#{person.patient.national_id}&ext=#{params[:ext]}&remote=#{params[:remote]}&reround=true") and return
-      end
+      if create_from_dde_server
+        if (national_id_replaced.to_s == "true" || params[:identifier] != dde_patient.patient.national_id) && !params[:reround]
+          print_and_redirect("/national_id_label?patient_id=#{dde_patient.patient.id}&user_id=#{params[:user_id]}", "/scan?user_id=#{params[:user_id]}&identifier=#{person.patient.national_id}&ext=#{params[:ext]}&remote=#{params[:remote]}&reround=true") and return
+        end
+      else
 
+      end
       if File.exists?(file)
 
         @destination = YAML.load_file(file)["#{Rails.env}"]["host.path.#{params[:user_id]}"].strip
 
-         File.delete(file)
+        File.delete(file)
 
       end
-      
+    
       host = request.raw_host_with_port.gsub("localhost", "0.0.0.0").gsub("127.0.0.1", "0.0.0.0")
       ext_host = @destination.gsub("localhost", "0.0.0.0").gsub("127.0.0.1", "0.0.0.0")
      
@@ -349,7 +352,9 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def update_demographics
-   
+    
+    params["person"]["gender"] = params["person"]["gender"][0 .. 0] if params["person"]["gender"]
+    
     patient = CorePerson.find(params[:id] || params[:patient_id])
 
     CorePerson.update_demographics(params, params[:user_id])
@@ -452,7 +457,7 @@ class CorePatientRegistrationController < ApplicationController
     end if create_from_dde_server
 
     (@people || []).each do | person |
-      patient = CorePerson.get_patient(person) rescue nil
+      patient = CorePerson.get_patient(person) #rescue nil
       next if patient.blank?
       results = PersonSearch.new(patient.national_id || patient.patient_id)
       results.national_id = patient.national_id
@@ -478,6 +483,7 @@ class CorePatientRegistrationController < ApplicationController
     (@search_results || {}).each do | npid , data |
       @patients << data
     end
+
     # Track final destination
     file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
    
