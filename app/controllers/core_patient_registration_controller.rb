@@ -79,7 +79,7 @@ class CorePatientRegistrationController < ApplicationController
   def select
 
     if !params[:person].nil?    
-      if (!params[:person][:id].blank? && params[:person][:id].to_i != 0) || params["person"]["patient"]["identifiers"]["National id"]
+      if (params[:identifier]) || (!params[:person][:id].blank? && params[:person][:id].to_i != 0) || params["person"]["patient"]["identifiers"]["National id"]
 
         identifier = CorePerson.find(params[:person][:id]).patient.national_id rescue nil
         identifier = params["person"]["patient"]["identifiers"]["National id"] rescue nil if identifier.blank?
