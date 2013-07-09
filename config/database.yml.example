@@ -21,6 +21,7 @@ development:
   database: core_patient_registration_development
   pool: 5
   username: root
+  host: localhost
   password: admin
   socket: /var/run/mysqld/mysqld.sock
 
@@ -34,6 +35,7 @@ test:
   database: core_patient_registration_test
   pool: 5
   username: root
+  host: localhost
   password: admin
   socket: /var/run/mysqld/mysqld.sock
 
@@ -45,4 +47,5 @@ production:
   pool: 5
   username: root
   password: admin
+  host: localhost
   socket: /var/run/mysqld/mysqld.sock
