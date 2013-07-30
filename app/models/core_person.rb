@@ -939,23 +939,12 @@ class CorePerson < ActiveRecord::Base
     person_attribute_params = params["attributes"]
 
     params_to_process = params.reject{|key,value| key.match(/addresses|patient|names|attributes/) }
-    birthday_params = params_to_process.reject{|key,value| key.match(/gender|occupation/) }
+    birthday_params = params_to_process.reject{|key,value| key.match(/gender|race|nationality|citizenship|occupation/) }
 
-    person_params = params_to_process.reject{|key,value| key.match(/birth_|age_estimate|occupation/) }
+    person_params = params_to_process.reject{|key,value| key.match(/birth_|age_estimate|race|nationality|citizenship|occupation/) }
 
     if !birthday_params.empty?
-=begin
 
-
-		if !birthday_params.empty? && birthday_params["birthdate"].blank?
-		  if birthday_params["birth_year"] == "Unknown"
-        self.set_birthdate_by_age(person, birthday_params["age_estimate"], person.session_datetime || Date.today)
-		  else
-        self.set_birthdate(person, birthday_params["birth_year"], birthday_params["birth_month"], birthday_params["birth_day"])
-		  end
-		end
-
-=end
       if birthday_params["birth_year"] == "Unknown"
         self.set_birthdate_by_age(person, birthday_params["age_estimate"])
       else

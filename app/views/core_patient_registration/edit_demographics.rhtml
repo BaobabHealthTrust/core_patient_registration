@@ -122,12 +122,12 @@
 
       <% when "nationality" %>
 
-        <%= select_tag "person[citizenship]", options_for_select([["", ""],
+        <%= select_tag "person[attributes][citizenship]", options_for_select([["", ""],
             ["Malawian", "Malawian"], ["Other", "Other"]]),
           {:id => "nationality",
           :helptext => "Nationality" } %>
 
-        <%= text_field_tag "person[race]", nil,
+        <%= text_field_tag "person[attributes][race]", nil,
           {:id => "race",
           :helptext => "Specify nationality",
           :condition => '__$("nationality").value == "Other"' } %>
