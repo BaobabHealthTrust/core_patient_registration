@@ -483,11 +483,11 @@ class CorePatientRegistrationController < ApplicationController
       results.sex = patient.sex
       results.age = patient.age
       @search_results.delete_if{|x,y| x == results.national_id }
-      @patients << results
+      @patients << results if ((results.national_id.present?) rescue false)
     end
 
     (@search_results || {}).each do | npid , data |
-      @patients << data
+      @patients << data if npid.present?
     end
 
     # Track final destination
