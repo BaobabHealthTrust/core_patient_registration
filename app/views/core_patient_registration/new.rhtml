@@ -83,16 +83,16 @@
     :condition => '__$("year_of_birth").value.toLowerCase() == "unknown"',
     :absoluteMax => 120,
     :helptext => "Age" } %>
-
+<%#= raise @show_region_of_origin.to_yaml %>
   <%= select_tag "person[citizenship]", options_for_select([["", ""],
       ["Malawian", "Malawian"], ["Other", "Other"]]),
     {:id => "nationality",
-    :helptext => "Nationality" } if @show_nationality %>
+    :helptext => "Nationality" } if (@show_nationality || @show_region_of_origin) == true %>
 
   <%= text_field_tag "person[race]", nil,
     {:id => "race",
     :helptext => "Specify nationality",
-    :condition => '__$("nationality").value == "Other"' } if @show_nationality %>
+    :condition => '__$("nationality").value == "Other"' } if (@show_nationality || @show_region_of_origin) == true %>
 
   <%= select_tag "REGION OF ORIGIN", options_for_select([["Northern Region", "Northern+Region"],
       ["Central Region", "Central+Region"], ["Southern Region", "Southern+Region"], ["", ""]]),
@@ -114,7 +114,7 @@
 
   <%= select_tag "person[addresses][neighborhood_cell]", options_for_select([["", ""]]),
     {:id => "home_village",
-		:condition => "__$('nationality').value == 'Malawian'",
+     :condition => "__$('nationality').value == 'Malawian'",
     :tt_onLoad => "set_ajaxURL_for_suggestions('/village?filter_value=', __$('ancestral_traditional_authority').value);",
     :helptext => "Home Village" } if @show_region_of_origin %>
 
