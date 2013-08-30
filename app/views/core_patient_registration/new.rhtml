@@ -35,6 +35,7 @@
 
   <%= text_field_tag "person[names][given_name]", params[:given_name],
     {:id => "first_name",
+    :condition => "false",
     :helptext => "First Name" } %>
 
   <%= text_field_tag "person[names][middle_name]", nil,
@@ -43,6 +44,7 @@
 
   <%= text_field_tag "person[names][family_name]", params[:family_name],
     {:id => "last_name",
+    :condition => "false",
     :helptext => "Last Name" } %>
 
   <%= select_tag "person[gender]", options_for_select([["Male", "M"], ["Female", "F"], ["", ""]], params[:gender]),
