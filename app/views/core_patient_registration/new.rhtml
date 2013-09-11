@@ -12,7 +12,7 @@
 </script>
 
 <style type="text/css">
-  
+
   .nota #na {
     display: block;
   }
@@ -33,22 +33,28 @@
 
 <% form_tag :controller => "core_patient_registration", :action => "create" do |f| %>
 
+  <%  ask_first_name = params[:given_name].blank?? true : false%>
   <%= text_field_tag "person[names][given_name]", params[:given_name],
     {:id => "first_name",
-    :condition => "false",
+    :condition => "#{ask_first_name}",
     :helptext => "First Name" } %>
 
   <%= text_field_tag "person[names][middle_name]", nil,
     {:id => "middle_name",
+    :optional => "true",
     :helptext => "Middle Name" } if @show_middle_name %>
 
+  <%  ask_last_name = params[:family_name].blank?? true : false%>
   <%= text_field_tag "person[names][family_name]", params[:family_name],
     {:id => "last_name",
-    :condition => "false",
+    :condition => "#{ask_last_name}",
     :helptext => "Last Name" } %>
+
+  <%  ask_gender = params[:gender].blank?? true : false %>
 
   <%= select_tag "person[gender]", options_for_select([["Male", "M"], ["Female", "F"], ["", ""]], params[:gender]),
     {:id => "gender",
+    :condition => "#{ask_gender}",
     :helptext => "Gender" } %>
 
   <%= text_field_tag "person[names][family_name2]", nil,
@@ -59,6 +65,7 @@
   <%= text_field_tag "person[birth_year]", nil,
     {:id => "year_of_birth",
     :field_type => "number",
+    :tt_onLoad => "__$('nextButton').style.display = 'block'",
     :tt_pageStyleClass => "NumbersWithUnknown",
     :absoluteMax => Date.today.year,
     :absoluteMin => (Date.today.year - 120),
@@ -84,64 +91,90 @@
     :max => 90,
     :condition => '__$("year_of_birth").value.toLowerCase() == "unknown"',
     :absoluteMax => 120,
+    :tt_onLoad => "__$('nextButton').style.display = 'block'",
     :helptext => "Age" } %>
-<%#= raise @show_region_of_origin.to_yaml %>
+  <%#= raise @show_region_of_origin.to_yaml %>
   <%= select_tag "person[citizenship]", options_for_select([["", ""],
       ["Malawian", "Malawian"], ["Other", "Other"]]),
     {:id => "nationality",
+    :tt_onLoad => "__$('nextButton').style.display = 'block'",
     :helptext => "Nationality" } if (@show_nationality || @show_region_of_origin) == true %>
 
   <%= text_field_tag "person[race]", nil,
     {:id => "race",
+    :tt_onLoad => "__$('nextButton').style.display = 'block'",
     :helptext => "Specify nationality",
     :condition => '__$("nationality").value == "Other"' } if (@show_nationality || @show_region_of_origin) == true %>
 
   <%= select_tag "REGION OF ORIGIN", options_for_select([["Northern Region", "Northern+Region"],
       ["Central Region", "Central+Region"], ["Southern Region", "Southern+Region"], ["", ""]]),
     {:id => "region_of_origin",
-		:condition => "__$('nationality').value == 'Malawian'",
+    :tt_requireNextClick => "false",
+    :tt_onLoad => "__$('nextButton').style.display = 'none'",
+    :condition => "__$('nationality').value == 'Malawian'",
     :helptext => "Region Of Origin" } if @show_region_of_origin %>
 
-  <%= select_tag "person[addresses][address2]", options_for_select([["", ""]]),
+  <%= text_field_tag "person[addresses][address2]", params[:address2],
     {:id => "district_of_origin",
-		:condition => "__$('nationality').value == 'Malawian'",
-    :tt_onLoad => "$('nextButton').style.display = 'block'; set_ajaxURL_for_suggestions('/district?filter_value=', __$('region_of_origin').value); ",
+    :ajaxUrl => "",
+    :field_type => 'alpha',
+    :condition => "__$('nationality').value == 'Malawian'",
+    :tt_requireNextClick => "false",
+    :tt_onLoad => "$('nextButton').style.display = 'none'; set_ajaxURL_for_suggestions('/district?filter_value=', __$('region_of_origin').value); ",
     :helptext => "District Of Origin" } if @show_region_of_origin %>
 
-  <%= select_tag "person[addresses][county_district]", options_for_select([["", ""]]),
+  <%= text_field_tag "person[addresses][county_district]", nil,
     {:id => "ancestral_traditional_authority",
-		:condition => "__$('nationality').value == 'Malawian'",
+    :ajaxUrl => "",
+    :field_type => 'alpha',
+    :tt_requireNextClick => "false",
+    :condition => "__$('nationality').value == 'Malawian'",
     :tt_onLoad => "set_ajaxURL_for_suggestions('/traditional_authority?filter_value=', __$('district_of_origin').value);",
     :helptext => "Ancestral Traditional Authority" } if @show_region_of_origin %>
 
-  <%= select_tag "person[addresses][neighborhood_cell]", options_for_select([["", ""]]),
+  <%= text_field_tag "person[addresses][neighborhood_cell]", nil,
     {:id => "home_village",
-     :condition => "__$('nationality').value == 'Malawian'",
+    :ajaxUrl => "",
+    :field_type => 'alpha',
+    :tt_requireNextClick => "false",
+    :condition => "__$('nationality').value == 'Malawian'",
     :tt_onLoad => "set_ajaxURL_for_suggestions('/village?filter_value=', __$('ancestral_traditional_authority').value);",
     :helptext => "Home Village" } if @show_region_of_origin %>
 
   <%= select_tag "CURRENT REGION", options_for_select([["Northern Region", "Northern+Region"],
       ["Central Region", "Central+Region"], ["Southern Region", "Southern+Region"], ["", ""]]),
     {:id => "current_region",
+    :tt_requireNextClick => "false",
+    :tt_onLoad => "__$('nextButton').style.display = 'none'",
     :helptext => "Current Region" } if @show_current_district %>
 
-  <%= select_tag "person[addresses][state_province]", options_for_select([["", ""]]),
+  <%= text_field_tag "person[addresses][state_province]", nil,
     {:id => "current_district",
-    :tt_onLoad => "$('nextButton').style.display = 'block'; set_ajaxURL_for_suggestions('/district?filter_value=', __$('current_region').value); ",
+    :tt_requireNextClick => "false",
+    :ajaxUrl => "",
+    :field_type => 'alpha',
+    :tt_onLoad => "$('nextButton').style.display = 'none'; set_ajaxURL_for_suggestions('/district?filter_value=', __$('current_region').value); ",
     :helptext => "Current District" } if @show_current_district %>
 
-  <%= select_tag "CURRENT AREA OF RESIDENCE", options_for_select([["", ""]]),
+  <%= text_field_tag "CURRENT AREA OF RESIDENCE", nil,
     {:id => "current_area_of_residence",
-    :tt_onLoad => "set_ajaxURL_for_suggestions('/traditional_authority?filter_value=', __$('current_district').value);",
+    :tt_requireNextClick => "false",
+    :ajaxUrl => "",
+    :field_type => 'alpha',
+    :tt_onLoad => "$('nextButton').style.display = 'none'; set_ajaxURL_for_suggestions('/traditional_authority?filter_value=', __$('current_district').value);",
     :helptext => "Current Area Of Residence" } if @show_current_t_a %>
 
-  <%= select_tag "person[addresses][city_village]", options_for_select([["", ""]]),
+  <%= text_field_tag "person[addresses][city_village]", nil,
     {:id => "current_location_or_village",
-    :tt_onLoad => "set_ajaxURL_for_suggestions('/village?filter_value=', __$('current_area_of_residence').value);",
+    :tt_requireNextClick => "false",
+    :ajaxUrl => "",
+    :field_type => 'alpha',
+    :tt_onLoad => "$('nextButton').style.display = 'none'; set_ajaxURL_for_suggestions('/village?filter_value=', __$('current_area_of_residence').value);",
     :helptext => "Current Location Or Village" } if @show_current_village %>
 
   <%= text_field_tag "person[addresses][address1]", nil,
     {:id => "closest_landmark_or_plot_number",
+    :tt_onLoad => "$('nextButton').style.display = 'block';",
     :helptext => "Closest Landmark Or Plot Number" } if @show_current_landmark %>
 
   <%= text_field_tag "person[cell_phone_number]", nil,
@@ -179,6 +212,6 @@
 
   <input type='hidden' name='user_id' value='<%= params[:user_id] %>' />
   <input type='hidden' name='location_id' value='<%= params[:location_id] %>' />
-  
+
   <%= submit_tag 'Finish' %>
 <% end %>
