@@ -8,6 +8,56 @@
     listSuggestions(tstCurrentPage);
   }
 
+  function checkMonthLimits(yearValue, currentYear, currentMonth){
+    try{
+      yearValue = parseInt(yearValue);
+      currentYear = parseInt(currentYear);
+      currentMonth = parseInt(currentMonth);
+      $("12").style.display = "none"
+
+      if (yearValue == currentYear){
+        for(i = 11; i > currentMonth - 1; i--){
+          $("" + i).style.display = "none";
+        }
+        $("clearButton").onmousedown = function(){
+          clearInput(); checkMonthLimits(yearValue, currentYear, currentMonth);
+        }
+      }else{
+        $("clearButton").onmousedown = function(){
+          clearInput();
+        }
+      }
+    }catch(ex){}
+  }
+
+  function checkDayLimits(yearValue, currentYear, currentMonth, monthValue, currentDay){
+    try{
+      yearValue = parseInt(yearValue);
+      currentYear = parseInt(currentYear);
+      currentMonth = parseInt(currentMonth);
+      monthValue = parseInt(monthValue);
+      currentDay = parseInt(currentDay);
+
+      if (yearValue == currentYear){
+        if(currentMonth == monthValue){
+          for(i = 31; i > currentDay; i--){
+            try{
+              $("" + i).style.display = "none";
+            }catch(exx){}
+          }
+          $("clearButton").onmousedown = function(){
+            clearInput(); checkDayLimits(yearValue, currentYear, currentMonth, monthValue, currentDay);
+          }
+        }
+      }else{
+        $("clearButton").onmousedown = function(){
+          clearInput();
+        }
+      }
+    }catch(ex){}
+
+  }
+
   //-->
 </script>
 
@@ -67,21 +117,29 @@
     :field_type => "number",
     :tt_onLoad => "__$('nextButton').style.display = 'block'",
     :tt_pageStyleClass => "NumbersWithUnknown",
-    :absoluteMax => Date.today.year,
-    :absoluteMin => (Date.today.year - 120),
-    :min => (Date.today.year - 80),
+    :absoluteMax => (session[:datetime].to_date.year rescue Date.today.year),
+    :absoluteMin => ((session[:datetime].to_date.year rescue Date.today.year) - 120),
+    :min => ((session[:datetime].to_date.year rescue Date.today.year) - 80),
     :helptext => "Year Of Birth" } %>
+
+  <%
+  current_year = session[:datetime].to_date.year rescue Date.today.year
+  current_month = session[:datetime].to_date.month rescue  Date.today.month
+  current_day = session[:datetime].to_date.day rescue  Date.today.day
+%>
 
   <%= select_tag "person[birth_month]", month_name_options,
     {:id => "month_of_birth",
     :helptext => "Month Of Birth",
+    :tt_onLoad => "checkMonthLimits($('year_of_birth').value, #{current_year}, #{current_month})",
     :tt_pageStyleClass => "tt_controls_month_of_birth",
     :condition => '__$("year_of_birth").value != "Unknown"' } %>
 
   <%= text_field_tag "person[birth_day]", nil,
     {:id => "date_of_birth_if_month_of_birth_!=_unknown",
     :helptext => "Date Of Birth",
-    :tt_onLoad => "getDayOfMonthPicker($('year_of_birth').value, $('month_of_birth').value);$('nextButton').style.display = 'block';",
+    :tt_onLoad => "getDayOfMonthPicker($('year_of_birth').value, $('month_of_birth').value);$('nextButton').style.display = 'block';
+    checkDayLimits($('year_of_birth').value, #{current_year}, #{current_month}, $('month_of_birth').value, #{current_day})",
     :condition => '__$("year_of_birth").value != "Unknown" && __$("month_of_birth").value != "Unknown"' } %>
 
   <%= text_field_tag "person[age_estimate]", nil,
