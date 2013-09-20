@@ -109,7 +109,7 @@
 
   <%= text_field_tag "person[names][family_name2]", nil,
     {:id => "maiden_name",
-    :condition => "__$('gender').value == 'Female'",
+    :condition => "__$('gender').value.match(/F/i)",
     :helptext => "Maiden Name" } if @show_maiden_name %>
 
   <%= text_field_tag "person[birth_year]", nil,
