@@ -52,7 +52,7 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def create
-
+    #raise params.to_yaml
     person = CorePerson.create_patient_from_dde(params) if create_from_dde_server
 
     if person.blank?
@@ -754,7 +754,7 @@ class CorePatientRegistrationController < ApplicationController
     end
     
     if params[:patient_id]
-      @primary_patient = CorePerson.get_patient(Person.find(params[:patient_id]))
+      @primary_patient = CorePerson.get_patient(CorePerson.find(params[:patient_id]))
     else
       @primary_patient = nil
     end
@@ -775,32 +775,36 @@ class CorePatientRegistrationController < ApplicationController
   def create_person_from_dde
     person = DDEService.get_remote_person(params[:remote_person_id])
 
-    print_and_redirect("/national_id_label?patient_id=#{person.id}&user_id=#{params[:user_id]}",  "/scan?user_id=#{params[:user_id]}&identifier=#{person.patient.national_id}")
+    print_and_redirect("/national_id_label?patient_id=#{person.id}&user_id=#{params[:user_id]}",
+      "/scan?user_id=#{params[:user_id]}&identifier=#{person.patient.national_id}")
   end
 
   def reassign_national_identifier
-    patient = Patient.find(params[:person_id])
+    patient = CorePatient.find(params[:person_id])
     if create_from_dde_server
       passed_params = CorePerson.demographics(patient.person)
       new_npid = CorePerson.create_from_dde_server_only(passed_params)
       npid = PatientIdentifier.new()
       npid.patient_id = patient.id
-      npid.identifier_type = PatientIdentifierType.find_by_name('National ID').id
+      npid.identifier_type = CorePatientIdentifierType.find_by_name('National ID').id
       npid.identifier = new_npid
       npid.save
     else
-      PatientIdentifierType.find_by_name('National ID').next_identifier({:patient => patient})
+      CorePatientIdentifierType.find_by_name('National ID').next_identifier({:patient => patient})
     end
-    npid = PatientIdentifier.find(:first,
+    
+    npid = CorePatientIdentifier.find(:last,
       :conditions => ["patient_id = ? AND identifier = ?
            AND voided = 0", patient.id,params[:identifier]])
+    
     npid.voided = 1
     npid.void_reason = "Given another national ID"
     npid.date_voided = Time.now()
-    npid.voided_by = current_user.id
+    npid.voided_by = session[:user_id]
     npid.save
 
-    print_and_redirect("/patients/national_id_label?patient_id=#{patient.id}", next_task(patient))
+    print_and_redirect("/patients/national_id_label?patient_id=#{patient.id}",
+    "/scan?user_id=#{params[:user_id]}&identifier=#{patient.national_id}")
   end
 
 
