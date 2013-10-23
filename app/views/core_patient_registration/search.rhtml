@@ -211,23 +211,26 @@ end -%>
   }
 
   function newSearch() {
-    document.location = "/search?user_id=<%=h params[:user_id] -%>"
+    document.location = "/search?user_id=<%=h params[:user_id] -%>&gender=<%=h params[:gender] %>&location=<%=h params[:location] %>"
   }
 
   function setAttributes() {
+    try {
 <%if params[:given_name] and params[:family_name] %>
-      var buttondiv = __$("buttons");
-      buttondiv = document.getElementById("buttons");
-      buttondiv.innerHTML += "<div id='tt_extraButtons'></div>"
-      buttondiv.innerHTML+= "<button class='button navButton' id='newSearch' onmousedown='newSearch();'><span>New search</span></button>"
+        var buttondiv = $("buttons");
+        buttondiv.innerHTML += "<div id='tt_extraButtons'></div>"
+        buttondiv.innerHTML+= "<button class='button navButton' id='newSearch' onmousedown='newSearch();'><span>New search</span></button>"
 <%end%>
+    }catch(ex){
+      setTimeout("setAttributes()", 300);
+    }
   }
 
   function search_remote(){
     var url = "/people/dde_search?given_name=<%= params[:given_name] %>" +
       "&family_name=<%= params[:family_name] %>&gender=<%= params[:gender] %>";
 
-   // ajaxGeneralRequest(url, "loadPatient()");
+    // ajaxGeneralRequest(url, "loadPatient()");
 
   }
 
@@ -334,6 +337,34 @@ end -%>
     //tstDualViewOptions = people;
   }
 
+  function selectGender(){
+    if ("<%=  params[:gender]%>"){
+      var gender = "<%=  params[:gender]%>"
+      var list = document.getElementsByTagName("li")
+      var clickNode = null;
+
+      for (var i = 0; i < list.length; i ++){
+        if (list[i].innerHTML.toUpperCase().trim().charAt(0) == gender.toUpperCase().trim().charAt(0) && gender.length > 0){
+          clickNode = list[i]
+        }
+      }
+
+      try{
+        
+        if (gender.match(/F/i)){
+          $("touchscreenInput" + tstCurrentPage).value = "Female";
+          clickNode.onclick.apply(clickNode);
+        }else if (gender.match(/M/i)){
+          $("touchscreenInput" + tstCurrentPage).value = "Male";
+          clickNode.onclick.apply(clickNode);
+        }
+        $("nextButton").onmousedown.apply($("nextButton"));
+      }catch(ex){}
+    }
+   
+  }
+
+
 </script>
 <body onload = "setTimeout('setAttributes();', 300);">
   <% if (params[:gender].blank? || params[:given_name].blank? || params[:family_name].blank?) && (params[:identifier].blank?) %>
@@ -352,7 +383,10 @@ end -%>
         :ajaxURL => "/core_patient_registration/family_names?user_id=#{params[:user_id]}&search_string=",
         :allowFreeText => true
       }%>
-      Gender: <%= select_tag :gender, options_for_select({"" => "", "Male" => "M", "Female" => "F"}), {:helpText => "Gender"} %>
+
+      <%  ask_gender = params[:gender].blank?? true : false %>
+
+      Gender: <%= select_tag :gender, options_for_select({"" => "", "Male" => "M", "Female" => "F"}), {:helpText => "Gender", :value => "#{params[:gender]}", :tt_onLoad => "selectGender()"} %>
 
       <% if params["Middle Name"] %>
         <%= hidden_field_tag :show_middle_name, params["Middle Name"] %>
@@ -462,12 +496,12 @@ end -%>
           <% end %>
         <% end %>
 
-        <% @patients.each do | patient |          
+        <% @patients.each do | patient |
 
           next if patient.blank? -%>
           <% if @relation.blank? %>
-            
-            <% else %>
+
+          <% else %>
             <option value="<%= patient.person_id rescue nil %>" onmousedown="changeNextButtonText('Select Guardian')">
             <% end %>
             <%=h patient.name -%> (<%= patient.sex %>)
