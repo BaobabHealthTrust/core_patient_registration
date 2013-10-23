@@ -67,13 +67,17 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def national_id_label
+
     @person = CorePerson.find(params[:patient_id])
+
     print_string = @person.national_id_label rescue (raise "Unable to find patient (#{params[:patient_id]}) or generate a national id label for that patient")
+
     send_data(print_string,
       :type=>"application/label; charset=utf-8",
       :stream=> false,
       :filename=>"#{params[:patient_id]}#{rand(10000)}.lbl", 
       :disposition => "inline")
+    
   end
 
   def select
@@ -210,9 +214,29 @@ class CorePatientRegistrationController < ApplicationController
       national_id_replaced = dde_patient.check_old_national_id(params[:identifier])
 
       if create_from_dde_server
+
         if (national_id_replaced.to_s == "true" || params[:identifier] != dde_patient.patient.national_id) && !params[:reround]
+
           print_and_redirect("/national_id_label?patient_id=#{dde_patient.patient.id}&user_id=#{params[:user_id]}", "/scan?user_id=#{params[:user_id]}&identifier=#{person.patient.national_id}&ext=#{params[:ext]}&remote=#{params[:remote]}&reround=true") and return
+       
         end
+
+        #send footprints to DDE
+        #for tracking client/patient movements
+        app_name_file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/remote_app_name.#{params[:user_id]}.yml"
+        
+        @app_name = ""
+        
+        if File.exists?(app_name_file)
+       
+          @app_name = YAML.load_file(app_name_file)["#{Rails.env
+        }"]["remote.app.name.#{params[:user_id]}"].strip rescue ""
+
+        end
+       
+        DDEService.create_footprint(dde_patient.patient.national_id, @app_name) rescue nil if
+        ((!@app_name.blank? && !dde_patient.patient.national_id.blank?) rescue false)
+
       else
 
       end
@@ -370,7 +394,7 @@ class CorePatientRegistrationController < ApplicationController
       if local_results.length > 1
         redirect_to :action => 'duplicates' ,:search_params => params, :user_id => params[:user_id]
         return
-        #@people = CorePerson.person_search(params)
+       
       elsif local_results.length == 1
 
         if create_from_dde_server
@@ -382,17 +406,15 @@ class CorePatientRegistrationController < ApplicationController
           uri += "?value=#{params[:identifier]}"
           output = RestClient.get(uri)
           p = JSON.parse(output)
+
           if p.count > 1
             redirect_to :action => 'duplicates' ,:search_params => params, :user_id => params[:user_id]
             return
           end
+          
         end
 
         found_person = local_results.first
-
-        if (found_person.gender rescue "") == "M"
-          redirect_to "/clinic/no_males" and return
-        end
 
       else
         # TODO - figure out how to write a test for this
@@ -405,10 +427,6 @@ class CorePatientRegistrationController < ApplicationController
       end
 
       found_person = local_results.first if !found_person.blank?
-
-      if (found_person.gender rescue "") == "M"
-        redirect_to "/clinic/no_males" and return
-      end
 
       if found_person
         if create_from_dde_server
@@ -462,7 +480,7 @@ class CorePatientRegistrationController < ApplicationController
       
       person = CorePerson.find(person_id)
       
-      patient = CorePerson.get_patient(person) rescue nil      
+      patient = CorePerson.get_patient(person) rescue nil
 
       next if patient.blank?
       results = PersonSearch.new(patient.national_id || patient.patient_id)
@@ -492,14 +510,26 @@ class CorePatientRegistrationController < ApplicationController
 
     # Track final destination
     file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
-   
-    if !params[:ext].nil?
+    app_name_file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/remote_app_name.#{params[:user_id]}.yml"
+
+    if params[:app_name]
+
+      app_name_f = File.open(app_name_file, "w")
+
+      app_name_f.write("#{Rails.env}:\n    remote.app.name.#{params[:user_id]}: #{session["remote_app_name"] = params[:app_name]}")
+
+      app_name_f.close
+
+    end
+
+    if !params[:ext].blank?
       if !params[:skip_destination]
         f = File.open(file, "w")
 
         f.write("#{Rails.env}:\n    host.path.#{params[:user_id]}: #{session["host_path"] = request.referrer}")
 
         f.close
+        
       end
 
     end
