@@ -119,7 +119,8 @@
     :tt_pageStyleClass => "NumbersWithUnknown",
     :absoluteMax => (session[:datetime].to_date.year rescue Date.today.year),
     :absoluteMin => ((session[:datetime].to_date.year rescue Date.today.year) - 120),
-    :min => ((session[:datetime].to_date.year rescue Date.today.year) - 80),
+    :min => (params[:min_date].to_date.year rescue ((session[:datetime].to_date.year rescue Date.today.year) - 80)),
+    :max => (params[:max_date].to_date.year rescue (session[:datetime].to_date.year rescue Date.today.year)),
     :helptext => "Year Of Birth" } %>
 
   <%

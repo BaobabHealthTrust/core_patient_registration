@@ -834,7 +834,7 @@ class CorePatientRegistrationController < ApplicationController
     npid.save
 
     print_and_redirect("/patients/national_id_label?patient_id=#{patient.id}",
-    "/scan?user_id=#{params[:user_id]}&identifier=#{patient.national_id}")
+      "/scan?user_id=#{params[:user_id]}&identifier=#{patient.national_id}")
   end
 
 

@@ -522,6 +522,14 @@ end -%>
       <input type="hidden" id="address2" name="address2" value="<%=h params[:address2] -%>" />
       <input type="hidden" id="relation" name="relation" value="<%=h params[:relation] -%>" />
 
+      <% if params[:min_date] %>
+        <%= hidden_field_tag :min_date, params[:min_date] %>
+      <% end %>
+
+      <% if params[:max_date] %>
+        <%= hidden_field_tag :max_date, params[:max_date] %>
+      <% end %>
+
       <% if params[:show_middle_name] %>
         <%= hidden_field_tag :show_middle_name, params[:show_middle_name] %>
       <% end %>
