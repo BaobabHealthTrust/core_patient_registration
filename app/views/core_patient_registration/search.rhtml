@@ -448,6 +448,14 @@ end -%>
         <%= hidden_field_tag :show_occupation, params["Occupation"] %>
       <% end %>
 
+      <% if params[:min_date] %>
+        <%= hidden_field_tag :min_date, params[:min_date] %>
+      <% end %>
+
+      <% if params[:max_date] %>
+        <%= hidden_field_tag :max_date, params[:max_date] %>
+      <% end %>
+
       <% if params["Nationality"] %>
         <%= hidden_field_tag :show_nationality, params["Nationality"] %>
       <% end %>
