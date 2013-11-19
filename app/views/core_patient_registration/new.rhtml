@@ -238,6 +238,7 @@
 
   <%= text_field_tag "person[cell_phone_number]", nil,
     {:id => "cell_phone_number",
+    :tt_onLoad => "$('nextButton').style.display = 'block';",
     :validationRule => "^0\\d{7}$|Unknown|Not Available|^0\\d{9}$|^N\\/A$",
     :validationMessage => "Not a valid phone number",
     :tt_pageStyleClass => "NumbersWithUnknown nota",
@@ -247,6 +248,7 @@
   <%= text_field_tag "person[office_phone_number]", nil,
     {:id => "office_phone_number",
     :tt_pageStyleClass => "NumbersWithUnknown nota",
+    :tt_onLoad => "$('nextButton').style.display = 'block';",
     :validationRule => "^0\\d{7}$|Unknown|Not Available|^0\\d{9}$|^N\\/A$",
     :validationMessage => "Not a valid phone number",
     :field_type => 'number',
@@ -255,6 +257,7 @@
   <%= text_field_tag "person[home_phone_number]", nil,
     {:id => "home_phone_number",
     :tt_pageStyleClass => "NumbersWithUnknown nota",
+    :tt_onLoad => "$('nextButton').style.display = 'block';",
     :validationRule => "^0\\d{7}$|Unknown|Not Available|^0\\d{9}$|^N\\/A$",
     :validationMessage => "Not a valid phone number",
     :field_type => 'number',
@@ -263,6 +266,7 @@
   <%= select_tag "person[occupation]", options_for_select(@occupations),
     {:id => "occupation",
     :tt_pageStyleClass => "tt_controls_occupation",
+    :tt_onLoad => "$('nextButton').style.display = 'block';",
     :helptext => "Occupation" } if @show_occupation %>
 
   <!-- Make sure patient is created -->
