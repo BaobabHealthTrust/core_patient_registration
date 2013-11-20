@@ -273,6 +273,7 @@
 
   <%= hidden_field_tag "person[patient]", "" %>
 
+  <input type='hidden' name='identifier' value='<%= params[:identifier] %>' />
   <input type='hidden' name='user_id' value='<%= params[:user_id] %>' />
   <input type='hidden' name='location_id' value='<%= params[:location_id] %>' />
 

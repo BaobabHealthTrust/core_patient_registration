@@ -488,7 +488,7 @@ end -%>
 
         <% if @relation.blank? %>
           <% if params[:identifier] %>
-            <option value="0" onmousedown="changeNextButtonText('New Patient')">
+            <option value="0" onmousedown="changeNextButtonText('New Patient'); pointToNew()">
               Create a new person with the identifier <%=h params[:identifier] -%>
             </option>
           <% else %>

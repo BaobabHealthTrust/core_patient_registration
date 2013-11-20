@@ -676,6 +676,52 @@ class CorePerson < ActiveRecord::Base
     self.addresses.last.state_province rescue ""
   end
 
+
+  def self.demographics(person_obj)
+
+    if person_obj.birthdate_estimated==1
+      birth_day = "Unknown"
+      if person_obj.birthdate.month == 7 and person_obj.birthdate.day == 1
+        birth_month = "Unknown"
+      else
+        birth_month = person_obj.birthdate.month
+      end
+    else
+      birth_month = person_obj.birthdate.month
+      birth_day = person_obj.birthdate.day
+    end
+
+    demographics = {"person" => {
+        "date_changed" => person_obj.date_changed.to_s,
+        "gender" => person_obj.gender,
+        "birth_year" => person_obj.birthdate.year,
+        "birth_month" => birth_month,
+        "birth_day" => birth_day,
+        "names" => {
+          "given_name" => person_obj.names[0].given_name,
+          "family_name" => person_obj.names[0].family_name,
+          "family_name2" => person_obj.names[0].family_name2
+        },
+        "addresses" => {
+          "county_district" => person_obj.addresses[0].county_district,
+          "city_village" => person_obj.addresses[0].city_village,
+          "address1" => person_obj.addresses[0].address1,
+          "address2" => person_obj.addresses[0].address2
+        },
+        "attributes" => {"occupation" => self.get_attribute(person_obj, 'Occupation'),
+          "cell_phone_number" => self.get_attribute(person_obj, 'Cell Phone Number')}}}
+
+    if not person_obj.patient.patient_identifiers.blank?
+      demographics["person"]["patient"] = {"identifiers" => {}}
+      person_obj.patient.patient_identifiers.each{|identifier|
+        demographics["person"]["patient"]["identifiers"][identifier.type.name] = identifier.identifier
+      }
+    end
+
+    return demographics
+  end
+
+   
   def demographics
     {
       "birth date" => self.birthdate_formatted,
@@ -976,6 +1022,87 @@ class CorePerson < ActiveRecord::Base
       end
     } if person_attribute_params
 
+  end
+
+  def self.create_from_dde_server_only(params)
+    
+    address_params = params["person"]["addresses"]
+    names_params = params["person"]["names"]
+    patient_params = params["person"]["patient"]
+    birthday_params = params["person"]
+    params_to_process = params.reject{|key,value|
+      key.match(/identifiers|addresses|patient|names|relation|cell_phone_number|home_phone_number|office_phone_number|agrees_to_be_visited_for_TB_therapy|agrees_phone_text_for_TB_therapy/)
+    }
+    birthday_params = params_to_process["person"].reject{|key,value| key.match(/gender/) }
+    person_params = params_to_process["person"].reject{|key,value| key.match(/birth_|age_estimate|occupation/) }
+
+    if person_params["gender"].to_s == "Female"
+      person_params["gender"] = 'F'
+    elsif person_params["gender"].to_s == "Male"
+      person_params["gender"] = 'M'
+    end
+
+    unless birthday_params.empty?
+      if birthday_params["birth_year"] == "Unknown"
+        birthdate = Date.new(Date.today.year - birthday_params["age_estimate"].to_i, 7, 1)
+        birthdate_estimated = 1
+      else
+        year = birthday_params["birth_year"]
+        month = birthday_params["birth_month"]
+        day = birthday_params["birth_day"]
+
+        month_i = (month || 0).to_i
+        month_i = Date::MONTHNAMES.index(month) if month_i == 0 || month_i.blank?
+        month_i = Date::ABBR_MONTHNAMES.index(month) if month_i == 0 || month_i.blank?
+
+        if month_i == 0 || month == "Unknown"
+          birthdate = Date.new(year.to_i,7,1)
+          birthdate_estimated = 1
+        elsif day.blank? || day == "Unknown" || day == 0
+          birthdate = Date.new(year.to_i,month_i,15)
+          birthdate_estimated = 1
+        else
+          birthdate = Date.new(year.to_i,month_i,day.to_i)
+          birthdate_estimated = 0
+        end
+      end
+    else
+      birthdate_estimated = 0
+    end
+
+
+    passed_params = {"person"=>
+        {"data" =>
+          {"addresses"=>
+            {"state_province"=> address_params["state_province"],
+            "address2"=> address_params["address2"],
+            "address1"=> address_params["address1"],
+            "neighborhood_cell"=> address_params["neighborhood_cell"],
+            "city_village"=> address_params["city_village"],
+            "county_district"=> address_params["county_district"]
+          },
+          "attributes"=>
+            {"occupation"=> params["person"]["occupation"],
+            "cell_phone_number" => params["person"]["cell_phone_number"] },
+          "patient"=>
+            {"identifiers"=>
+              {"diabetes_number"=>""}},
+          "gender"=> person_params["gender"],
+          "birthdate"=> birthdate,
+          "birthdate_estimated"=> birthdate_estimated ,
+          "names"=>{"family_name"=> names_params["family_name"],
+            "given_name"=> names_params["given_name"]
+          }}}}
+
+    @dde_server = CoreGlobalProperty.find_by_property("dde_server_ip").property_value rescue ""
+    @dde_server_username = CoreGlobalProperty.find_by_property("dde_server_username").property_value rescue ""
+    @dde_server_password = CoreGlobalProperty.find_by_property("dde_server_password").property_value rescue ""
+
+    uri = "http://#{@dde_server_username}:#{@dde_server_password}@#{@dde_server}/people.json/"
+    
+    received_params = RestClient.post(uri,passed_params)
+
+    return JSON.parse(received_params)["npid"]["value"]
   end
 
 end

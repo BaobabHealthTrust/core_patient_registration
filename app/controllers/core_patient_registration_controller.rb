@@ -3,10 +3,21 @@ class CorePatientRegistrationController < ApplicationController
   unloadable   
 
   def new
-    
-    @show_middle_name = (params[:show_middle_name].to_s.downcase == "true" ? true : false) rescue false
 
-    @show_maiden_name = (params[:show_maiden_name].to_s.downcase == "true" ? true : false) rescue false
+    req_string = request.referrer.to_s.split("pid=true&")[1].gsub("%20", " ").split("&") rescue []
+    
+    req_string.each do |str|
+      
+      next if !str.match("=")
+      key = str.split("=")[0]
+      value = str.split("=")[1]
+      params[key] = value
+      
+    end
+
+    @show_middle_name = ((params[:show_middle_name] || params["Middle Name"]).to_s.downcase == "true" ? true : false) rescue false
+
+    @show_maiden_name = ((params[:show_maiden_name] || params["Maiden Name"]).to_s.downcase == "true" ? true : false) rescue false
 
     @show_birthyear = (params[:show_birthyear].to_s.downcase == "true" ? true : false) rescue false
 
@@ -16,33 +27,33 @@ class CorePatientRegistrationController < ApplicationController
 
     @show_age = (params[:show_age].to_s.downcase == "true" ? true : false) rescue false
 
-    @show_region_of_origin = (params[:show_region_of_origin].to_s.downcase == "true" ? true : false) rescue false
+    @show_region_of_origin = ((params[:show_region_of_origin] || params["Home of Origin"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_district_of_origin = (params[:show_district_of_origin].to_s.downcase == "true" ? true : false) rescue false
+    @show_district_of_origin = ((params[:show_district_of_origin] || params["Home of Origin"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_t_a_of_origin = (params[:show_t_a_of_origin].to_s.downcase == "true" ? true : false) rescue false
+    @show_t_a_of_origin = ((params[:show_t_a_of_origin]|| params["Home of Origin"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_home_village = (params[:show_home_village].to_s.downcase == "true" ? true : false) rescue false
+    @show_home_village = ((params[:show_home_village]|| params["Home of Origin"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_current_region = (params[:show_current_region].to_s.downcase == "true" ? true : false) rescue false
+    @show_current_region = ((params[:show_current_region] || params["Current District"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_current_district = (params[:show_current_district].to_s.downcase == "true" ? true : false) rescue false
+    @show_current_district = ((params[:show_current_district] || params["Current District"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_current_t_a = (params[:show_current_t_a].to_s.downcase == "true" ? true : false) rescue false
+    @show_current_t_a = ((params[:show_current_t_a] || params["Current T/A"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_current_village = (params[:show_current_village].to_s.downcase == "true" ? true : false) rescue false
+    @show_current_village = ((params[:show_current_village] || params["Current Village"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_current_landmark = (params[:show_current_landmark].to_s.downcase == "true" ? true : false) rescue false
+    @show_current_landmark = ((params[:show_current_landmark] || params["Landmark or Plot"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_cell_phone_number = (params[:show_cell_phone_number].to_s.downcase == "true" ? true : false) rescue false
+    @show_cell_phone_number = ((params[:show_cell_phone_number] || params["Cell Phone Number"]).to_s.downcase == "true" ? true : false) rescue false
     
-    @show_office_phone_number = (params[:show_office_phone_number].to_s.downcase == "true" ? true : false) rescue false
+    @show_office_phone_number = ((params[:show_office_phone_number] || params["Office Phone Number"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_home_phone_number = (params[:show_home_phone_number].to_s.downcase == "true" ? true : false) rescue false
+    @show_home_phone_number = ((params[:show_home_phone_number] || params["Home Phone Number"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_occupation = (params[:show_occupation].to_s.downcase == "true" ? true : false) rescue false
+    @show_occupation = ((params[:show_occupation] || params["Occupation"]).to_s.downcase == "true" ? true : false) rescue false
 
-    @show_nationality = (params[:show_nationality].to_s.downcase == "true" ? true : false) rescue false
+    @show_nationality = ((params[:show_nationality] || params["Nationality"]).to_s.downcase == "true" ? true : false) rescue false
 
     @occupations = ['','Driver','Housewife','Messenger','Business','Farmer','Salesperson','Teacher',
       'Student','Security guard','Domestic worker', 'Police','Office worker',
@@ -52,17 +63,36 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def create
-    #raise params.to_yaml
-    person = CorePerson.create_patient_from_dde(params) if create_from_dde_server
 
-    if person.blank?
+    print = true
+    if params[:identifier] && (params[:identifier].match(/P\d{12}/) || params[:identifier].length == 6)
+      
+      print = false if params[:identifier].length == 13
+      
+      params[:person][:identifiers] = {"National id" => params[:identifier]}
+      
+      person = CorePerson.create_from_form(params[:person])      
+         
+    elsif params[:identifier].present?
+
+      raise ("Unsupported identifier format").to_s
+      
+    else
     
-      person = CorePerson.create_from_form(params[:person])
+      person = CorePerson.create_patient_from_dde(params) if create_from_dde_server
 
+      if person.blank?
+    
+        person = CorePerson.create_from_form(params[:person])
+
+      end
+      
     end
-
-    print_and_redirect("/national_id_label?patient_id=#{person.id}&user_id=#{params[:user_id]}", 
-      "/scan?user_id=#{params[:user_id]}&identifier=#{person.patient.national_id}")
+    
+    print_and_redirect("/national_id_label?patient_id=#{person.id}&user_id=#{params[:user_id]}",
+      "/scan?user_id=#{params[:user_id]}&identifier=#{person.patient.national_id}") if print
+    
+    redirect_to "/scan?user_id=#{params[:user_id]}&identifier=#{person.patient.national_id}" and return if !print
 
   end
 
@@ -75,14 +105,14 @@ class CorePatientRegistrationController < ApplicationController
     send_data(print_string,
       :type=>"application/label; charset=utf-8",
       :stream=> false,
-      :filename=>"#{params[:patient_id]}#{rand(10000)}.lbl", 
+      :filename=>"#{params[:patient_id]}#{rand(10000)}.lbl",
       :disposition => "inline")
     
   end
 
   def select
 
-    if !params[:person].nil?    
+    if !params[:person].nil?
       if (params[:identifier]) || (!params[:person][:id].blank? && params[:person][:id].to_i != 0) || params["person"]["patient"]["identifiers"]["National id"]
 
         identifier = CorePerson.find(params[:person][:id]).patient.national_id rescue nil
@@ -186,7 +216,7 @@ class CorePatientRegistrationController < ApplicationController
       if f.present?
         f.write("#{Rails.env}:\n    host.path.#{params[:user_id]}: #{session["host_path"] = request.referrer}")
         f.close
-      end      
+      end
 
     end
 
@@ -198,7 +228,7 @@ class CorePatientRegistrationController < ApplicationController
         }"]["host.path.#{params[:user_id]}"].strip
      
     end
-		@destination = @destination + "&user_id=#{params[:user_id]}"  rescue @distination if @destination.present? and !@destination.match("user_id")
+    @destination = @destination + "&user_id=#{params[:user_id]}"  rescue @distination if @destination.present? and !@destination.match("user_id")
     identifier = params[:identifier] || params[:id]
     results = CorePerson.search_by_identifier(identifier)
 
@@ -208,7 +238,7 @@ class CorePatientRegistrationController < ApplicationController
        
     elsif results.length > 0
 
-      person = results.first     
+      person = results.first
      
       dde_patient = DDEService::Patient.new(person.patient)
       national_id_replaced = dde_patient.check_old_national_id(params[:identifier])
@@ -225,15 +255,15 @@ class CorePatientRegistrationController < ApplicationController
         #for tracking client/patient movements
         app_name_file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/remote_app_name.#{params[:user_id]}.yml"
         
-        @app_name = ""
+        @app_name = params[:app_name]
         
         if File.exists?(app_name_file)
        
           @app_name = YAML.load_file(app_name_file)["#{Rails.env
-        }"]["remote.app.name.#{params[:user_id]}"].strip rescue ""
+        }"]["remote.app.name.#{params[:user_id]}"].strip rescue "" || params[:ap_name]
 
         end
-       
+         
         DDEService.create_footprint(dde_patient.patient.national_id, @app_name) rescue nil if
         ((!@app_name.blank? && !dde_patient.patient.national_id.blank?) rescue false)
 
@@ -263,6 +293,37 @@ class CorePatientRegistrationController < ApplicationController
 
     else
 
+      if params[:identifier].present?
+        if @app_name.blank? && params[:app_name].present?
+          # Track final destination
+          file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml"
+          app_name_file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/remote_app_name.#{params[:user_id]}.yml"
+
+          if params[:app_name]
+
+            app_name_f = File.open(app_name_file, "w")
+
+            app_name_f.write("#{Rails.env}:\n    remote.app.name.#{params[:user_id]}: #{session["remote_app_name"] = params[:app_name]}")
+
+            app_name_f.close
+
+          end
+        end
+
+        #search by identifier workaround
+        parameters = ""
+        params.keys.uniq.each do |key|
+          next if key.match(/action|controller/)
+          parameters += "&#{key}=#{params[key]}"
+        end
+       
+        redirect_to "/search?pid=true#{parameters}" and return
+      
+          
+        
+
+      end
+      
       render :text => {"person" => "not found"}.to_json and return
 
     end
@@ -417,13 +478,7 @@ class CorePatientRegistrationController < ApplicationController
         found_person = local_results.first
 
       else
-        # TODO - figure out how to write a test for this
-        # This is sloppy - creating something as the result of a GET
-        if create_from_remote
-          found_person_data = CorePerson.search_by_identifier(params[:identifier]).first rescue nil
-
-          found_person = CorePerson.create_from_form(found_person_data['person']) unless found_person_data.nil?
-        end
+       
       end
 
       found_person = local_results.first if !found_person.blank?
@@ -814,7 +869,7 @@ class CorePatientRegistrationController < ApplicationController
     if create_from_dde_server
       passed_params = CorePerson.demographics(patient.person)
       new_npid = CorePerson.create_from_dde_server_only(passed_params)
-      npid = PatientIdentifier.new()
+      npid = CorePatientIdentifier.new()
       npid.patient_id = patient.id
       npid.identifier_type = CorePatientIdentifierType.find_by_name('National ID').id
       npid.identifier = new_npid
