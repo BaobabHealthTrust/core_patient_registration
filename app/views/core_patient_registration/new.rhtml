@@ -83,7 +83,11 @@
 
 <% form_tag :controller => "core_patient_registration", :action => "create" do |f| %>
 
-  <%  ask_first_name = params[:given_name].blank?? true : false%>
+  <%  ask_first_name = params[:given_name].blank?? true : false
+  max_age = (((session[:datetime].to_time rescue Time.now) - params[:min_date].to_time)/(3600 * 24 * 365)).round rescue  100
+
+  min_age = (((session[:datetime].to_time rescue Time.now) - params[:max_date].to_time)/(3600 * 24 * 365)).round rescue  0
+%>
   <%= text_field_tag "person[names][given_name]", params[:given_name],
     {:id => "first_name",
     :condition => "#{ask_first_name}",
@@ -147,12 +151,13 @@
     {:id => "age_if_year_of_birth_=_unknown",
     :field_type => "number",
     :tt_pageStyleClass => "NumbersOnly",
-    :max => 90,
+    :max => max_age,
+    :min => min_age,
     :condition => '__$("year_of_birth").value.toLowerCase() == "unknown"',
     :absoluteMax => 120,
     :tt_onLoad => "__$('nextButton').style.display = 'block'",
     :helptext => "Age" } %>
-  <%#= raise @show_region_of_origin.to_yaml %>
+ 
   <%= select_tag "person[citizenship]", options_for_select([["", ""],
       ["Malawian", "Malawian"], ["Other", "Other"]]),
     {:id => "nationality",

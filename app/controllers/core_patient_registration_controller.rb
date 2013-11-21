@@ -58,8 +58,9 @@ class CorePatientRegistrationController < ApplicationController
     @occupations = ['','Driver','Housewife','Messenger','Business','Farmer','Salesperson','Teacher',
       'Student','Security guard','Domestic worker', 'Police','Office worker',
       'Preschool child','Mechanic','Prisoner','Craftsman','Healthcare Worker','Soldier'].sort.concat(["Other","Unknown"])
+
     @destination = request.referrer
-    
+       
   end
 
   def create
@@ -577,7 +578,7 @@ class CorePatientRegistrationController < ApplicationController
 
     end
 
-    if !params[:ext].blank?
+    if !params[:ext].blank? && !request.referrer.match("core_patient_registration")
       if !params[:skip_destination]
         f = File.open(file, "w")
 
