@@ -388,6 +388,8 @@ class CorePerson < ActiveRecord::Base
         "person"=>{"occupation"=>p["person"]["data"]["attributes"]["occupation"],
           "age_estimate"=> birthdate_estimated,
           "cell_phone_number"=>p["person"]["data"]["attributes"]["cell_phone_number"],
+          "race"=>p["person"]["data"]["attributes"]["race"],
+          "citizenship"=>p["person"]["data"]["attributes"]["citizenship"],
           "birth_month"=> birthdate_month ,
           "addresses"=>{"address1"=>p["person"]["data"]["addresses"]["address1"],
             "address2"=>p["person"]["data"]["addresses"]["address2"],
@@ -445,6 +447,8 @@ class CorePerson < ActiveRecord::Base
           "age_estimate"=> birthdate_estimated ,
           "birthdate" => person["person"]["data"]["birthdate"],
           "cell_phone_number"=> person["person"]["data"]["attributes"]["cell_phone_number"],
+          "race"=>person["person"]["data"]["attributes"]["race"],
+          "citizenship"=>person["person"]["data"]["attributes"]["citizenship"],
           "birth_month"=> birthdate_month ,
           "addresses"=>{"address1"=> person["person"]["data"]["addresses"]["county_district"],
             "address2"=> person["person"]["data"]["addresses"]["address2"],
@@ -491,6 +495,8 @@ class CorePerson < ActiveRecord::Base
     patient.home_village = person["person"]["addresses"]["neighborhood_cell"]
     patient.occupation = person["person"]["occupation"]
     patient.cell_phone_number = person["person"]["cell_phone_number"]
+    patient.citizenship = person["person"]["citizenship"]
+    patient.race = person["person"]["race"]
     patient.home_phone_number = person["person"]["home_phone_number"]
     patient.old_identification_number = person["person"]["patient"]["identifiers"]["Old national id"]
     patient.national_id  = patient.old_identification_number if patient.national_id.blank?
@@ -526,6 +532,8 @@ class CorePerson < ActiveRecord::Base
     patient.office_phone_number = get_attribute(person, 'Office phone number')
     patient.home_phone_number = get_attribute(person, 'Home phone number')
     patient.guardian = art_guardian(person.patient) rescue nil
+    patient.race = get_attribute(person, 'Race')
+    patient.citizenship = get_attribute(person, 'Citizenship')
     patient    
   end
 
@@ -863,7 +871,7 @@ class CorePerson < ActiveRecord::Base
 
   def self.get_attribute(person, attribute)
     CorePersonAttribute.find(:first,:conditions =>["voided = 0 AND person_attribute_type_id = ? AND person_id = ?",
-        PersonAttributeType.find_by_name(attribute).id, person.id]).value rescue nil
+        CorePersonAttributeType.find_by_name(attribute).id, person.id]).value rescue nil
   end
 
   def get_full_attribute(attribute)
@@ -1022,6 +1030,13 @@ class CorePerson < ActiveRecord::Base
       end
     } if person_attribute_params
 
+    create_from_dde_server = CoreService.get_global_property_value('create.from.dde.server').to_s == "true" rescue false
+  
+    if create_from_dde_server
+      patient_bean = get_patient(person)
+      DDEService.update_demographics(patient_bean)
+    end
+    
   end
 
   def self.create_from_dde_server_only(params)
