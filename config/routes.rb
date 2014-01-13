@@ -27,6 +27,8 @@ ActionController::Routing::Routes.draw do |map|
   map.demographics '/demographics/:id', :controller => 'core_patient_registration', :action => 'demographics'
 
   map.edit_demographics '/edit_demographics/:id', :controller => 'core_patient_registration', :action => 'edit_demographics'
+  
+  map.edit_demographics '/static_nationalities', :controller => 'core_patient_registration', :action => 'static_nationalities'
 
   map.update_demographics '/update_demographics/:id', :controller => 'core_patient_registration', :action => 'update_demographics'
 

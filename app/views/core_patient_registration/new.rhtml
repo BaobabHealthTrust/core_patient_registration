@@ -1,7 +1,7 @@
 <script type="text/javascript" language="javascript">
   <!--
-  
-  tt_cancel_destination = "<%= !@destination.blank?? @destination : '/' %>"
+
+  tt_cancel_destination = "<%= !@destination.blank?? @destination : '/' %>&min_date=<%= params[:min_date] %>&max_date=<%= params[:max_date] %>&gender=<%= params[:gender] %>&app_name=<%= @app_name %>"
 
   function set_ajaxURL_for_suggestions(url, filter_value) {
     $('touchscreenInput'+tstCurrentPage).setAttribute('ajaxURL', url + filter_value + "&search_string=");
@@ -157,7 +157,7 @@
     :absoluteMax => 120,
     :tt_onLoad => "__$('nextButton').style.display = 'block'",
     :helptext => "Age" } %>
- 
+
   <%= select_tag "person[citizenship]", options_for_select([["", ""],
       ["Malawian", "Malawian"], ["Other", "Other"]]),
     {:id => "nationality",
@@ -168,6 +168,8 @@
     {:id => "race",
     :tt_onLoad => "__$('nextButton').style.display = 'block'",
     :helptext => "Specify nationality",
+    :allowFreeText => true,
+    :ajaxURL => "/static_nationalities?user_id=#{params[:user_id]}&search_string=",
     :condition => '__$("nationality").value == "Other"' } if (@show_nationality || @show_region_of_origin) == true %>
 
   <%= select_tag "REGION OF ORIGIN", options_for_select([["Northern Region", "Northern+Region"],

@@ -130,6 +130,8 @@
         <%= text_field_tag "person[attributes][race]", nil,
           {:id => "race",
           :helptext => "Specify nationality",
+          :allowFreeText => true,
+          :ajaxURL => "/static_nationalities?user_id=#{params[:user_id]}&search_string=",
           :condition => '__$("nationality").value == "Other"' } %>
 
       <% when "home_district" %>
