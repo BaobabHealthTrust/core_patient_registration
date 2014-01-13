@@ -60,6 +60,17 @@ class CorePatientRegistrationController < ApplicationController
       'Preschool child','Mechanic','Prisoner','Craftsman','Healthcare Worker','Soldier'].sort.concat(["Other","Unknown"])
 
     @destination = request.referrer
+
+    app_name_file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/remote_app_name.#{params[:user_id]}.yml"
+
+    @app_name = params[:app_name]
+
+    if File.exists?(app_name_file)
+
+      @app_name = YAML.load_file(app_name_file)["#{Rails.env
+        }"]["remote.app.name.#{params[:user_id]}"].strip rescue "" || params[:app_name]
+
+    end
        
   end
 
@@ -230,6 +241,7 @@ class CorePatientRegistrationController < ApplicationController
      
     end
     @destination = @destination + "&user_id=#{params[:user_id]}"  rescue @distination if @destination.present? and !@destination.match("user_id")
+
     identifier = params[:identifier] || params[:id]
     results = CorePerson.search_by_identifier(identifier)
 
@@ -261,7 +273,7 @@ class CorePatientRegistrationController < ApplicationController
         if File.exists?(app_name_file)
        
           @app_name = YAML.load_file(app_name_file)["#{Rails.env
-        }"]["remote.app.name.#{params[:user_id]}"].strip rescue "" || params[:ap_name]
+        }"]["remote.app.name.#{params[:user_id]}"].strip rescue "" || params[:app_name]
 
         end
          
@@ -271,6 +283,7 @@ class CorePatientRegistrationController < ApplicationController
       else
 
       end
+      
       if File.exists?(file)
 
         @destination = YAML.load_file(file)["#{Rails.env}"]["host.path.#{params[:user_id]}"].strip
@@ -314,14 +327,11 @@ class CorePatientRegistrationController < ApplicationController
         #search by identifier workaround
         parameters = ""
         params.keys.uniq.each do |key|
-          next if key.match(/action|controller/)
+          next if key.match(/action|controller/) || parameters.match(/#{key}\=/)
           parameters += "&#{key}=#{params[key]}"
         end
        
-        redirect_to "/search?pid=true#{parameters}" and return
-      
-          
-        
+        redirect_to "/search?pid=true#{parameters}" and return      
 
       end
       
@@ -893,6 +903,18 @@ class CorePatientRegistrationController < ApplicationController
       "/scan?user_id=#{params[:user_id]}&identifier=#{patient.national_id}")
   end
 
+  def static_nationalities
+    search_string = (params[:search_string] || "").upcase 
+
+    nationalities = []
+
+    File.open(RAILS_ROOT + "/public/data/nationalities.txt", "r").each{ |nat|
+      nationalities << nat if nat.upcase.strip.match(search_string)
+    }   
+
+    render :text => "<li></li><li " + nationalities.map{|nationality| "value=\"#{nationality}\">#{nationality}" }.join("</li><li ") + "</li>"
+
+  end
 
   protected
 
