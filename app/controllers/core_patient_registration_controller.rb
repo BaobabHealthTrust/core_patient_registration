@@ -172,14 +172,35 @@ class CorePatientRegistrationController < ApplicationController
 
   end
 
+  def region_of_origin
+    region_conditions = ["name LIKE (?)", "#{params[:value]}%"]
+
+    regions = CoreRegion.find(:all,:conditions => region_conditions, :order => 'region_id')
+    regions = regions.map do |r|
+      "<li value='#{r.name}'>#{r.name}</li>"
+    end
+    render :text => regions.join('')  and return
+  end
+  
   # Districts containing the string given in params[:value]
   def district
-    region_id = CoreRegion.find_by_name("#{params[:filter_value]}").id
+    region_id = CoreRegion.find_by_name("#{params[:filter_value]}").id rescue nil
     region_conditions = ["name LIKE (?) AND region_id = ? ", "#{params[:search_string]}%", region_id]
 
-    districts = CoreDistrict.find(:all,:conditions => region_conditions, :order => 'name')
+    districts = CoreDistrict.find(:all,:conditions => region_conditions, :order => 'name') rescue []
+
+    if districts.blank?
+      districts = []
+
+      File.open(RAILS_ROOT + "/public/data/nationalities.txt", "r").each{ |nat|
+        districts << nat if nat.upcase.strip.match(/#{params[:search_string]}/i)
+      }
+    end
+   
     districts = districts.map do |d|
-      "<li value='#{d.name}'>#{d.name}</li>"
+
+      ds = d.name rescue d
+      "<li value='#{ds}'>#{ds}</li>"
     end
     render :text => districts.join('') + "<li value='Other'>Other</li>" and return
   end
@@ -219,10 +240,13 @@ class CorePatientRegistrationController < ApplicationController
 
   def scan
 
+    session[:referrer] = request.referrer if session[:referrer].blank?
+    session[:referrer] = session[:referrer].gsub(/\&ext\_patient\_id\=\d+/, "")
+    
     # Track final destination
     file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml" if params[:user_id]
-   
-
+    @settings = YAML.load_file("#{Rails.root}/config/dde_connection.yml")[Rails.env] rescue {}
+        
     if !params[:ext].blank? && !params[:remote]
       f = File.open(file, "w") rescue nil
       if f.present?
@@ -241,9 +265,14 @@ class CorePatientRegistrationController < ApplicationController
      
     end
     @destination = @destination + "&user_id=#{params[:user_id]}"  rescue @distination if @destination.present? and !@destination.match("user_id")
-
+    
     identifier = params[:identifier] || params[:id]
     results = CorePerson.search_by_identifier(identifier)
+
+    if !@settings.blank? && params[:identifier]
+
+      redirect_to "/dde/process_data?id=#{params[:identifier]}&return_ip=#{@destination}" and return
+    end
 
     if results.length > 1 || results.to_s == "found duplicate identifiers"
       params[:identifier] = params[:id] if params[:identifier].blank? && params[:id].length > 5
@@ -357,7 +386,9 @@ class CorePatientRegistrationController < ApplicationController
   end
 
   def demographics
+
     @patient = CorePerson.find(params[:id] || params[:patient_id]) rescue nil
+    redirect_to "/dde/edit_patient/#{@patient.id}?patient_id=#{@patient.id}"
 
     @show_middle_name = (get_global_property_value(:show_middle_name).to_s.downcase == "true" ? true : false) rescue false
 
@@ -453,7 +484,6 @@ class CorePatientRegistrationController < ApplicationController
     params["person"]["gender"] = params["person"]["gender"][0 .. 0] if params["person"]["gender"]
     
     patient = CorePerson.find(params[:id] || params[:patient_id])
-
     CorePerson.update_demographics(params, params[:user_id])
 
     redirect_to "/demographics/#{patient.id}?user_id=#{(params[:user_id] rescue "")}" and return

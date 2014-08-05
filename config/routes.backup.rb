@@ -2,20 +2,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.root :controller => 'core_patient_registration', :action => 'select_fields'
 
-  
-  # ------------------------------- INSTALLATION GENERATED ----------------------------------------------------
-  map.clinic  '/clinic', :controller => 'dde', :action => 'index'
-  map.process_result '/process_result', :controller => 'dde', :action => 'process_result'
-  map.process_data '/process_data/:id', :controller => 'dde', :action => 'process_data'
-  map.search '/search', :controller => 'dde', :action => 'search_name'
-  map.new_patient '/new_patient', :controller => 'dde', :action => 'new_patient'
-  map.ajax_process_data '/ajax_process_data', :controller => 'dde', :action => {'ajax_process_data' => [:post]}
-  map.process_confirmation '/process_confirmation', :controller => 'dde', :action => {'process_confirmation' => [:post]}
-  map.patient_not_found '/patient_not_found/:id', :controller => 'dde', :action => 'patient_not_found'
-  map.ajax_search '/ajax_search', :controller => 'dde', :action => 'ajax_search'
-  # ------------------------------- END OF INSTALLATION GENERATED ----------------------------------------------
-  
- #   map.new_patient  '/new_patient',  :controller => 'core_patient_registration', :action => 'new'
+  map.new_patient  '/new_patient',  :controller => 'core_patient_registration', :action => 'new'
 
   map.national_id_label '/national_id_label', :controller => 'core_patient_registration', :action => 'national_id_label'
 
@@ -25,11 +12,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.select_fields '/select_fields', :controller => 'core_patient_registration', :action => 'select_fields'
 
- #   map.search  '/search',  :controller => 'core_patient_registration', :action => 'search'
+  map.search  '/search',  :controller => 'core_patient_registration', :action => 'search'
 
   map.select '/district', :controller => 'core_patient_registration', :action => 'district'
-
-  map.select '/region_of_origin', :controller => 'core_patient_registration', :action => 'region_of_origin'
 
   map.select '/traditional_authority', :controller => 'core_patient_registration', :action => 'traditional_authority'
 
