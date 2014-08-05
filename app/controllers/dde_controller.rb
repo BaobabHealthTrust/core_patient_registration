@@ -284,6 +284,7 @@ class DdeController < ApplicationController
       "person_attributes" => {
         "occupation" => (patient.person.person_attributes.find_by_person_attribute_type_id(CorePersonAttributeType.find_by_name("Occupation").id).value rescue nil),
         "cell_phone_number" => (patient.person.person_attributes.find_by_person_attribute_type_id(CorePersonAttributeType.find_by_name("Cell Phone Number").id).value rescue nil),
+        "office_phone_number" => (patient.person.person_attributes.find_by_person_attribute_type_id(CorePersonAttributeType.find_by_name("Office Phone Number").id).value rescue nil),
         "home_phone_number" => (patient.person.person_attributes.find_by_person_attribute_type_id(CorePersonAttributeType.find_by_name("Home Phone Number").id).value rescue nil),
         "race" => (patient.person.person_attributes.find_by_person_attribute_type_id(CorePersonAttributeType.find_by_name("Race").id).value rescue nil),
         "citizenship" => (patient.person.person_attributes.find_by_person_attribute_type_id(CorePersonAttributeType.find_by_name("Citizenship").id).value rescue nil)

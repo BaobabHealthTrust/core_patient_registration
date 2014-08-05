@@ -5,7 +5,7 @@ module DDE
       raise "Argument expected to be a JSON Object" if (JSON.parse(json) rescue nil).nil?
 
       person = JSON.parse(json) rescue {}
-      
+     
       birthdate_year = person["birthdate"].to_date.year rescue "Unknown"
       birthdate_month = person["birthdate"].to_date.month rescue nil
       birthdate_day = person["birthdate"].to_date.day rescue nil
@@ -162,6 +162,7 @@ module DDE
         fields = [
           {"occupation" => "Occupation"},
           {"cell_phone_number" => "Cell Phone Number"},
+          {"office_phone_number" => "Office Phone Number"},
           {"home_phone_number" => "Home Phone Number"},
           {"race" => "Race"},
           {"citizenship" => "Citizenship"}

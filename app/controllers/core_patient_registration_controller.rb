@@ -267,13 +267,14 @@ class CorePatientRegistrationController < ApplicationController
     @destination = @destination + "&user_id=#{params[:user_id]}"  rescue @distination if @destination.present? and !@destination.match("user_id")
     
     identifier = params[:identifier] || params[:id]
-    results = CorePerson.search_by_identifier(identifier)
-
+   
     if !@settings.blank? && params[:identifier]
 
       redirect_to "/dde/process_data?id=#{params[:identifier]}&return_ip=#{@destination}" and return
     end
 
+    results = CorePerson.search_by_identifier(identifier) rescue []
+     
     if results.length > 1 || results.to_s == "found duplicate identifiers"
       params[:identifier] = params[:id] if params[:identifier].blank? && params[:id].length > 5
       redirect_to :action => 'duplicates' ,:search_params => params, :user_id => params[:user_id]

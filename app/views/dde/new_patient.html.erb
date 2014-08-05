@@ -88,7 +88,9 @@
   "gender" => "#{params["gender"]}",
   "attributes" => {
     "occupation" => nil,
-    "cell_phone_number" => nil
+    "cell_phone_number" => nil,
+    "home_phone_number" => nil,
+    "office_phone_number" => nil
   },
   "birthdate" => nil,
   "patient" => {
@@ -96,6 +98,7 @@
   },
   "birthdate_estimated" => nil,
   "addresses" => {
+    "address1" => nil,
     "current_residence" => nil,
     "current_village" => nil,
     "current_ta" => nil,
@@ -151,10 +154,15 @@
     json.birthdate = dob;
     
     json.birthdate_estimated = dob_est;
+
+    json.addresses.address1 = (
+    __$("closest_landmark_or_plot_number") ?
+      __$("closest_landmark_or_plot_number").value : null
+  );
     
     json.addresses.current_residence = (
     __$("closest_landmark_or_plot_number") ?
-      __$("closest_landmark_or_plot_number").value : null
+      __$("closest_landmark_or_plot_number").value : __$("person_addresses_city_village").value
   );
     
     json.addresses.current_village = (
@@ -195,6 +203,21 @@
     json.attributes.cell_phone_number = (
     __$("cell_phone_number") ?
       __$("cell_phone_number").value : null
+  );
+
+    json.attributes.office_phone_number = (
+    __$("office_phone_number") ?
+      __$("office_phone_number").value : null
+  );
+
+    json.attributes.home_phone_number = (
+    __$("home_phone_number") ?
+      __$("home_phone_number").value : null
+  );
+
+    json.attributes.occupation = (
+    __$("occupation") ?
+      __$("occupation").value : null
   );
     
     json["print_barcode"] = true;
@@ -434,6 +457,24 @@
     :tt_pageStyleClass => "NumbersWithUnknown nota",
     :field_type => 'number',
     :helptext => "Cell Phone Number" } %>
+
+  <%= text_field_tag "person[office_phone_number]", nil,
+    {:id => "office_phone_number",
+    :tt_pageStyleClass => "NumbersWithUnknown nota",
+    :tt_onLoad => "$('nextButton').style.display = 'block';",
+    :validationRule => "^0\\d{7}$|Unknown|Not Available|^0\\d{9}$|^N\\/A$",
+    :validationMessage => "Not a valid phone number",
+    :field_type => 'number',
+    :helptext => "Office Phone Number" } %>
+
+  <%= text_field_tag "person[home_phone_number]", nil,
+    {:id => "home_phone_number",
+    :tt_pageStyleClass => "NumbersWithUnknown nota",
+    :tt_onLoad => "$('nextButton').style.display = 'block';",
+    :validationRule => "^0\\d{7}$|Unknown|Not Available|^0\\d{9}$|^N\\/A$",
+    :validationMessage => "Not a valid phone number",
+    :field_type => 'number',
+    :helptext => "Home Phone Number" } %>
 
   <%= select_tag "person[occupation]", options_for_select(@occupations),
     {:id => "occupation",

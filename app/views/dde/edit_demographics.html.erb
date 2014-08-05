@@ -269,11 +269,14 @@
         :tt_onLoad => "$('nextButton').style.display = 'block'; set_ajaxURL_for_suggestions('/core_patient_registration/village/Village?filter_value=' ,document.getElementById('person_addresses_county_district').value);"}%>
 
 
-    <%when 'primary_phone'%>
-      <%= text_field_tag "person[attributes][cell_phone_number]",  nil, :field_type => 'number', :helpText => 'Primary Phone Number', :allowFreeText => "true", :validationRule => "^0\\d{9}$|Unknown|Not Available", :validationMessage => "Not a valid phone number"%>
+    <%when 'cell_phone'%>
+      <%= text_field_tag "person[attributes][cell_phone_number]",  nil, :field_type => 'number', :helpText => 'Cell Phone Number', :allowFreeText => "true", :validationRule => "^0\\d{9}$|Unknown|Not Available", :validationMessage => "Not a valid phone number"%>
 
-    <%when 'secondary_phone'%>
-      <%= text_field_tag "person[attributes][home_phone_number]",  nil, :field_type => 'number', :helpText => 'Secondary Phone Number', :allowFreeText => "true", :validationRule => "^0\\d{7}$|Unknown|Not Available|^0\\d{9}$", :validationMessage => "Not a valid phone number"%>
+    <%when 'home_phone'%>
+      <%= text_field_tag "person[attributes][home_phone_number]",  nil, :field_type => 'number', :helpText => 'Home Phone Number', :allowFreeText => "true", :validationRule => "^0\\d{7}$|Unknown|Not Available|^0\\d{9}$", :validationMessage => "Not a valid phone number"%>
+
+    <%when 'office_phone'%>
+      <%= text_field_tag "person[attributes][office_phone_number]",  nil, :field_type => 'number', :helpText => 'Office Phone Number', :allowFreeText => "true", :validationRule => "^0\\d{7}$|Unknown|Not Available|^0\\d{9}$", :validationMessage => "Not a valid phone number"%>
 
     <%when 'citizenship'%>
 
