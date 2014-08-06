@@ -3,14 +3,18 @@ require "rest-client"
 class DdeController < ApplicationController
 
   def search
+
     session[:referrer] = request.referrer
+
+    session[:request_params] = params
+    
     @settings = YAML.load_file("#{Rails.root}/config/dde_connection.yml")[Rails.env] rescue {}
     @selected = params.reject{|key, value| value.blank? ||
         key.match(/action|controller/)}.collect{|k, v|
       k if v.to_s.match(/true/)}.delete_if{|k| k.blank?}.uniq
 
     @mapped_params = (@selected.join("=true&") + (params.length > 0 ? "=true" : '')).gsub(/\s/, "%20")
-	
+    
     render :layout => false
   end
 
@@ -182,7 +186,7 @@ class DdeController < ApplicationController
   end
 
   def new_patient
-
+    
     @destination = session[:referrer].blank? ? nil : session[:referrer]
 
     @settings = YAML.load_file("#{Rails.root}/config/dde_connection.yml")[Rails.env] rescue {}

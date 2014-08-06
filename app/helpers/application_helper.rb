@@ -95,5 +95,76 @@ module ApplicationHelper
     options_array = [[]] +Date::ABBR_MONTHNAMES[1..-1].collect{|month|[month,i+=1]} + [["Unknown","Unknown"]]
     options_for_select(options_array, selected_months)
   end
+
+    def ask_home_address
+
+    return false if session[:request_params].blank?
+
+    eval(["Home of Origin", "Home District",
+        "Home Village"].collect{|k| (session[:request_params][k] || "false")}.join(" || "))
+  end
+
+  def ask_current_address
+
+    return false if session[:request_params].blank?
+
+    eval(["Current T/A", "Current District",
+        "Current Village"].collect{|k|
+        (session[:request_params][k] || "false")}.join(" || "))
+  end
+
+  def ask_cell_phone_number
+
+    return false if session[:request_params].blank?
+
+    eval(["Cell Phone Number"].collect{|k|
+        (session[:request_params][k] || "false")}.join(" || "))
+  end
+
+  def ask_home_phone_number
+
+    return false if session[:request_params].blank?
+
+    eval(["Home Phone Number"].collect{|k|
+        (session[:request_params][k] || "false")}.join(" || "))
+  end
+
+  def ask_office_phone_number
+
+    return false if session[:request_params].blank?
+
+    eval(["Office Phone Number"].collect{|k|
+        (session[:request_params][k] || "false")}.join(" || "))
+  end
+
+  def ask_landmark
+
+    return false if session[:request_params].blank?
+
+    eval(["Landmark or Plot"].collect{|k|
+        (session[:request_params][k] || "false")}.join(" || "))
+  end
+
+  def ask_middle_name
+
+    return false if session[:request_params].blank?
+
+    eval(["Middle Name"].collect{|k|
+        (session[:request_params][k] || "false")}.join(" || "))
+  end
+
+  def ask_maiden_name
+
+    return false if session[:request_params].blank?
+
+    eval(["Maiden Name"].collect{|k|
+        (session[:request_params][k] || "false")}.join(" || "))
+  end
+
+  def ask_occupation
+
+    eval(["Occupation"].collect{|k|
+        (session[:request_params][k] || "false")}.join(" || "))
+  end
   
 end

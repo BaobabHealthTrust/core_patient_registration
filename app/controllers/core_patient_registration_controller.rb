@@ -242,6 +242,7 @@ class CorePatientRegistrationController < ApplicationController
 
     session[:referrer] = request.referrer if session[:referrer].blank?
     session[:referrer] = session[:referrer].gsub(/\&ext\_patient\_id\=\d+/, "")
+    session[:request_params] = params if session[:request_params].blank? and !params[:ext].blank?
     
     # Track final destination
     file = "#{File.expand_path("#{Rails.root}/tmp", __FILE__)}/registation.#{params[:user_id]}.yml" if params[:user_id]
