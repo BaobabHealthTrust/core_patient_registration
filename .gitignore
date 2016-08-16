@@ -4,5 +4,6 @@ nbproject/
 *.yml
 log/
 log/*.log
-~
+*~
 Gemfile.lock
+.ruby-version
